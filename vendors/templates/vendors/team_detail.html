@@ -1,0 +1,188 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% block content%}
+{% include 'dashboard/main_sidebar.html' %}
+
+
+        <section class="wt-haslayout wt-dbsectionspace">
+            <div class="row justify-content-md-center">				
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 push-lg-2 float-center">
+                <div class="wt-dashboardbox">
+                    <div class="wt-dashboardboxtitle">
+                        <h2>Manage {{ teams.title }}</h2>
+                    </div>
+                    <div class="wt-dashboardboxcontent wt-rcvproposala">
+                        <div class="wt-userlistinghold wt-featured wt-userlistingvtwo">
+                            <div class="wt-userlistingcontent">
+                                <div class="wt-contenthead">
+                                    <div class="wt-title">
+                                        <h3>{{ teams.title }}</h3>
+                                    </div>
+                                    <ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">
+                                        <li><span class="wt-dashboradclock"><i class="fa fa-arrow-up"></i>You Are: {% if request.user.is_vendor %}Moderator{% else %}Member{% endif %}</span></li>															
+                                        <li><span class="wt-dashboradclock"><i class="far fa-clock"></i> Created: {{teams.created_at|timesince}} ago</span></li>															
+                                        <li><span class="wt-dashboraddoller"><i class="fa fa-graduation-cap"></i>Status: {{teams.get_status_display}}</span></li>
+                                    </ul>
+                                </div>
+
+                            <div class="wt-rightarea">
+                                <div class="wt-btnarea">
+                                    {% if active_team.members.count > 1 %}
+                                    <a href="{% url 'vendors:teamchatroom' %}" class="btn btn-danger">Group Chat</a>
+                                    {% else %}
+                                    <a href="javascript:void(0);" class="btn btn-danger"><strike>Group Chat</strike></a>
+                                    {% endif %}
+                                    <a href="{% url 'account:dashboard' %}" class="btn btn-success">Go Back</a>
+                                </div>
+                                <div class="wt-hireduserstatus">
+                                    <h4>{{teams.members.count}}</h4><span>Team Member{{teams.members.count|pluralize}}</span>
+                                    <ul class="wt-hireduserimgs">
+                                        {% for member in teams.members.all %}
+                                        <li><figure><img src="{{member.vendor.profile_photo.url}}" alt="img description"></figure></li>
+                                        {% endfor %}
+                                    </ul>									
+                                </div>
+                            </div>
+                        </div>								
+                    </div>
+                    
+                    <section  id="upgrade" class="wt-haslayout wt-dbsectionspace">
+
+                        {% include 'vendors/partials/vendor_list.html' %}
+                      
+                    </section>
+
+                    {% if request.user.is_vendor %}
+                    <section class="wt-haslayout wt-dbsectionspace">
+                    <div class="wt-freelancerholder wt-rcvproposalholder">
+                        <div class="wt-tabscontenttitle">
+                            <h2>Team Moderator Actions</h2>
+                        </div>									 
+        
+                        <div class="row">
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Mailing List</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <form class="wt-formtheme wt-formpopup"> {% csrf_token %}
+                                                        <label for="username" class="text-left">Full Name</label>
+                                                        <input type="text" class="form-control" name="username" value="" id="username" required><br>
+                                                        <label for="email" class="text-left">Valid Email</label>
+                                                        <input type="email" class="form-control" name="emaillist" value="" id="emaillist" required><br><br>
+                                                        <span type="submit" class="wt-btn"
+                                                            hx-post=""
+                                                            {% comment %} {% url 'vendors:vendor_team_upgrade' %} {% endcomment %}
+                                                            hx-target="#upgrade"
+                                                            hx-confirm="Are you sure you want to proceed?"
+                                                            style="background-color:rgb(29, 118, 90); cursor:pointer">
+                                                            Add to List
+                                                        </span>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>										
+                        </div>
+                    </section>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-5 col-xl-3">
+                <aside id="wt-sidebar" class="wt-sidebar wt-dashboardsave">
+                    <div class="wt-proposalsr">
+                        <div class="wt-proposalsrcontent">
+                            <figure>
+                                <img src="{% static 'images/thumbnail/img-17.png' %}" alt="image">
+                            </figure>
+                            <div class="wt-title">
+                                <h3>150</h3>
+                                <span>Total Ongoing Jobs</span>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="wt-proposalsr">
+                        <div class="wt-proposalsrcontent wt-componyfolow">
+                            <figure>
+                                <img src="{% static 'images/thumbnail/img-16.png' %}" alt="image">
+                            </figure>
+                            <div class="wt-title">
+                                <h3>1406</h3>
+                                <span>Total Completed Jobs</span>
+                            </div>
+                        </div> 
+                    </div>								
+                    <div class="wt-proposalsr">
+                        <div class="wt-proposalsrcontent  wt-freelancelike">
+                            <figure>
+                                <img src="{% static 'images/thumbnail/img-15.png' %}" alt="image">
+                            </figure>
+                            <div class="wt-title">
+                                <h3>2075</h3>
+                                <span>Total Cancelled Jobs</span>
+                            </div>
+                        </div> 
+                    </div>								
+                </aside>
+                <div class="wt-companyad">
+                    <figure class="wt-companyadimg"><img src="{% static 'images/add-img.jpg' %}" alt="img description"></figure>
+                    <span>Advertisement  255px X 255px</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Register Form End-->
+
+
+    <!-- Add team Popup Start-->
+    <!-- Popup Start-->
+    <div class="modal fade wt-offerpopup" tabindex="-1" role="dialog" id="assignteammodal">
+        <div class="modal-dialog" role="document">
+            <div class="wt-modalcontent modal-content">
+                <div class="wt-popuptitle">
+                    <h2>About to Create Team</h2>
+                    <a href="javascript%3bvoid(0)%3b.html" class="wt-closebtn close"><i class="fa fa-close" data-dismiss="modal" aria-label="Close"></i></a>
+                </div>
+                <div class="modal-body">
+                    <div class="wt-projectdropdown-hold">
+                        <div class="wt-projectdropdown-option">
+                            <div class="wt-projectselect">
+                                <figure><img src="images/thumbnail/img-07.jpg" alt="img description"></figure>
+                                <div class="wt-projectselect-content">
+                                    <h3>Project Title Here</h3>
+                                    <span><i class="lnr lnr-calendar-full"></i> Project Deadline: May 27, 2019</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form method="POST", action='.', class="wt-formtheme wt-formpopup"> {% csrf_token %}
+                        <div class="form-group">
+                            {{assignform.project.label}}
+                            {{assignform.project}}
+                        </div>
+                        <div class="form-group">
+                            {{assignform.assignee.label}}
+                            {{assignform.assignee}}
+                        </div>								
+                        
+                        <div class="form-group wt-btnarea">
+                            <button type="submit" class="btn btn-success"> Asign Member </button>
+                            <button type="submit" class="btn btn-danger"> Cancel </button>
+                        </div>											
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Popup End-->			
+
+{% endblock %}

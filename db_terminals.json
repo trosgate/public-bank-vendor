@@ -1,0 +1,1618 @@
+[
+{
+    "model": "general_settings.terminals",
+    "pk": 1,
+    "fields": {
+        "name": "Acc New TownATM",
+        "terminal": "10250361",
+        "description": "Access Bank Accra Newtown Branch",
+        "gps_address": "GA-045-6163",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 1,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 2,
+    "fields": {
+        "name": "Achimota ATM",
+        "terminal": "10251211",
+        "description": "Access Bank Achimota Branch",
+        "gps_address": "GE-373-2181",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 2,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 3,
+    "fields": {
+        "name": "ADJIRIGANOR BRN ATM",
+        "terminal": "10250441",
+        "description": "Access Bank Adjirigarnor Branch",
+        "gps_address": "GD-212-4116",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 4,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 4,
+    "fields": {
+        "name": "ADJIRIGANOR BRN ATM2",
+        "terminal": "10250443",
+        "description": "Access Bank Adjirigarnor Branch",
+        "gps_address": "GD-212-4116",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 4,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 5,
+    "fields": {
+        "name": "AdumATM1",
+        "terminal": "10251091",
+        "description": "Access Bank Adum Branch",
+        "gps_address": "AK-038-8548",
+        "region": "Ashanti Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 6,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 6,
+    "fields": {
+        "name": "Ahodwo Branch ATM1",
+        "terminal": "10250491",
+        "description": "Access Bank Ahodwo Branch",
+        "gps_address": "AK-238-8225",
+        "region": "Ashanti Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 7,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 7,
+    "fields": {
+        "name": "Ahodwo Branch ATM2",
+        "terminal": "10250492",
+        "description": "Access Bank Ahodwo Branch",
+        "gps_address": "AK-238-8225",
+        "region": "Ashanti Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 7,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 8,
+    "fields": {
+        "name": "AIRPORT CARGO ATM",
+        "terminal": "10250401",
+        "description": "Access Bank Airport Cargo Centre Branch",
+        "gps_address": "GL-116-0617",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 9,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 9,
+    "fields": {
+        "name": "Alabar ATM",
+        "terminal": "10250371",
+        "description": "Access Bank Alabar Branch",
+        "gps_address": "AK-007-0024",
+        "region": "Ashanti Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 10,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 10,
+    "fields": {
+        "name": "Amakom ATM1",
+        "terminal": "10251241",
+        "description": "Access Bank Amakom Branch",
+        "gps_address": "AK-071-1376",
+        "region": "Ashanti Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 11,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 11,
+    "fields": {
+        "name": "Amrahia Goil ATM",
+        "terminal": "10251065",
+        "description": "Amrahia Goil ATM",
+        "gps_address": "GD-252-2578",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 12,
+    "fields": {
+        "name": "Anaji ATM",
+        "terminal": "10250473",
+        "description": "Anaji Choice Mart, Takoradi",
+        "gps_address": "WS-448-9127",
+        "region": "Western Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 83,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 13,
+    "fields": {
+        "name": "Art Center ATM",
+        "terminal": "10251013",
+        "description": "Art Center, Accra",
+        "gps_address": "GA-184-0050",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 14,
+    "fields": {
+        "name": "Asafo Goil ATM",
+        "terminal": "10250372",
+        "description": "Asafo Market Goil Filling Station, Kumasi",
+        "gps_address": "AK-039-5386",
+        "region": "Ashanti Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 11,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 15,
+    "fields": {
+        "name": "Ashaiman ATM",
+        "terminal": "10251181",
+        "description": "Ashaiman Branch",
+        "gps_address": "GB-029-3136",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 16,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 16,
+    "fields": {
+        "name": "Ashaiman ATM 2",
+        "terminal": "10251182",
+        "description": "Ashaiman Branch ATM 2",
+        "gps_address": "GB-029-3136",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 16,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 17,
+    "fields": {
+        "name": "Ashaley Botwe ATM",
+        "terminal": "10250442",
+        "description": "Ashaly Botwe ATM, CM4 PLAZA",
+        "gps_address": "GA-009-3147",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 18,
+    "fields": {
+        "name": "ATOMIC DOWN ATM",
+        "terminal": "10251213",
+        "description": "Atomic Down Goil Filling Station",
+        "gps_address": "GE-289-9049",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 19,
+    "fields": {
+        "name": "ATU Campus ATM",
+        "terminal": "10250462",
+        "description": "Accra Technical University Campus",
+        "gps_address": "WS-245-0185",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 70,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 20,
+    "fields": {
+        "name": "Ayawaso ATM",
+        "terminal": "10250502",
+        "description": "Access Bank AYAWASO GOIL FILING STATION",
+        "gps_address": "GM-037-2085",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 21,
+    "fields": {
+        "name": "BEKWAI ROUNDA ATM",
+        "terminal": "10251093",
+        "description": "Bekwai RoundAbout Goil Filling Station",
+        "gps_address": "AK-060-0618",
+        "region": "Ashanti Region",
+        "type": "Wincor",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 6,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 22,
+    "fields": {
+        "name": "Bolga ATM",
+        "terminal": "10250391",
+        "description": "Access Bank Bolga Branch",
+        "gps_address": "UB-0003-7304",
+        "region": "Upper East Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 23,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 23,
+    "fields": {
+        "name": "BURMA CAMP ATM",
+        "terminal": "10250012",
+        "description": "Burma Camp Goil Filling Station",
+        "gps_address": "GL-054-2895",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 24,
+    "fields": {
+        "name": "Castle Rd Park ATM1",
+        "terminal": "10251052",
+        "description": "Access Bank Ghana Head Office Osu",
+        "gps_address": "GA-112-5492",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 26,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 25,
+    "fields": {
+        "name": "Castle Road ATM1",
+        "terminal": "10251051",
+        "description": "Access Bank Ghana Head Office Osu",
+        "gps_address": "GA-112-6993",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 26,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 26,
+    "fields": {
+        "name": "Castle Road ATM2",
+        "terminal": "10251056",
+        "description": "Access Bank Ghana Head Office Osu",
+        "gps_address": "GA-112-6993",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 26,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 27,
+    "fields": {
+        "name": "Chirano ATM1",
+        "terminal": "10251262",
+        "description": "Chirano Mines",
+        "gps_address": "WB-1352-8661",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 82,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 28,
+    "fields": {
+        "name": "CIVIL SERVICE ATM",
+        "terminal": "10251053",
+        "description": "CLOGSAG Head Office Ministries",
+        "gps_address": "GA-110-2864",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 29,
+    "fields": {
+        "name": "Dahwenya ATM",
+        "terminal": "10251253",
+        "description": "Citydia Supermarket Dahwenya",
+        "gps_address": "GN-0488-1393",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "decommission",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 30,
+    "fields": {
+        "name": "Dzorwulu ATM",
+        "terminal": "10251162",
+        "description": "Queenstar Real Estate Building Dzorwulu",
+        "gps_address": "GA-157-4465",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 31,
+    "fields": {
+        "name": "East Cantonment ATM",
+        "terminal": "10250011",
+        "description": "Access Bank East Cantonment Branch",
+        "gps_address": "GL-038-4663",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 32,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 32,
+    "fields": {
+        "name": "Enchi ATM1",
+        "terminal": "10251271",
+        "description": "Access Bank Enchi Branch",
+        "gps_address": "WA-00000-7187",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 33,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 33,
+    "fields": {
+        "name": "Fadama ATM1",
+        "terminal": "10251071",
+        "description": "Access Bank Fadama Branch",
+        "gps_address": "GA-177-4308",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 34,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 34,
+    "fields": {
+        "name": "Haatso ATM",
+        "terminal": "10250381",
+        "description": "Access Bank Haatso Branch",
+        "gps_address": "GE-298-6647",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 35,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 35,
+    "fields": {
+        "name": "HO POLY ATM",
+        "terminal": "10250352",
+        "description": "Ho Polytechnic Campus",
+        "gps_address": "VH-0043-4515",
+        "region": "Volta Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 37,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 36,
+    "fields": {
+        "name": "Ho ATM",
+        "terminal": "10250351",
+        "description": "Access Bank Ho Branch",
+        "gps_address": "VH-0013-2146",
+        "region": "Volta Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 37,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 37,
+    "fields": {
+        "name": "IRIS ATM1",
+        "terminal": "10251284",
+        "description": "Access Bank Airport Branch",
+        "gps_address": "GA-117-2568",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 38,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 38,
+    "fields": {
+        "name": "IRIS ATM2",
+        "terminal": "10251285",
+        "description": "Access Bank Airport Branch",
+        "gps_address": "GA-117-2568",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 38,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 39,
+    "fields": {
+        "name": "Kaneshie ATM1",
+        "terminal": "10251041",
+        "description": "Access Bank Kaneshie Branch",
+        "gps_address": "GA-263-4515",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 40,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 40,
+    "fields": {
+        "name": "Kantamanto ATM1",
+        "terminal": "10251021",
+        "description": "Access Bank Kantamanto Branch",
+        "gps_address": "GA-140-1816",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 41,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 41,
+    "fields": {
+        "name": "KASOA GOIL ATM",
+        "terminal": "10250332",
+        "description": "Kasoa Nyanyanor Goil Filling Station",
+        "gps_address": "CG-0235-5102",
+        "region": "Central Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 44,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 42,
+    "fields": {
+        "name": "Kasoa ATM2",
+        "terminal": "10250333",
+        "description": "Access Bank Kasoa Branch",
+        "gps_address": "CX-004-5590",
+        "region": "Central Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 44,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 43,
+    "fields": {
+        "name": "Kasoa ATM",
+        "terminal": "10250331",
+        "description": "Access Bank Kasoa Branch",
+        "gps_address": "CX-004-5590",
+        "region": "Central Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 44,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 44,
+    "fields": {
+        "name": "KDUA BRANCH ATM",
+        "terminal": "10250481",
+        "description": "Access Bank Koforidua Branch",
+        "gps_address": "EN-010-3438",
+        "region": "Central Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 45,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 45,
+    "fields": {
+        "name": "Kejetia ATM",
+        "terminal": "10250451",
+        "description": "Access Bank Kejetia Branch",
+        "gps_address": "AK-006-0998",
+        "region": "Central Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 46,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 46,
+    "fields": {
+        "name": "KNUSTBR ATM",
+        "terminal": "10250421",
+        "description": "Access Bank KNUST Branch",
+        "gps_address": "AK-509-1494",
+        "region": "Central Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 47,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 47,
+    "fields": {
+        "name": "KNUST OFFSITE ATM1",
+        "terminal": "10250422",
+        "description": "Royal Parade Grounds KNUST",
+        "gps_address": "AK-314-6631",
+        "region": "Central Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 47,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 48,
+    "fields": {
+        "name": "KNUST OFFSITE ATM2",
+        "terminal": "10250423",
+        "description": "Royal Parade Grounds KNUST",
+        "gps_address": "AK-385-8499",
+        "region": "Central Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 47,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 49,
+    "fields": {
+        "name": "Korlebu ATM1",
+        "terminal": "10251042",
+        "description": "Korle Bu Teaching Hospital Main Entrance",
+        "gps_address": "GA-270-4330",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 50,
+    "fields": {
+        "name": "KPO ATM1",
+        "terminal": "10251151",
+        "description": "Access Bank Kaneshie Post Office Branch",
+        "gps_address": "GA-262-5008",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 51,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 51,
+    "fields": {
+        "name": "Kumasi Mall ATM",
+        "terminal": "10251245",
+        "description": "Kumasi City Mall",
+        "gps_address": "AK-185-2129",
+        "region": "Ashanti Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 11,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 52,
+    "fields": {
+        "name": "Lapaz ATM2",
+        "terminal": "10251164",
+        "description": "Access Bank Lapaz Branch",
+        "gps_address": "GA-351-0448",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 54,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 53,
+    "fields": {
+        "name": "Lapaz ATM1",
+        "terminal": "10251161",
+        "description": "Access Bank Lapaz Branch",
+        "gps_address": "GA-351-0448",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 54,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 54,
+    "fields": {
+        "name": "LARTEBIOKOSHIE ATM",
+        "terminal": "10251152",
+        "description": "Lartebiokorshie Goil Filling Station",
+        "gps_address": "GA-316-6075",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 55,
+    "fields": {
+        "name": "Lashibi ATM 2",
+        "terminal": "10250043",
+        "description": "Access Bank Lashibi Branch",
+        "gps_address": "GT-351-4885",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 56,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 56,
+    "fields": {
+        "name": "LEGONBR ATM1",
+        "terminal": "10250431",
+        "description": "Access Bank Legon Branch",
+        "gps_address": "GA-419-6208",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 58,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 57,
+    "fields": {
+        "name": "LEGONBR ATM2",
+        "terminal": "10250432",
+        "description": "Access Bank Legon Branch",
+        "gps_address": "GA-419-6208",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 58,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 58,
+    "fields": {
+        "name": "Madina ATM1",
+        "terminal": "10251061",
+        "description": "Access Bank Madina Branch",
+        "gps_address": "GM-016-4220",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 60,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 59,
+    "fields": {
+        "name": "Madina ATM2",
+        "terminal": "10251063",
+        "description": "Access Bank Madina Branch",
+        "gps_address": "GM-016-4220",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 60,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 60,
+    "fields": {
+        "name": "MALLAM MARKT ATM",
+        "terminal": "10251163",
+        "description": "Mallam Market Goil Filling Station",
+        "gps_address": "GA-591-7670",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 61,
+    "fields": {
+        "name": "Marina Mall ATM",
+        "terminal": "10251282",
+        "description": "Marina Mall Main Entrance",
+        "gps_address": "GL-126-7217",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 62,
+    "fields": {
+        "name": "MaxMart ATM",
+        "terminal": "10251143",
+        "description": "MaxMart Shopping Center 37 Liberation Road",
+        "gps_address": "GL-093-8059",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 63,
+    "fields": {
+        "name": "New Lashibi ATM",
+        "terminal": "10250042",
+        "description": "Access Bank Lashibi Branch",
+        "gps_address": "GT-351-4885",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 56,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 64,
+    "fields": {
+        "name": "NIA ATM",
+        "terminal": "10251131",
+        "description": "Access Bank North Industrial Area Branch",
+        "gps_address": "GA-170-9703",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 66,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 65,
+    "fields": {
+        "name": "Nima ATM",
+        "terminal": "10251231",
+        "description": "Access Bank Nima Branch",
+        "gps_address": "GA-025-2566",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 67,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 66,
+    "fields": {
+        "name": "NORTH LEGON ATM",
+        "terminal": "10250383",
+        "description": "North Legon Goil Filling Station",
+        "gps_address": "GA-575-4342",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 67,
+    "fields": {
+        "name": "NUNGUA GOIL ATM",
+        "terminal": "10250342",
+        "description": "Nungua C5 Filling Station",
+        "gps_address": "GZ-011-6900",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 68,
+    "fields": {
+        "name": "OCTAGON ATM",
+        "terminal": "10250461",
+        "description": "Access Bank Octagon Branch Octagon Building",
+        "gps_address": "GA-107-5581",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 70,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 69,
+    "fields": {
+        "name": "Odorkor ATM1",
+        "terminal": "10250501",
+        "description": "Access Bank Odorkor Branch",
+        "gps_address": "GA-531-9921",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 71,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 70,
+    "fields": {
+        "name": "Okaishie ATM1",
+        "terminal": "10251171",
+        "description": "Access Bank Okaishie Branch",
+        "gps_address": "GA-141-4230",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 72,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 71,
+    "fields": {
+        "name": "Osu Oxford ATM",
+        "terminal": "10250031",
+        "description": "Access Bank Osu Oxford Street Branch",
+        "gps_address": "GA-055-5345",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 73,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 72,
+    "fields": {
+        "name": "Osu ATM1",
+        "terminal": "10251011",
+        "description": "Access Bank Osu Watson House Branch",
+        "gps_address": "GA-114-9073",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 74,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 73,
+    "fields": {
+        "name": "RingRoad Central ATM1",
+        "terminal": "10251141",
+        "description": "Access Bank Ring Road Central Branch",
+        "gps_address": "GA-072-8804",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 76,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 74,
+    "fields": {
+        "name": "RingRoad Central ATM2",
+        "terminal": "10251144",
+        "description": "Access Bank Ring Road Central Branch",
+        "gps_address": "GA-072-8804",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 76,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 75,
+    "fields": {
+        "name": "SANTASI ROUNDA ATM 1",
+        "terminal": "10251244",
+        "description": "Santasi Goil Filling Station",
+        "gps_address": "AK-177-6442",
+        "region": "Ashanti Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 6,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 76,
+    "fields": {
+        "name": "Sefwi ATM1",
+        "terminal": "10251261",
+        "description": "Access Bank Sefwi Wiawso Branch",
+        "gps_address": "WG-0011-9247",
+        "region": "Western North Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 79,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 77,
+    "fields": {
+        "name": "Sowutuom ATM",
+        "terminal": "10251153",
+        "description": "Sowutuom Total Service Station Mambo Bus Stop",
+        "gps_address": "GC-034-4237",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 78,
+    "fields": {
+        "name": "Spintex Branch ATM",
+        "terminal": "10250341",
+        "description": "Access Bank Spintex Branch",
+        "gps_address": "GZ-202-2081",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 81,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 79,
+    "fields": {
+        "name": "SuameATM1",
+        "terminal": "10251101",
+        "description": "Access Bank Suame Branch",
+        "gps_address": "AK-055-6852",
+        "region": "Ashanti Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 82,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 80,
+    "fields": {
+        "name": "Takoradi Market circle ATM",
+        "terminal": "10250471",
+        "description": "Takoradi Aiport Roundabout Goil Filling Station",
+        "gps_address": "WS-339-3178",
+        "region": "Western Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 83,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 81,
+    "fields": {
+        "name": "Tamale PolyATM",
+        "terminal": "10251083",
+        "description": "Tamale Polytechnic",
+        "gps_address": "NS-011-2387",
+        "region": "Northern Region",
+        "type": "Wincor",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 85,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 82,
+    "fields": {
+        "name": "Tamale ATM1",
+        "terminal": "10251081",
+        "description": "Access Bank Tamale Branch",
+        "gps_address": "NT-0000-6139",
+        "region": "Northern Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 85,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 83,
+    "fields": {
+        "name": "Tamale ATM2",
+        "terminal": "10251082",
+        "description": "Access Bank Tamale Branch",
+        "gps_address": "NT-0000-6235",
+        "region": "Northern Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 85,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 84,
+    "fields": {
+        "name": "TantraHill ATM",
+        "terminal": "10251212",
+        "description": "Tantra Hill Goil Filling Station",
+        "gps_address": "GE-352-9244",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 85,
+    "fields": {
+        "name": "Tarkwa ATM1",
+        "terminal": "10251111",
+        "description": "Access Bank Tarkwa Branch",
+        "gps_address": "WT-0005-2613",
+        "region": "Western Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 88,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 86,
+    "fields": {
+        "name": "Techiman ATM1",
+        "terminal": "10251191",
+        "description": "Access Bank Techiman Branch",
+        "gps_address": "BT-0013-6563",
+        "region": "Bono East Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 89,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 87,
+    "fields": {
+        "name": "Tema Main ATM1",
+        "terminal": "10251031",
+        "description": "Access Bank Tema Harbour Branch",
+        "gps_address": "GT-024-6878",
+        "region": "Greater Accra Region",
+        "type": "Wincor",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 90,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 88,
+    "fields": {
+        "name": "TemaCom1 ATM1",
+        "terminal": "10251221",
+        "description": "Access Bank Tema Community 1 Branch",
+        "gps_address": "GT-008-4331",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 91,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 89,
+    "fields": {
+        "name": "TemaCom1 ATM2",
+        "terminal": "10251222",
+        "description": "Access Bank Tema Community 1 Branch",
+        "gps_address": "GT-008-4331",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 91,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 90,
+    "fields": {
+        "name": "TIA ATM",
+        "terminal": "10251251",
+        "description": "Access Bank Tema Industrial Area Branch",
+        "gps_address": "GK-0224-9715",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 93,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 91,
+    "fields": {
+        "name": "UMAT ATM",
+        "terminal": "10251112",
+        "description": "UMAT Tarkwa",
+        "gps_address": "WT-0038-5750",
+        "region": "Western Region",
+        "type": "Wincor",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 88,
+        "vendor": 2
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 92,
+    "fields": {
+        "name": "UPSA Digital Center",
+        "terminal": "10251204",
+        "description": "Access Bank UPSA Branch",
+        "gps_address": "GM-037-2084",
+        "region": "Greater Accra Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 97,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 93,
+    "fields": {
+        "name": "UPSA ATM1",
+        "terminal": "10251201",
+        "description": "Access Bank UPSA Branch",
+        "gps_address": "GM-037-2084",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 97,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 94,
+    "fields": {
+        "name": "UPSA HOSTEL ATM1",
+        "terminal": "10251283",
+        "description": "UPSA Hostel Legon",
+        "gps_address": "GA-546-8367",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 95,
+    "fields": {
+        "name": "WA ATM",
+        "terminal": "10250411",
+        "description": "Access Bank Wa Branch",
+        "gps_address": "XW-0006-6230",
+        "region": "Upper West Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 99,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 96,
+    "fields": {
+        "name": "WA ATM2",
+        "terminal": "10250412",
+        "description": "Access Bank Wa Branch",
+        "gps_address": "XW-0006-6230",
+        "region": "Upper West Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 99,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 97,
+    "fields": {
+        "name": "WAPIC ATM",
+        "terminal": "10251142",
+        "description": "WAPIC Insurance Near Nyaho Hospital",
+        "gps_address": "GA-154-6269",
+        "region": "Greater Accra Region",
+        "type": "NCR",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 3
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 98,
+    "fields": {
+        "name": "Okponglo ATM",
+        "terminal": "10250434",
+        "description": "ATM Okponglo, Traffic light",
+        "gps_address": "GH-GA-417-5658",
+        "region": "Greater Accra",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 99,
+    "fields": {
+        "name": "Dansoman Offsite ATM",
+        "terminal": "10250503",
+        "description": "ATM at Dansoman, Our lady star of the Sea catholic church",
+        "gps_address": "GP-GA-543-9405",
+        "region": "Greater Accra",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 100,
+    "fields": {
+        "name": "Palace Mall ATM",
+        "terminal": "10250343",
+        "description": "Palace Mall ATM",
+        "gps_address": "GH-GA-232-8319",
+        "region": "Greater Accra",
+        "type": "Hyosung",
+        "category": "offsite",
+        "status": "deployed",
+        "branch": 100,
+        "vendor": 1
+    }
+},
+{
+    "model": "general_settings.terminals",
+    "pk": 101,
+    "fields": {
+        "name": "Tarkwa ATM2",
+        "terminal": "10251113",
+        "description": "ATM at Tarkwa",
+        "gps_address": null,
+        "region": "Western Region",
+        "type": "Hyosung",
+        "category": "branch",
+        "status": "deployed",
+        "branch": 88,
+        "vendor": 1
+    }
+}
+]

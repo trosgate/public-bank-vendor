@@ -1,0 +1,116 @@
+{% load trackertag %}
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>Criteria</th>
+                <th style="color: yellow; font-weight:bold;">{% if vendor_one  %} {{vendor_one.name}} {% else %} Vendor One {% endif %}</th>
+                <th style="color: yellow; font-weight:bold;">{% if vendor_two  %} {{vendor_two.name}} {% else %} Vendor Two {% endif %}</th>
+                <th>Definition**</th>
+            </tr>
+        </thead>
+        {% if vendor_one != vendor_two %}
+        
+        <body>
+            <tr>
+                <td class="text-left">Total Tickets Mapped:</td>
+                <td>{{total_ticket_v1}}</td>
+                <td>{{total_ticket_v2}}</td>
+                <td class="text-left"><em>Total ticket created<em/></td>
+            </tr>
+        </body>
+        <body>
+            <tr>
+                <td class="text-left">Total Hours Worked</td>
+                <td>{{time_worked_v1|time_converter}}</td>
+                <td>{{time_worked_v2|time_converter}}</td>
+                <td class="text-left"><em>Hours worked on closed jobs</em></td>
+            </tr>
+            {% comment %} |date:"M-d-Y" {% endcomment %}
+        </body>
+        <body>
+            <tr>
+                <td class="text-left"> Open till Assigned (Average):</td>
+                <td>{{v1_open_to_assign|time_converter}}</td>
+                <td>{{v2_open_to_assign|time_converter}}</td>
+                <td class="text-left"><em>lead time between open and assign</em></td>
+            </tr>
+        </body>
+
+        <body>
+            <tr>
+                <td class="text-left"> Assign till arrival (Average):</td>
+                <td>{{v1_assign_to_arrival|time_converter}}</td>
+                <td>{{v2_assign_to_arrival|time_converter}}</td>
+                <td class="text-left"><em>lead time between assign and start</em></td>
+            </tr>
+        </body>
+        
+        <body>
+            <tr>
+                <td class="text-left">Tickets - Not Assigned:</td>
+                <td>{{unassigned_ticket_v1}}</td>
+                <td>{{unassigned_ticket_v2}}</td>
+                <td class="text-left"><em>Ticket awaiting vendor</em></td>
+            </tr>
+        </body>
+        <body>
+            <tr>
+                <td class="text-left">Tickets - Job Assigned:</td>
+                <td>{{assigned_ticket_v1}}</td>
+                <td>{{assigned_ticket_v2}}</td>
+                <td class="text-left"><em>Vendor team assigned to member</em></td>
+            </tr>
+        </body>
+        <body>
+            <tr>
+                <td class="text-left">Tickets - Job Started:</td>
+                <td>{{started_ticket_v1}}</td>
+                <td>{{started_ticket_v2}}</td>
+                <td class="text-left"><em>Time spent on resolution</em></td>
+            </tr>
+        </body>
+        <body>
+            <tr>
+                <td class="text-left">Tickets - Job Deferred:</td>
+                <td>{{deffered_ticket_v1}}</td>
+                <td>{{deffered_ticket_v2}}</td>
+                <td class="text-left"><em>Paused for unavoidable factors</em></td>
+            </tr>
+        </body>
+        <body>
+            <tr>
+                <td class="text-left">Tickets - Job Reopen:</td>
+                <td>{{reopen_ticket_v1}}</td>
+                <td>{{reopen_ticket_v2}}</td>
+                <td class="text-left"><em>Previously paused but reopened</em></td>
+            </tr>
+        </body>
+        <body>
+            <tr>
+                <td class="text-left">Tickets - Job Closed:</td>
+                <td>{{closed_ticket_v1}}</td>
+                <td>{{closed_ticket_v2}}</td>
+                <td class="text-left"><em>Resolved and closed</em></td>
+            </tr>
+            {% comment %} |date:"M-d-Y" {% endcomment %}
+        </body>
+        <body>
+            <tr>
+                <td class="text-left">Tickets Ongoing</td>
+                <td>{{ongoing_ticket_v1}}</td>
+                <td>{{ongoing_ticket_v2}}</td>
+                <td class="text-left"><em>Sum of Started & Reopen jobs</em></td>
+            </tr>
+            {% comment %} |date:"M-d-Y" {% endcomment %}
+        </body>
+        
+        {% endif %}
+    </table> 
+    <br>
+    <br>
+    <br>
+    <div class="text-center">
+        {% if vendor_one == vendor_two %}
+        <span style="font-weight:bold; font-size:28px; color:red;">The two vendors must be unique</span>
+        {% endif %}
+    <div>

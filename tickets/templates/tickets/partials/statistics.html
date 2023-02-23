@@ -1,0 +1,50 @@
+{% load static %}
+{% load trackertag %}
+<aside id="wt-sidebar" class="wt-sidebar wt-dashboardsave">
+    <div class="wt-proposalsr">
+        <div class="wt-proposalsrcontent">
+            <figure>
+                <img src="{% static 'images/thumbnail/img-17.png' %}" alt="image">
+            </figure>
+            <div class="wt-title">
+                <h3>{{ongoing_ticket}}</h3>
+                <span>Total Ongoing Jobs</span>
+            </div>
+        </div> 
+    </div>
+    <div class="wt-proposalsr">
+        <div class="wt-proposalsrcontent wt-freelancelike">
+            <figure>
+                <img src="{% static 'images/thumbnail/img-18.png' %}" alt="image">
+            </figure>
+            <div class="wt-title">
+                <h3>{{ticket_closed_this_month}}</h3>
+                <span>Jobs Closed This Month</span>
+            </div>
+        </div> 
+    </div>		
+    <div class="wt-proposalsr">
+        <div class="wt-proposalsrcontent wt-componyfolow">
+            <figure>
+                <img src="{% static 'images/thumbnail/img-16.png' %}" alt="image">
+            </figure>
+            <div class="wt-title">
+                <h3>{{user_time_today|time_converter}}</h3>
+                <span>Today Hours worked</span>
+            </div>
+        </div> 
+    </div>								
+    <div class="wt-proposalsr">
+        <div class="wt-proposalsrcontent wt-freelancelike">
+            <figure>
+                {% comment %} <img src="{% static 'images/thumbnail/img-15.png' %}" alt="image"> {% endcomment %}
+                <i class="fa fa-clock fa-4x" style="color:blueviolet"></i> 
+            </figure>
+            <div class="wt-title">
+                <h3>{{user_time_lastweek|time_converter}}</h3>
+                <span>Hours for Past 7 Days</span>
+            </div>
+        </div> 
+    </div>								
+    						
+</aside>

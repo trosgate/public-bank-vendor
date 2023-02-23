@@ -1,0 +1,156 @@
+{% load static %}
+
+{% if request.user.is_authenticated %}
+		<div id="wt-sidebarwrapper" class="wt-sidebarwrapper">
+			<div id="wt-btnmenutoggle" class="wt-btnmenutoggle">
+				<span class="menu-icon">
+					<em></em>
+					<em></em>
+					<em></em>
+				</span>
+			</div>
+			<div id="wt-verticalscrollbar" class="wt-verticalscrollbar">
+				<div class="wt-companysdetails wt-usersidebar">
+					<figure class="wt-companysimg">
+						<img src="{% static 'images/company/img-01.jpg'%}" alt="img description">
+					</figure>
+					<div class="wt-companysinfo">
+						<figure>
+							{% if request.user.vendor %}
+							<img src="{% if request.user.vendor.profile_photo %}{{request.user.vendor.profile_photo.url}}{% endif %}" alt="image description"/>
+							{% endif %}
+							{% if request.user.custodian %}
+							<img src="{% if request.user.custodian.profile_photo %}{{request.user.custodian.profile_photo.url}}{% endif %}" alt="image description"/>
+							{% endif %}
+						</figure>
+						<div class="wt-title">
+							<h2><a href="{{vendor_profile.vendor_profile_absolute_url}}"> {{request.user.short_name}}</a></h2>
+						</div>
+					</div>
+				</div>
+				<nav id="wt-navdashboard" class="wt-navdashboard">
+					<ul>
+						{% if request.user.vendor %}
+						
+						<li class="menu-item-has-children wt-active">
+							<a href="javascript:void(0);">
+								<i class="ti-dashboard"></i>
+								<span>My Profile</span>
+							</a>
+							{% if active_team.status == 'active' %}						
+							<ul class="sub-menu">
+								<li><hr><a href="{% url 'vendors:my_profile' request.user.short_name %}">Modify</a></li>
+								<li><hr><a href="{% url 'vendors:vendor_profile' request.user.short_name %}">Preview</a></li>
+							</ul>
+							{% endif %}
+						</li>
+						<li class="menu-item-has-children wt-active">
+							<a href="javascript:void(0);">
+								<i class="ti-dashboard"></i>
+								<span>Manage Tickets</span>
+							</a>
+							{% if active_team.status == 'active' %}						
+							<ul class="sub-menu">
+								<li><hr><a href="{% url 'tickets:unassigned_list' %}">Unassigned</a></li>
+								<li><hr><a href="{% url 'tickets:assigned_list' %}">Assigned</a></li>
+								<li><hr><a href="{% url 'tickets:started_list' %}">Started</a></li>
+								<li><hr><a href="{% url 'tickets:deffered_list' %}">Deffered</a></li>
+								<li><hr><a href="{% url 'tickets:reopened_list' %}">Reopened</a></li>
+								<li><hr><a href="{% url 'tickets:closed_list' %}">Closed</a></li>
+							</ul>
+							{% endif %}
+						</li>
+						{% if active_team.status == 'active' %}
+						<li>
+							<a href="{% url 'tickets:my_ticket_list' %}">
+								<i class="ti-file"></i>
+								<span>My Assigned Jobs</span>
+							</a>
+						</li>
+						{% endif %}
+						<li>
+							<a href="{% url 'tickets:recommendations' %}">
+								<i class="ti-dashboard"></i>
+								<span>Feedback</span>
+							</a>
+						</li>
+						{% endif %}
+						
+						{% if request.user.custodian %}
+						<li>
+							<a href="{% url 'custodians:my_profile' request.user.short_name %}">
+								<i class="ti-dashboard"></i>
+								<span>My Profile</span>
+							</a>
+						</li>
+						{% endif %}
+						{% if request.user.custodian and request.user.is_stakeholder == False %}
+						<li>
+							<a href="{% url 'custodians:branch_page' request.user.branch.slug %}">
+								<i class="ti-dashboard"></i>
+								<span>HelpDesk</span>
+							</a>
+						</li>
+						<li class="menu-item-has-children wt-active">
+							<a href="javascript:void(0);">
+								<i class="ti-dashboard"></i>
+								<span>Ticketing</span>
+							</a>
+							<ul class="sub-menu">
+								<li><hr><a href="{% url 'tickets:unassigned_list' %}">Unassigned</a></li>
+								<li><hr><a href="{% url 'tickets:assigned_list' %}">Assigned</a></li>
+								<li><hr><a href="{% url 'tickets:started_list' %}">Started</a></li>
+								<li><hr><a href="{% url 'tickets:deffered_list' %}">Deffered</a></li>
+								<li><hr><a href="{% url 'tickets:reopened_list' %}">Reopened</a></li>
+								<li><hr><a href="{% url 'tickets:closed_list' %}">Closed</a></li>
+							</ul>
+						</li>		
+						<li>
+							<a href="{% url 'inventory:requisition' %}">
+								<i class="ti-dashboard"></i>
+								<span>Requisition</span>
+							</a>
+						</li>
+						
+						<li class="menu-item-has-children wt-active">
+							<a href="javascript:void(0);">
+								<i class="ti-dashboard"></i>
+								<span>Data Insights</span>
+							</a>
+							<ul class="sub-menu">
+								<li><hr><a href="{% url 'reports:ticket_by_vendor_comparison' %}" target="_blank">Insight by Comparison</a></li>
+								<li><hr><a href="{% url 'reports:ticket_by_vendor' %}" target="_blank">Insight by Vendor</a></li>
+								<li><hr><a href="{% url 'reports:ticket_by_status' %}" target="_blank">Insight by Status</a></li>
+								<li><hr><a href="{% url 'reports:ticket_by_hours_worked' %}" target="_blank">Insight by Hours Worked</a></li>
+								<li><hr><a href="{% url 'reports:ticket_by_response' %}" target="_blank">Insight by Response</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="{% url 'reports:excel_or_csv' %}" target="_blank">
+								<i class="ti-dashboard"></i>
+								<span>Reports</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'tickets:recommendations' %}">
+								<i class="ti-dashboard"></i>
+								<span>Feedback</span>
+							</a>
+						</li>		
+						{% endif %}
+		
+						
+						<li>
+							<a href="{% url 'account:logout' %}" data-bs-toggle="modal" data-bs-target="#genericlogoutModal">
+								<i class="ti-shift-right"></i>
+								<span>Logout</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="wt-navdashboard-footer">
+					<span>{{website.site_name}} © 2022 All Rights Reserved.</span>
+				</div>
+			</div>
+		</div>
+		{% endif %}

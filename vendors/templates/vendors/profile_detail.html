@@ -1,0 +1,196 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% load trackertag %}
+{% block content%}
+
+
+			<!--Inner Home Start--> 
+			<div class="wt-haslayout wt-innerbannerholder wt-innerbannerholdervtwo">
+				<div class="container">
+					<div class="row justify-content-md-center">
+						<div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3"></div>
+					</div>
+				</div>
+			</div> 
+			<!--Inner Home End--> 
+			
+			<!--Main Start-->
+		
+			<!-- User Profile Start-->
+			<div class="wt-main-section wt-paddingtopnull wt-haslayout">
+				<div class="container">
+					<div class="row">	
+						<div class="col-12 col-sm-12 col-md-12 col-lg-12 float-left">
+							
+							<div class="wt-userprofileholder">
+								<div class="col-12 col-sm-12 col-md-12 col-lg-3 float-left">
+									<div class="row">
+										
+										<div class="wt-userprofile">
+											<figure>
+												<img src="{% if vendor_team.profile_photo %}{{vendor_team.profile_photo.url}}{% endif %}" alt="img description">
+												{% if vendor_team.user.is_active == True %}
+												<div class="wt-userdropdown wt-online"></div>
+												{% else %}
+												<div class="wt-userdropdown wt-offline" style="background-color:red;"></div>
+												{% endif %}
+											</figure>
+											<div class="wt-title"> 
+												<h3><i class="fa fa-check-circle"></i> {{vendor_team.user.get_full_name}}</h3>
+												
+												<span> Member since {{vendor_team.user.date_joined|date:"M d, Y"}}<br><a href="#">@{{vendor_team.user.short_name}}</a></span>
+												{% if request.user.is_vendor %}
+												<div id="invitation-message"></div>
+												<div class="form-group wt-btnarea">
+													<a href="{% url 'tickets:my_ticket_list' %}" class="btn btn-danger btn-sm"><i class="fa fa-eye" aria-hidden="true"> view my jobs</i></a>
+												</div>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-sm-12 col-md-12 col-lg-9 float-left">
+									<div class="row">
+										<div class="wt-proposalhead wt-userdetails">
+											<h2>{% firstof vendor_team.tagline request.user.vendor_company.name %}</h2>
+											<ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
+												<li><span><i class="fa fa-group" style="color:green;"></i> {{active_team.title}}</span></li>
+												<li><span>Tickets in Queue: <em style="color:green;">{{ongoing_count}}</em></span></li>
+											</ul>
+											<div class="wt-description">
+												{% if vendor_team.description %}
+												 	{{vendor_team.description|linebreaksbr}}
+												{% else %}
+													{{ website.profile_description|linebreaksbr}}
+												{% endif %}
+	
+											</div>
+										</div>
+										<div id="wt-statistics" class="wt-statistics wt-profilecounter">
+											<div class="wt-statisticcontent wt-countercolor1">
+												<h3 data-from="0" data-to="{{assign_count}}" data-speed="800" data-refresh-interval="03">{{assign_count}}</h3>
+												<h4>Assigned <br>Ticket{{assign_count|pluralize }}</h4>
+											</div>
+											<div class="wt-statisticcontent wt-countercolor2">
+												<h3 data-from="0" data-to="{{ongoing_count}}" data-speed="8000" data-refresh-interval="100">{{ongoing_count}}</h3>
+												<h4>Ongoing <br>Ticket{{ongoing_count|pluralize }}</h4>
+											</div>
+											<div class="wt-statisticcontent wt-countercolor4">
+												<h3 data-from="0" data-to="{{deffered_count}}" data-speed="800" data-refresh-interval="02">{{deffered_count}}</h3>
+												<h4>Paused <br>Ticket{{deffered_count|pluralize }}</h4>
+											</div>
+											<div class="wt-statisticcontent wt-countercolor3">
+												<h3 data-from="0" data-to="{{unassign_count}}" data-speed="8000" data-refresh-interval="100">{{unassign_count}}</h3>
+												<h4>Unassigned <br>Ticket{{unassign_count|pluralize }}</h4>
+											</div>
+											<div class="wt-description">
+												<p style='color:green'>* Hi {{request.user.short_name|capfirst}}, Please review the stats of the user</p>
+												{% comment %} <a href="" class="wt-btn">Try others</a> {% endcomment %}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- User Profile End-->
+				<!-- User Listing Start-->
+				<div class="container">
+					<div class="row">
+						<div id="wt-twocolumns" class="wt-twocolumns wt-haslayout">
+							<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 float-left">
+								<div class="wt-usersingle">
+									<aside id="wt-sidebar" class="wt-sidebar">
+										<div id="wt-ourskill" class="wt-widget">
+											<div class="wt-widgettitle">
+												<h2>Track Records ({{week_from}} - {{today.date}} as @ {{today.time}})</h2>
+											</div>
+											<div class="wt-widgetcontent wt-skillscontent">
+												
+												<div class="wt-skillholder" data-percent="{{today_assigned_percent}}%">
+													<span>{{vendor_team.user.short_name}} on transit for {{today_assigned_count}} of {{mytoday_count}} Ticket{{mytoday_count|pluralize}} <em>{{today_assigned_percent}}%</em></span>
+													<div class="wt-skillbarholder"><div class="wt-skillbar"></div></div>
+												</div>
+												<div class="wt-skillholder" data-percent="{{today_paused_percent}}%">
+													<span>{{today_deffered_count}} of {{mytoday_count}} Ticket{{mytoday_count|pluralize}} Paused <em>{{today_paused_percent}}%</em></span>
+													<div class="wt-skillbarholder"><div class="wt-skillbar"></div></div>
+												</div>
+												<div class="wt-skillholder" data-percent="{{today_ongoing_percent}}%">
+													<span>{{today_ongoing_count}} of {{mytoday_count}} Ticket{{mytoday_count|pluralize}} Ongoing <em>{{today_ongoing_percent}}%</em></span>
+													<div class="wt-skillbarholder"><div class="wt-skillbar"></div></div>
+												</div>
+												<div class="wt-skillholder" data-percent="{{today_closed_percent}}%">
+													<span>{{today_closed_count}} of {{mytoday_count}} Ticket{{mytoday_count|pluralize}} Closed <em>{{today_closed_percent}}%</em></span>
+													<div class="wt-skillbarholder"><div class="wt-skillbar"></div></div>
+												</div>
+												  
+											</div>
+										</div>
+									<aside>
+
+								</div>
+							</div>
+							<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 float-left">
+								<aside id="wt-sidebar" class="wt-sidebar">
+									
+									<div class="wt-widget">
+										<div class="wt-widgettitle">
+											<h2>Weekly Statistics</h2>
+										</div>
+										<div class="wt-widgetcontent">
+											<span style="font-size:20px; color:green;">Total Team Tickets: {{today_ticket_count}}</span><br><br>
+											<span style="font-size:20px; color:brown;">Total ticket Unassigned: {{unassign_count}}</span><br><br>
+											<span style="font-size:20px; color:indigo;">Total Assigned to you: {{mytoday_count}}</span><br><br>
+											<span style="font-size:20px; color:blue;">Percentage Assigned: {{today_percent}}%</span>
+										</div>
+									</div>
+								</aside>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="wt-proposalholder mt-6">
+				<div class="row justify-content-md-center">
+					<div class="wt-sectionhead wt-textcenter">
+						<span>Copyright @ {{website.site_name}}</span>
+					</div>
+				</div>
+			</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+	//INVITATION TO TEAM             
+	$(document).on('click', '#userInvitation', function (e) {
+	e.preventDefault();
+
+		$.ajax({
+			type: 'POST',
+			url: "",
+			data: {
+				freelancerId: "{{freelancer.user.id}}",
+				csrfmiddlewaretoken: "{{csrf_token}}",
+				action: 'send-invite'
+			},
+			success: function (json) {
+				console.log(json)
+				if (json.result){
+					document.getElementById('invitation-message').innerHTML = json.result
+					$('#invitation-message').addClass('alert alert-success');
+					
+				}
+				else if (json.errors){
+					document.getElementById('invitation-message').innerHTML = json.errors
+					$('#invitation-message').addClass('alert alert-danger');
+				}
+			},
+			error: function (error) {}            
+		});
+	});
+</script>
+
+{% endblock scripts %}
+

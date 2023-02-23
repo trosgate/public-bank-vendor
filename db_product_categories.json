@@ -1,0 +1,200 @@
+[
+{
+    "model": "general_settings.supportproduct",
+    "pk": 1,
+    "fields": {
+        "category": 1,
+        "name": "Hyosung ATM",
+        "created_at": "2023-02-04T14:20:58.328Z",
+        "status": true,
+        "ordering": 1
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 2,
+    "fields": {
+        "category": 4,
+        "name": "Inverter Installation",
+        "created_at": "2023-02-04T14:21:19.310Z",
+        "status": true,
+        "ordering": 1
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 3,
+    "fields": {
+        "category": 1,
+        "name": "NCR ATM",
+        "created_at": "2023-02-04T14:34:15.486Z",
+        "status": true,
+        "ordering": 2
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 4,
+    "fields": {
+        "category": 1,
+        "name": "Wincor ATM",
+        "created_at": "2023-02-04T14:59:34.962Z",
+        "status": true,
+        "ordering": 3
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 5,
+    "fields": {
+        "category": 4,
+        "name": "Inverter Installation and Maintenance",
+        "created_at": "2023-02-04T15:06:58.383Z",
+        "status": true,
+        "ordering": 2
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 6,
+    "fields": {
+        "category": 4,
+        "name": "AVR Installation",
+        "created_at": "2023-02-04T15:06:58.385Z",
+        "status": true,
+        "ordering": 3
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 7,
+    "fields": {
+        "category": 4,
+        "name": "AVR Installation and Maintenance",
+        "created_at": "2023-02-04T15:06:58.388Z",
+        "status": true,
+        "ordering": 4
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 8,
+    "fields": {
+        "category": 4,
+        "name": "Circuit Breaker Supply",
+        "created_at": "2023-02-04T15:06:58.390Z",
+        "status": true,
+        "ordering": 5
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 9,
+    "fields": {
+        "category": 4,
+        "name": "ECG product and cables Supply",
+        "created_at": "2023-02-04T15:06:58.392Z",
+        "status": true,
+        "ordering": 6
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 11,
+    "fields": {
+        "category": 5,
+        "name": "CCTV Maintenance and Installation",
+        "created_at": "2023-02-04T15:09:10.871Z",
+        "status": true,
+        "ordering": 0
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 12,
+    "fields": {
+        "category": 5,
+        "name": "CCTV Maintenance Only",
+        "created_at": "2023-02-04T15:09:10.873Z",
+        "status": true,
+        "ordering": 0
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 13,
+    "fields": {
+        "category": 5,
+        "name": "CCTV Installation Only",
+        "created_at": "2023-02-04T15:09:10.874Z",
+        "status": true,
+        "ordering": 0
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 14,
+    "fields": {
+        "category": 3,
+        "name": "Supply of Air Conditioner (AC)",
+        "created_at": "2023-02-04T15:10:11.333Z",
+        "status": true,
+        "ordering": 1
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 15,
+    "fields": {
+        "category": 3,
+        "name": "Supply and installation of AC",
+        "created_at": "2023-02-04T15:10:11.334Z",
+        "status": true,
+        "ordering": 2
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 16,
+    "fields": {
+        "category": 2,
+        "name": "Cleaning Service",
+        "created_at": "2023-02-04T15:11:22.052Z",
+        "status": true,
+        "ordering": 1
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 17,
+    "fields": {
+        "category": 1,
+        "name": "Hyosung and NCR ATMs",
+        "created_at": "2023-02-04T16:36:28.261Z",
+        "status": true,
+        "ordering": 4
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 18,
+    "fields": {
+        "category": 1,
+        "name": "Wincor and NCR ATMs",
+        "created_at": "2023-02-04T16:36:28.263Z",
+        "status": true,
+        "ordering": 5
+    }
+},
+{
+    "model": "general_settings.supportproduct",
+    "pk": 19,
+    "fields": {
+        "category": 1,
+        "name": "Hyosung and Wincor ATMs",
+        "created_at": "2023-02-04T16:36:28.263Z",
+        "status": true,
+        "ordering": 6
+    }
+}
+]

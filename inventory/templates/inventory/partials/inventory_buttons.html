@@ -1,0 +1,10 @@
+
+<button class="wt-btn" disabled style="border-radius:25px;{% if inventory.status != 'review' %}background-color:rgb(45, 65, 17);{% endif %} "> 
+	{% if inventory.status == 'review' %}
+	Reviewing
+	{% elif inventory.status == 'issued' %}
+	Dispatched
+	{% else %}
+	Closed
+	{% endif %}
+</button>

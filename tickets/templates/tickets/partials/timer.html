@@ -1,0 +1,67 @@
+{% if ticket.status == 'assigned' %}
+<div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">
+    <div class="wt-proposalholder">
+        <div class="row justify-content-md-center">
+            <div class="wt-sectionhead wt-textcenter">
+                
+                <div id="startwork-ends" style="color: green; font-weight: bold; display: none;">{{ resolution.arrival_time|date:"M d, Y H:m:s"}}</div>
+                <div class="alert alert-info" role="alert">
+                    <strong>Expires at: </strong><i class="far fa-calendar"> {{ resolution.arrival_time}}</i><span id="duration-countdown-timer" style="color: green; font-weight: bold;"></span>
+                </div>
+            </div>
+        </div>
+        <section class="wt-haslayout wt-dbsectionspace wt-padding-add-top wt-moredetailsholder">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="wt-insightsitem wt-dashboardbox wt-box-shadow text-center">
+                        
+                        <div class="wt-insightdetails">
+                            <i class="fa fa-clock fa-4x" style="color:rgb(45, 65, 17); font-weight: bold;"></i>
+                            <div class="wt-title"><br>
+                                
+                                <h3 id="days" style="color:green">0</h3>
+                                <span>Days</span>
+                                
+                            </div>													
+                        </div>	
+                    </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="wt-insightsitem wt-dashboardbox wt-box-shadow">
+                        <div class="wt-insightdetails">
+                            <i class="fa fa-clock fa-4x" style="color:rgb(20, 29, 98); font-weight: bold;"></i>
+                            <div class="wt-title"><br>
+                                <h3 id="hours" style="color:green">0</h3>
+                                <span>Hours</span>
+                            </div>													
+                        </div>	
+                    </div>
+                </div>												
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="wt-insightsitem wt-dashboardbox wt-box-shadow">
+                        <div class="wt-insightdetails">
+                            <i class="fa fa-clock fa-4x" style="color:rgb(128, 11, 110); font-weight: bold;"></i>
+                            <div class="wt-title"><br>
+                                <h3 id="minutes" style="color:violet">0</h3>
+                                <span>Minutes</span>
+                            </div>													
+                        </div>	
+                    </div>
+                </div>	
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+                    <div class="wt-insightsitem wt-dashboardbox wt-box-shadow">
+                        <div class="wt-insightdetails">
+                            <i class="fa fa-clock fa-4x" style="color:green; font-weight: bold;"></i>
+                            <div class="wt-title"><br>
+                                <h3 id="seconds" style="color:red">0</h3>
+                                <span>Seconds</span>
+                            </div>													
+                        </div>	
+                    </div>
+                </div>	
+            </div>
+        </section>
+        </div>
+    </div>
+</div>
+{% endif %}

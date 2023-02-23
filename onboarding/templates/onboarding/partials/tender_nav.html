@@ -1,0 +1,511 @@
+{% comment %} transform: rotate(45deg);  {% endcomment %}
+<div  class="wt-proposalholder">
+
+{% if tender_form %}
+<form method="post", class="wt-formtheme"> {% csrf_token %}
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <td class="text-left">{{tender_form.title.label}}</td>
+                <td class="text-left">
+                    {{tender_form.title}}
+                    {{tender_form.title.help_text}}
+                    <span style="color:red;" role="alert">{{tender_form.title.errors}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-left">{{tender_form.duration.label}}</td>
+                <td class="text-left">
+                    {{tender_form.duration}}
+                    <span style="color:red;" role="alert">{{tender_form.duration.errors}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-left">{{tender_form.number_of_links.label}}</td>
+                <td class="text-left">
+                    {{tender_form.number_of_links}}
+                    <span style="color:red;" role="alert">{{tender_form.number_of_links.errors}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-left">{{tender_form.mode.label}}</td>
+                <td class="text-left">{{tender_form.mode}}</td>
+            </tr>
+            <tr>
+                <td class="text-left">{{tender_form.category.label}}</td>
+                <td class="text-left">
+                    {{tender_form.category}}
+                    <span style="color:red;" role="alert">Only required for category-based Onboarding mode</span>
+                </td>
+            </tr>
+            
+        </table>
+    </div>
+
+    {% if messages %}
+    <div class="row justify-content-md-center" hx-get="{% url 'tickets:remove_message' %}" hx-trigger="load delay:4s">        
+        {% for message in messages %}        
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <span class="wt-jobalerts">
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center">
+                    <span> {{ message}} </span>
+                </div>
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+        
+    <div class="text-center">
+        <button type="submit" class="wt-btn"
+            hx-post="{% url 'onboarding:create_tender' %}"
+            hx-target="#tender-list"
+            style="background-color:rgb(29, 118, 90); font-weight: bold;">
+            Create Invite Group 
+        </button>
+    </div>
+</form>
+
+{% endif %}
+
+{% if protovariable == 'listoftenders' %}
+
+<h3>Onboarding Groups</h3>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>#</th>
+                <th>Reference</th>
+                <th>Vendor Invite Link</th>
+                <th>Mode</th>
+                <th>Invite Count</th>
+                <th>Applied Count</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+
+            {% for tenda in tender %}
+            <tr>
+                <tr>
+                    <td>{{forloop.counter}}</td> 
+                    <td class="text-left">{{tenda.reference}}</td>
+                    <td class="text-left">
+                        
+                        <a href="{{tenda.tender_absolute_url}}"> 
+                            <i class="fa fa-link"> {{tenda.title}}</i>
+                        </a>
+                    </td>
+                    <td class="text-left">{{tenda.get_mode_display}}</td>
+                    <td class="text-center">
+                        <em class="badge badge-success" style="border-radius:50%; font-size:14px">
+                            {{tenda.invitation_count}}
+                        </em>
+                    </td>
+                    <td class="text-center">
+                        <em class="badge badge-info" style="border-radius:50%; font-size:14px">
+                            {{tenda.application_count}}
+                        </em>
+                    </td>
+                    <td class="text-left">{{tenda.created_at}}</td>
+                    
+                </tr>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if not tender %}
+        <div class="text-center">
+            <span style="font-weight: bold;"> You donnot have any tender but you can change that</span>
+        </div>
+    {% endif %}
+</div>
+{% comment %} </div> {% endcomment %}
+{% endif %}
+
+
+{% if protovariable == 'listofinvitees' %}
+{% comment %} <div  class="wt-proposalholder"> {% endcomment %}
+<h3>List of Invitations</h3>
+<div class="table-responsive">
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+                <tr>
+                    <th>#</th>
+                    <th>Invited By</th>
+                    <th>Group</th>
+                    <th>Vendor Email</th>
+                    <th>Token Advise</th>
+                    <th>Hosted Link To</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+    
+                {% for invitation in invitations %}
+                <tr>
+                    <tr>
+                        <td>{{forloop.counter}}</td> 
+                        <td class="text-left">{{invitation.created_by.get_full_name}}</td>
+                        <td class="text-left">{{invitation.tender.reference}}</td>
+                        <td class="text-left">{{invitation.receiver.email}}</td>
+                        <td class="text-left">{{invitation.token}}</td>
+                        <td class="text-left">
+                            
+                            <a href="{{website.protocol}}{{website.site_domain}}{{invitation.invitation_absolute_url}}" target="_blank"> 
+                                <i class="fa fa-link">{{invitation.receiver.name}}</i>
+                            </a>
+                            
+                        </td>
+                        <td class="text-left">{{invitation.sent_on}}</td>
+                        <td class="text-center" style="color:{% if invitation.status == 'invited' %} blue; {% else %} green {% endif %}; font-weight:bold;">{{invitation.get_status_display}}</td>
+                    </tr>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% if not invitations %}
+        <div class="text-center">
+            <span style="font-weight: bold;"> You donnot have any invitation but you can change that</span>
+        </div>
+    {% endif %}
+</div>
+{% comment %} </div> {% endcomment %}
+{% endif %}
+
+
+{% if protovariable == 'listofparams' %}
+{% comment %} <div class="wt-proposalholder"> {% endcomment %}
+<h3>Vendor Appraisal Parameters</h3>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Preview</th>
+                <th>Creator</th>
+                <th>Date</th>
+                <th>details</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+
+            {% for parameter in parameters %}
+            <tr>
+                <tr>
+                    <td>{{forloop.counter}}</td> 
+                    <td class="text-left">{{parameter.criteria1}}</td>
+                    <td class="text-left">{{parameter.note1|linebreaksbr}}</td>
+                    <td class="text-left">{{parameter.edited_by.get_full_name}}</td>
+                    <td class="text-left">{{parameter.created_at}}</td>
+                    <td class="text-center">
+                        <a href="{% url 'onboarding:parameter_detail' parameter.reference %}" 
+                            class="btn btn-info btn-sm"> 
+                            <i class="fa fa-link">Review</i>
+                        </a>
+                    </td>
+                </tr>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if not parameters %}
+        <div class="text-center">
+            <span style="font-weight: bold;"> You donnot have any parameter for the scoresheet</span>
+        </div>
+    {% endif %}
+    </div>
+{% comment %} </div> {% endcomment %}
+{% endif %}
+
+
+{% if protovariable == 'listofapplication' %}
+{% comment %} <div  class="wt-proposalholder"> {% endcomment %}
+<h3>Applications in Vetting Pool</h3>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>#</th>
+                <th>Applicant</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Vetting Pool</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+
+            {% for application in applications %}
+            <tr>
+                <tr>
+                    <td>{{forloop.counter}}</td> 
+                    
+                    <td class="text-center" {% if application.status == 'incomplete' %} style="color:red; font-weight:bold;" {% endif %}>{{application.applicant}}</td>
+                    <td class="text-center" {% if application.status == 'incomplete' %} style="color:red; font-weight:bold;" {% endif %}>{{application.name}}</td>
+                    <td class="text-center" {% if application.status == 'incomplete' %} style="color:red; font-weight:bold;" {% endif %}>{{application.get_status_display}}</td>
+                    <td class="text-center" {% if application.status == 'incomplete' %} style="color:red; font-weight:bold;" {% endif %}>{{application.created_at}}</td>
+                    <td class="text-center">
+                        <a href="{{application.review_absolute_url}}" 
+                            class="btn btn-primary btn-sm"> 
+                            <i class="fa fa-link"> Review</i>
+                        </a>
+                    </td>
+                </tr>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if not applications %}
+        <div class="text-center">
+            <span style="font-weight: bold;"> You donnot have any applications yet</span>
+        </div>
+    {% endif %}
+</div>
+{% comment %} </div> {% endcomment %}
+{% endif %}
+
+
+{% if protovariable == 'revewedgrading' %}
+{% comment %} <div  class="wt-proposalholder"> {% endcomment %}
+<h3>Appraisal by Panelist</h3>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Group</th>
+                <th>Company</th>
+                <th>Grading Count</th>
+                <th>Hide</th>
+                <th>Preview</th>
+                
+            </tr>
+        </thead>
+        
+        <tbody>
+
+            {% for application in applications %}
+            <tr>
+                <tr>
+                    <td>{{forloop.counter}}</td> 
+                    <td class="text-left">{{application.created_at}}</td>
+                    <td class="text-left">{{application.invitation.tender.reference}}</td>
+                    <td class="text-left">{{application.name}}</td>
+                    <td class="text-center">
+                        <em class="badge badge-success" style="border-radius:50%; font-size:14px">
+                            {{application.counter}}
+                        </em>
+                        of 
+                        <em class="badge badge-primary" style="border-radius:50%; font-size:14px">
+                            {{application.total_panelist}}
+                        </em> 
+                        Rated
+                    </td>
+                    <td class="text-center">
+                        <form class="badge badge-pill" style="font-size:medium;"> {% csrf_token %}
+                            <input type="text" name="hideshowapplicant" value="{{application.pk}}" id="hideshowapplicant" hidden>
+                            <button type="submit"
+                                hx-post="{% url 'onboarding:hide_application' %}"
+                                data-dismiss="modal"
+                                hx-target="#tender-list"
+                                hx-confirm="Hiding this will prevent further panel reviews unless you restore">
+                                <i class="fa fa-eye" style="color:red; font-weight: bold; cursor:pointer"></i>
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{{application.application_absolute_url}}" 
+                            class="btn btn-info btn-sm"> 
+                            Invite Panelist
+                        </a>
+                    </td>
+                    
+                </tr>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if not applications %}
+        <div class="text-center">
+            <span style="font-weight: bold;"> You donnot have any applications yet</span>
+        </div>
+    {% endif %}
+</div>
+{% comment %} </div> {% endcomment %}
+{% endif %}
+
+
+<div class="wt-proposalholder">
+{% if protovariable22 == 'requiresearch' %}
+<h3>Rated & Pending Approval</h3>
+<form class="form-group text-center">{% csrf_token %}
+    <input type="text"
+        hx-post="{% url 'onboarding:search_group' %}"
+        hx-trigger="keyup changed delay:500ms"
+        hx-target="#search-group" 
+        class="form-control-sm col-md-6"
+        name="search" 
+        placeholder="start typing the group reference or name ...."
+        autocomplete="off">
+    </form>
+    {% if request.user.user_type == 'head' %}
+    <span style='color:green; font-weight:bold;'>Info! Action button marks applications for bulk approval</span>
+    {% endif %}
+{% endif %}
+
+
+{% if protovariable == 'requiregrading' %}
+<div id="search-group" class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Group</th>
+                <th>Company</th>
+                <th>Status</th>
+                <th>Average Score(Max=50)</th>
+                <th>Ranking</th>
+                {% if request.user.user_type == 'head' %}
+                <th>+/- Action</th>
+                <th>Review</th>
+                {% endif %}
+            </tr>
+        </thead>
+        
+        <tbody>
+
+            {% for application in applications %}
+            <tr>
+                <tr>
+                    <td>{{forloop.counter}}</td> 
+                    <td class="text-left">{{application.created_at}}</td>
+                    <td class="text-left">{{application.invitation.tender.reference}}</td>
+                    <td class="text-left">{{application.name}}</td>
+                    <td>
+                        <em class="badge badge-success" style="border-radius:50%; font-size:14px">
+                            {{application.counter}}
+                        </em>
+                        of 
+                        <em class="badge badge-primary" style="border-radius:50%; font-size:14px">
+                            {{application.total_panelist}}
+                        </em> 
+                        Rated 
+                    </td>
+                    <td>
+                        <a href="{{application.scoresheet_absolute_url}}" 
+                            class="btn btn-outline-success btn-sm"> 
+                            Grading Sheet | <span style="color:red;">{{application.average_score}}</span>
+                        </a>
+                    </td>
+                    <td>{{application.get_ranking}}</td>
+                    
+                    {% if request.user.user_type == 'head' %}
+                    <td class="text-center">
+                        <form class="badge badge-pill" style="font-size:medium;"> {% csrf_token %}
+                            <input type="text" name="selectedapplicant" value="{{application.pk}}" id="upgradeMember" hidden><br>
+                            <span type="submit"
+                                hx-post="{% url 'onboarding:select_or_unselect_approval' %}"
+                                hx-target="#tender-list">
+                                {% if application.is_marked %}
+                                <i class="fa fa-thumbs-up fa-1x" style="color:green; cursor:pointer"></i>
+                                {% else %}
+                                <i class="fa fa-thumbs-down fa-1x" style="color:red; cursor:pointer"></i>
+                                {% endif %}
+                            </span>
+                        </form>
+                    </td>
+                    <td>
+                        <a hx-get="{{application.approval_absolute_url}}"
+                            hx-target="#tender-list" 
+                            class="btn btn-info btn-sm text-white"
+                            style="background-color:green; border-radius:20px;"> 
+                            Review & Approve
+                        </a>
+                    </td>
+                    {% endif %}
+                </tr>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {% if not applications %}
+        <div class="text-center">
+            <span style="font-weight: bold;"> You donnot have any pending approvals</span>
+        </div>
+    {% endif %}
+</div>
+{% comment %} </div> {% endcomment %}
+{% endif %}
+
+
+{% if protovariable == 'bulkgrading' %}
+{% comment %} <div  class="wt-proposalholder"> {% endcomment %}
+<h3>Bulk Approvals</h3>
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>#</th>
+                <th>Company</th>
+                <th>Average Score</th>
+                <th>Last Modified</th>
+                <th>Change</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+
+            {% for application in applications %}
+            <tr>
+                <tr>
+                    <td>{{forloop.counter}}</td> 
+                    
+                    <td class="text-left">{{application.name}}</td>
+                    <td>{{application.average_score}}%</td>
+                    <td class="text-center">{{application.modified_at}}</td>
+                    <td class="text-center">
+                        <form class="badge badge-pill" style="font-size:medium;"> {% csrf_token %}
+                            <input type="text" name="removeapplicant" value="{{application.pk}}" id="upgradeMember" hidden><br>
+                            <span type="submit"
+                                hx-post="{% url 'onboarding:remove_approval' %}"
+                                hx-target="#tender-list">
+                                <i class="fa fa-thumbs-up fa-1x" style="color:green; cursor:pointer"></i>
+                            </span>
+                        </form>
+                    </td>
+                </tr>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if applications|length > 1 %}
+    <div class="text-center">
+        <button type="submit" class="wt-btn"
+            hx-get="{% url 'onboarding:bulk_approval' %}"
+            hx-target="#tender-list"
+            hx-confirm="If you proceed, all the vendors on bulk list shall be created"
+            style="background-color:rgb(29, 118, 90); font-weight: bold;">
+            Bulk Approve Now
+        </button>
+    </div>
+    {% endif %}
+    {% if not applications %}
+        <div class="text-center">
+            <span style="font-weight: bold;"> Hmm! nothing available for bulk approvals</span>
+        </div>
+    {% endif %}
+</div>
+{% comment %} </div> {% endcomment %}
+{% endif %}

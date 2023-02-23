@@ -1,0 +1,70 @@
+{% if messages %}
+    <div class="row justify-content-md-center" hx-get="{% url 'tickets:remove_message' %}" hx-trigger="load delay:4s">        
+        {% for message in messages %}        
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <span class="wt-jobalerts">
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center">
+                    <span> {{ message}} </span>
+                </div>
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+    <div class="wt-freelancerholder wt-rcvproposalholder">
+        <div class="wt-tabscontenttitle">
+            <h2>{{active_team.title|capfirst}} has {{active_team.members.count}} Member{{teams.members.count|pluralize}}</h2>
+        </div>									 
+
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Username</th>
+                                <th>Full Name</th>
+                                {% if request.user.is_vendor %}<th>Email</th>{% endif %}
+                                <th>Role</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for member in active_team.members.all %}
+                            <tr>
+                                <td>{{forloop.counter}}</td> 
+                                <td>{% if member.vendor.profile_photo %}{{member.vendor.image_tag}}{% else %} No Image {% endif %}</td>
+                                <td>{{member.short_name}}</td>
+                                {% if request.user.is_vendor %}
+                                <td>{{member.email}}</td>
+                                {% endif %}
+                                <td style="font-weight:bold; color:{% if member.is_vendor %}green{% else %}blue{% endif %};">{% if member.is_vendor %}Moderator{% else %}Member{% endif %}</td>
+                                <td>
+                                    <a href="{% url 'vendors:vendor_profile' member.short_name %}" class="badge badge-info btn-sm">Check status</a>
+                                    {% if vendor_role %}
+                                        {% if request.user.is_vendor %}
+                                        <form class="badge badge-pill" style="font-size:medium;"> {% csrf_token %}
+                                            <input type="text" name="upgradeMember" value="{{member.pk}}" id="upgradeMember" hidden><br>
+                                            <span type="submit" class="badge badge-info btn-sm"
+                                                hx-post="{% url 'vendors:vendor_team_upgrade' %}"
+                                                hx-target="#upgrade"
+                                                hx-confirm="Are you sure you want to proceed?"
+                                                style="background-color:rgb(29, 118, 90); cursor:pointer">
+                                                {% if member.is_vendor %}Downgrade{% else %}Upgrade{% endif %}
+                                            </span>
+                                        </form>
+                                        {% endif %}
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>										
+        </div>
+
+

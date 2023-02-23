@@ -1,0 +1,44 @@
+
+{% comment %} transform: rotate(45deg);  {% endcomment %}
+<div  id="tender-list" class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>#</th>
+                <th>Reference</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Initiator</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+
+            {% for tenda in tender %}
+            <tr>
+                <tr>
+                    <td>{{forloop.counter}}</td> 
+                    <td class="text-left">{{tenda.reference}}</td>
+                    <td class="text-left">{{tenda.title}}</td>
+                    <td class="text-left">{{tenda.category.name}}</td>
+                    <td class="text-left">{{tenda.created_by.get_full_name}}</td>
+                    <td class="text-left">{{tenda.created_at}}</td>
+                    <td>
+                        <a href="{{tenda.tender_absolute_url}}" 
+                            class="btn btn-outline-info btn-sm"> 
+                            Review
+                        </a>
+                    </td>
+                </tr>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% if not tender %}
+        <div class="text-center">
+            <span style="font-weight: bold;"> You donnot have any tender but you can change that</span>
+        </div>
+    {% endif %}
+</div>

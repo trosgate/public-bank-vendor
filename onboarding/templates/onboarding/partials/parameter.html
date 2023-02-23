@@ -1,0 +1,81 @@
+
+{% if protovariable == 'paramform' %}
+<form method="post", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+    <div class="form-group">
+        {{parameter_form}}
+    </div>    
+    <div class="text-center">
+        <button type="submit" class="wt-btn"
+            hx-post="{% url 'onboarding:modify_param_form' parameter.reference %}"
+            hx-target="#param-box"
+            hx-confirm="By proceeding, you agree to make changes to existing parameters"
+            style="background-color:rgb(29, 118, 90); font-weight: bold;">
+            Save Changes
+        </button>
+        <a class="wt-btn"
+            href=""
+            hx-target="#param-box"
+            style="background-color:blue; font-weight: bold;">
+            Discard Changes
+        </a>
+    </div> 
+</form>
+
+{% else %}
+
+<div class="table-responsive">
+    <table class="table">
+    <body>
+        <tr style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <td class="text-left">S/N</td>
+            <td class="text-left">Parameter</td>
+            <td>Guiding Note</td>
+        </tr>
+        <tr>
+            <td class="text-left">1</td>
+            <td class="text-left">{{parameter.criteria1}}</td>
+            <td>{{parameter.note1}}</td>
+        </tr>
+        <tr>
+            <td class="text-left">2</td>
+            <td class="text-left">{{parameter.criteria2}}</td>
+            <td>{{parameter.note2}}</td>
+        </tr>
+        <tr>
+            <td class="text-left">3</td>
+            <td class="text-left">{{parameter.criteria3}}</td>
+            <td>{{parameter.note3}}</td>
+        </tr>
+        <tr>
+            <td class="text-left">4</td>
+            <td class="text-left">{{parameter.criteria4}}</td>
+            <td>{{parameter.note4}}</td>
+        </tr>
+        <tr>
+            <td class="text-left">5</td>
+            <td class="text-left">{{parameter.criteria5}}</td>
+            <td>{{parameter.note5}}</td>
+        </tr>
+        <tr>
+            <td class="text-left">6</td>
+            <td class="text-left">{{parameter.criteria6}}</td>
+            <td>{{parameter.note6}}</td>
+        </tr>
+        <tr style="background-color:grey; color:white; font-weight: bold;">
+            <td class="text-left">=/=</td>
+            <td class="text-left">Last Edited by: {{parameter.edited_by.get_full_name}}</td>
+            <td class="text-center">Last Modified: {{parameter.modified_at}}</td>
+        </tr>
+    </body>
+    </table>
+</div>
+{% endif %}
+
+
+
+
+
+
+
+
+

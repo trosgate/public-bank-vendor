@@ -1,0 +1,158 @@
+{% load static %}       
+        <main class="wt-haslayout wt-innerbgcolor">
+            <div class="wt-haslayout wt-innerbannerholder">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                            <div class="wt-innerbannercontent">
+                            <div class="wt-title"><h2>Ticket Page</h2></div>
+                                <ol class="wt-breadcrumb">
+                                    <li><a href="{% url 'account:dashboard' %}">Dashboard</a></li>
+                                    <li><a href="">Ticket</a></li>
+                                    <li class="wt-active">Detail</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Inner Home End-->
+        
+			<div class="wt-haslayout wt-main-section" id="top">
+            
+            <div class="row justify-content-md-center">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 push-lg-2 float-center">
+                    <div class="wt-dashboardbox">
+
+                        <div class="wt-dashboardboxtitle">
+                            <span class="float-left" style="font-size:22px; font-weight:bold; color:black;"> Ticket Details </span>
+                            <span class="float-right">
+                            <a hx-get="{% url 'tickets:ticket_list' %}" 
+                                hx-target="#ticket-list"
+                                style="color:blue; cursor:pointer; margin: 2px; font-weight:bold;">
+                                Go back
+                            </a> |
+                            <a href="#down" 
+                                style="color:green; cursor:pointer; margin: 2px; font-weight:bold;">
+                                Move Down
+                            </a>
+                            <span>
+                        </div>
+                        <div class="wt-dashboardboxcontent">
+                            <div class="wt-companysinfo">
+                                <ul class="wt-postarticlemeta">
+                                    {{website.site_logo_tag}}
+                                </ul><br><br><br>
+                                <h5>{{ticket.title|capfirst}}</h5>
+                            </div>
+                            
+                            <div class="wt-jobdescription wt-tabsinfo">
+
+                                <div class="wt-tabscontenttitle">
+                                    <h2 style="font-weight: bold;">Ticket Attributes</h2>
+                                </div>	
+                                <div class="form-row">
+                                    
+                                    <div class="form-group col-md-6">
+                                        <span><i class="far fa-calendar"> Reference: {{ticket.reference}}</i></span><br><br>
+                                        <span><i class="fa fa-group"> Branch: {{ticket.branch|capfirst}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> Terminal: {{ticket.terminal.name}}</i></span><br><br>
+                                        <span><i class="fa fa-group"> Category: {{ticket.category.name|capfirst}}</i></span><br><br>
+                                        <span><i class="fa fa-group"> Terminal Type: {{ticket.terminal.get_category_display}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> GPS Address: {{ticket.terminal.gps_address}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> Description: {{ticket.terminal.description}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> Region: {{ticket.terminal.region}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> Time Created: {{ticket.created_at}}</i></span><br><br>
+                                    </div>
+                                        
+                                </div>
+                                
+                                {% if ticket.description %}                                             
+                                <div class="wt-jobdetails wt-tabsinfo" id="down">
+                                    <div class="wt-tabscontenttitle">
+                                        <h2 style="font-weight: bold;">Case Description</h2>
+                                    </div> 
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <h7>{{ ticket.description|safe|linebreaks }}</p>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            
+                            <div id="assign-ticket" class="container">
+                                {% include 'tickets/partials/ticket_state.html' %}
+                            </div><br>
+                            {% if ticket.status == 'closed' %}
+                            <div id="ticket-remark" class="container">
+                                {% include 'tickets/partials/ticket_remarks.html' %}
+                            </div><br>
+                            {% endif %}
+
+                            <div class="float-right">
+                            <div class="row">
+                                <a class="float-right"
+                                    hx-get="{% url 'tickets:ticket_list' %}" 
+                                    hx-target="#ticket-list"
+                                    style="color:blue; cursor:pointer; margin: 2px; font-weight:bold;">
+                                    Go back
+                                </a> |
+                                <a class="float-right"
+                                    href="#top" 
+                                    style="color:green; cursor:pointer; margin: 2px; font-weight:bold;">
+                                    Move Up
+                                </a>
+                                {% comment %} <a href="#top" style="color:green;">Top <i class="fa fa-arrow-up" style="color:green;  margin: 2px; font-weight:bold;"></i></a> {% endcomment %}
+                            </div>
+                            </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+        </main>
+        <div class="modal fade wt-offerpopup" tabindex="-1" role="dialog" id="assignteammodal">
+            <div class="modal-dialog" role="document">
+                <div class="wt-modalcontent modal-content">
+                    <div class="wt-popuptitle">
+                        <h2>Assign ticket to user</h2>
+                        <a href="javascript%3bvoid(0)%3b.html" class="wt-closebtn close"><i class="fa fa-close" data-dismiss="modal" aria-label="Close" style="color:red;"></i></a><br>
+                    </div>
+                    <div class="modal-body">
+                    
+                    <form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+                        <div class="form-group">
+                            {{assignform.assignee.label}}
+                            {{assignform.assignee}}
+                            <span style="color:red;" role="alert">{{ assignform.assignee.errors}}</span>
+                        </div> 
+                        
+                        <div class="form-group wt-btnarea">
+                            <button id="closeme" type="submit" class="wt-btn"
+                                hx-post="{% url 'tickets:assign_ticket' ticket.pk %}"
+                                hx-target="#assign-ticket">
+                                Assign Ticket Now
+                            </button>
+                        </div>
+                    </form>
+                    <div class="form-group alert alert-warning" role="alert">
+                        <span class=" float-left" style="color:blue; font-weight: bold;" role="alert">Assign user verification</span><br>
+                        <hr>
+                        <span style="color: green;"> Option 1: Assign user has his/her profile image with assigned name</span><br>
+                        <span style="color: red; font-weight: bold;"> OR </span><br>
+                        <span style="color: green;"> Option 2: Assign user must present staff ID on site for verification</span><br>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'tickets/partials/checklist.html'%}
+
+    <script>
+        $('#confirmandclose').on('click', function(){
+            $('#checklistmodal').modal('hide');
+        });
+    </script>
+
+        

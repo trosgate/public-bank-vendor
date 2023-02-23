@@ -1,0 +1,42 @@
+[
+{
+    "model": "general_settings.slaexceptions",
+    "pk": 1,
+    "fields": {
+        "name": "Heavy rainfall inturrupted work",
+        "ordering": 4
+    }
+},
+{
+    "model": "general_settings.slaexceptions",
+    "pk": 2,
+    "fields": {
+        "name": "Accident took place",
+        "ordering": 5
+    }
+},
+{
+    "model": "general_settings.slaexceptions",
+    "pk": 3,
+    "fields": {
+        "name": "It is standard closing time",
+        "ordering": 3
+    }
+},
+{
+    "model": "general_settings.slaexceptions",
+    "pk": 4,
+    "fields": {
+        "name": "Fire outbreak in the area",
+        "ordering": 1
+    }
+},
+{
+    "model": "general_settings.slaexceptions",
+    "pk": 5,
+    "fields": {
+        "name": "Parts replacement",
+        "ordering": 2
+    }
+}
+]

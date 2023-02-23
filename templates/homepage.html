@@ -1,0 +1,152 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% block content %}
+
+			<!--Main Start-->
+			<main class="wt-haslayout" style="background:white;">
+
+				<div class="wt-haslayout wt-main-section">
+					<div class="container">
+						<div class="row justify-content-md-center">
+							<div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+								<div class="wt-sectionhead wt-textcenter">
+									<div class="wt-sectiontitle">
+										<h3>{% if website.home_title %}{{website.home_title}} {% else %} Happy to see you back {% endif %}</h3>
+										<span>{% if website.home_preview %}{{website.home_preview}} {% else %} Choose your prefered way to onboard {% endif %}</span>
+									</div>
+								</div>
+							</div>
+							<div class="wt-categoryexpl">
+								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 float-left">
+									<div class="wt-categorycontent">
+										<figure><img src="{% static 'images/security.jpg'%}" alt="image description"></figure>
+										<div class="wt-cattitle">
+											<h3><a href="javascrip:void(0);">Login</a></h3>
+										</div>
+										<div class="wt-categoryslidup">
+											<p>{% if website.login_preview %}{{website.login_preview}} {% else %} Login securely and work with your colleagues {% endif %}</p>
+											<a href="javascript:void(0);" data-toggle="modal" data-target="#userloginmodal"> Login Now <i class="fa fa-arrow-right"></i></a>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 float-left">
+									<div class="wt-categorycontent">
+										<figure><img src="{% static 'images/categories/img-01.png' %}" alt="image description"></figure>
+										<div class="wt-cattitle">
+											<h3><a href="javascrip:void(0);">Reset Password</a></h3>
+										</div>
+										<div class="wt-categoryslidup">
+											<p>{% if website.reset_preview %}{{website.reset_preview}} {% else %} Having challenge? Simply reset your password and get in. {% endif %}</p>
+											<a href="{% url 'account:passwordreset' %}">Reset Now <i class="fa fa-arrow-right"></i></a>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Categories End-->
+				
+			</main>
+			
+			{% include 'dashboard/main_footer.html' %}
+
+	<!-- Add team Popup Start-->
+	<!-- Popup Start-->
+	<div class="modal fade wt-offerpopup" tabindex="-1" role="dialog" id="userloginmodal">
+		<div class="modal-dialog" role="document">
+			<div class="wt-modalcontent modal-content">
+				<div class="wt-popuptitle">
+					<h2>Login Form</h2>
+					<a href="javascript%3bvoid(0)%3b.html" class="wt-closebtn close"><i class="fa fa-close" data-dismiss="modal" aria-label="Close"></i></a>
+				</div>
+				<div class="modal-body">
+					<form method="POST", action='.', class="wt-formtheme wt-formpopup"> {% csrf_token %}
+						<div id='loginError' style="color:red"></div>
+						<div class="wt-tabscontenttitle">
+							<h2>Background</h2>
+						</div>
+						<div class="form-group">
+                            {{loginform.email.label}}
+                            {{loginform.email}}
+                            <span style="color:red;" role="alert">{{ loginform.email.errors}}</span>
+                        </div>
+						<div class="form-group">
+                            {{loginform.password.label}}
+                            {{loginform.password}}
+                            <span style="color:red;" role="alert">{{ regform.loginform.errors}}</span>
+                        </div> 
+						<span style="color:green;" role="alert">Having login challenge on {{website.site_name}}?<a href="{% url 'account:passwordreset' %}"> Reset Password </span>
+						<div class="form-group wt-btnarea">
+							<button id="logMeIn" type="button" class="btn btn-success"> Login Now </button>
+						</div>											
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+  
+{% endblock %}
+{% block scripts %}
+<script>
+	//Script to login user             
+	$(document).on('click', '#logMeIn', function (e) {
+	e.preventDefault();
+
+	$("#logMeIn").attr("disabled", true);
+
+	$.ajax({
+		type: 'POST',
+		url: '{% url "account:login" %}',
+		data: {
+			emailid: $('#Email').val(),
+			PassworD: $('#login-pwd').val(),
+			csrfmiddlewaretoken: "{{csrf_token}}",
+			action: 'login-now'
+		},
+		success: function (json) {
+			$('#Email').val('');
+			$('#login-pwd').val('');
+			if (json.errors != ''){
+				document.getElementById('loginError').innerHTML = json.errors
+			}else{
+				window.location.href = json.redirect_url
+			}
+			$("#logMeIn").attr("disabled", false);
+		},
+		error: function (xhr, errmsg, err) {}
+	});
+	})
+</script>
+
+<script>
+	//Script to add proposal quantity in session             
+	$(document).on('change', '#id_search_type', function (e) {
+	e.preventDefault();
+	mysearchval = $('#id_search_type option:selected').val()
+	//console.log(mysearchval)
+	$.ajax({
+		type: 'POST',
+		url: '',
+		data: {
+			searchVal: $('#id_search_type option:selected').val(),
+			csrfmiddlewaretoken: "{{csrf_token}}",
+			action: 'searching-type'
+		},
+		success: function (json) {
+			if (mysearchval === 'freelancer'){
+				window.location.href = ""
+			}
+			else if (mysearchval === 'proposal'){
+				window.location.href = ""
+			}
+		},
+		error: function (xhr, errmsg, err) {}
+	});
+	})
+</script>
+
+
+
+{% endblock scripts %}

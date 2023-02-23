@@ -1,0 +1,10 @@
+[
+{
+    "model": "general_settings.testmailsetting",
+    "pk": 1,
+    "fields": {
+        "title": "My Test Email",
+        "test_email": "myvoistudio@gmail.com"
+    }
+}
+]

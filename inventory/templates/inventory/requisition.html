@@ -1,0 +1,58 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="wt-haslayout wt-innerbannerholder">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                <div class="wt-innerbannercontent">
+                    <div class="wt-title"><h2>ATM Requisition</h2></div>
+                    {% if myreq %}
+                    <ol class="wt-breadcrumb">
+                        <li>
+                            <a href="javascript:void(0);" class="btn btn-danger" data-toggle="modal" data-target="#reqisitionmodal" style="border-radius:20px; color:white; font-weight: bold;">
+                                New Requisition
+                            </a>
+                        </li>
+                    </ol>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wt-haslayout wt-main-section">
+        <div class="container">
+            <div class="row">
+                    
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">
+                    <div class="wt-projectdetail-holder">
+                        <div id="myrequisition" class="wt-projectdetail">                          
+
+                            <div class="wt-jobdetails wt-tabsinfo">
+                                <div class="wt-tabscontenttitle">
+                                    <h2>List of Requisitions</h2>
+                                </div>
+
+                                <div id="requisition-list">
+                                    {% include 'inventory/partials/inventory_list.html' %}
+                                </div>
+                                
+                            </div>
+                        </div>   
+                    </div>
+                </div>					
+            </div>
+        </div>
+
+        {% include 'inventory/partials/create.html' %}
+        
+{% endblock content %}
+
+<script>
+    $('#new-requisition').on('click', function(){
+        $('#reqisitionmodal').modal('hide');
+    });
+</script>

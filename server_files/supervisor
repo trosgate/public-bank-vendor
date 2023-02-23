@@ -1,0 +1,35 @@
+[program:trosgate]
+command = /webapps/trosgate/trosgate_env/bin/gunicorn_start
+user = katey
+stdout_logfile = /webapps/trosgate/trosgate_env/logs/supervisor.log
+environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
+redirect_stderr = true
+autostart=true
+autorestart=true
+
+[program:celery]
+command = /webapps/trosgate/trosgate_env/bin/celery -A trosgate.celery worker --loglevel=INFO
+user = katey
+stdout_logfile=/webapps/trosgate/trosgate_env/logs/celery/worker-access.log
+stderr_logfile=/webapps/trosgate/trosgate_env/logs/celery/worker-error.log
+redirect_stderr = true
+environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
+redirect_stderr = true
+autostart=true
+autorestart=true
+
+[program:celery-beat]
+command = /webapps/trosgate/trosgate_env/bin/celery -A trosgate beat --loglevel=INFO
+user = katey
+stdout_logfile=/webapps/trosgate/trosgate_env/logs/celery/beat-access.log
+stderr_logfile=/webapps/trosgate/trosgate_env/logs/celery/beat-error.log
+redirect_stderr = true
+environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
+redirect_stderr = true
+autostart=true
+autorestart=true
+
+
+
+
+

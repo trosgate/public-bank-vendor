@@ -1,0 +1,54 @@
+{% if application.status == 'incomplete' %}
+<div class="table-responsive">
+    <h3>Incomplete Reason</h3>
+    
+    <table class="table table-striped table-sm">    
+        <tr>
+            <tr style="color:black; font-weight: bold;">
+                <td class="text-center col-md-2"> Status</td>
+                <td class="text-center">Justfied Reason</td>
+            </tr>
+        </tr>
+        <tr>
+            <tr>
+                <td class="text-center">{{application.get_status_display}}</td>
+                <td class="text-left">
+                    {{application.reason|linebreaks}}
+                    By <span style="font-weight:bold;">{{application.reviewed_by.get_full_name}} on {{application.reviewed_at}}</span>
+                </td>
+            </tr>
+        </tr>
+    </table>
+    <span style="color:red;">The vetting team may be responsible for obtaining additional information to complete application</span>
+
+</div>    
+    {% endif %} 
+
+{% if application.status == 'reviewed' %}
+<div class="text-center">
+    <a href="{{application.application_absolute_url}}" 
+        class="wt-btn" style="background-color:rgb(29, 118, 90); font-weight: bold;"> 
+        <i class="fa fa-handshake"> Connect Panelists</i>
+    </a>
+</div>
+{% else %}
+<div class="text-center">
+    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#incompleteReview"
+        style="background-color:red; font-weight: bold;">
+        <i class="fa fa-thumbs-down fa-1x" style="color:white; cursor:pointer"> Incomplete</i>
+    </button>
+
+    <form class="badge badge-pill" style="font-size:medium;"> {% csrf_token %}
+        <input type="text" name="selectedapplicant" value="{{application.pk}}" id="upgradeMember" hidden>
+        <input type="text" name="buttonchosen" value="complete" id="selectbtn" hidden>
+        <button type="submit" class="btn btn-success"
+            hx-post="{% url 'onboarding:application_review' %}"
+            data-dismiss="modal"
+            hx-target="#review-actions"
+            hx-confirm="I confirm this application is okay to start scoring"
+            style="background-color:rgb(29, 118, 90); font-weight: bold;">
+            <i class="fa fa-thumbs-up fa-1x" style="color:white; cursor:pointer"> Complete</i>
+        </button>
+    </form>
+</div>
+{% endif %}

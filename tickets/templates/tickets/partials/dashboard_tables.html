@@ -1,0 +1,37 @@
+
+{% for ticket in tickets %}
+<tr>
+    <tr>
+        <td>{{forloop.counter}}</td> 
+        <td class="text-left">{% if ticket.status == 'closed' %}<strike> {%endif %}{{ticket.reference}}</td>
+        <td class="text-left">{% if ticket.status == 'closed' %}<strike> {%endif %}{{ticket.terminal.name}}</td>
+        <td class="text-left">{% if ticket.status == 'closed' %}<strike> {%endif %}{{ticket.created_at}}</td>
+        <td class="text-left">{% if ticket.status == 'closed' %}<strike> {%endif %}{{ticket.get_status_display}}</td>
+        {% if request.user.custodian %}
+            <td>
+            {% if ticket.created_by == request.user and ticket.status == 'unassigned' %}
+            <form>{% csrf_token %}
+                <input type="text" name="recall" value="{{ticket.pk}}" id="{{ticket.pk}}" hidden>
+                <button type="submit" class="badge badge-danger badge"
+                    hx-post="{% url 'tickets:recall_ticket' %}"
+                    hx-target="#search-tickets"
+                    hx-confirm="Are you sure you want to recall? This ticket will equally be deleted"
+                    style="background-color:red; color:white;">
+                    <i class="fa fa-close"> Recall</i>
+                </button>
+            </form>
+            {% else %}
+                <button type="button" class="badge badge-secondary badge" disabled>Recall</button>
+            {% endif %}
+        </td>
+        {% endif %}
+        <td>{% if ticket.status == 'closed' %}<strike> {%endif %}
+            <a hx-get="{% url 'tickets:ticket_detail' ticket.pk %}" 
+                hx-target="#ticket-list"
+                class=" {% if ticket.status == 'closed' %} btn btn-secondary btn-sm {% else %} btn btn-info btn-sm {% endif %} text-white"> 
+                {% if ticket.status == 'closed' %} Preview {% else %} Manage {%endif %}
+            </a>
+        </td>
+    </tr>
+</tr>
+{% endfor %}

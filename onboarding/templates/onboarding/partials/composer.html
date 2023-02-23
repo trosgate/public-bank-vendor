@@ -1,0 +1,54 @@
+{% if protovariable == 'modifiedcontent' %}
+<div class="wt-proposalholder">
+    <div class="wt-description col-md-12 text-left">
+        <h4>Applicant Instruction</h4>
+        <p>{{instruction.applicant_instruction|linebreaksbr}}</p>
+    </div>
+    
+    <div class="wt-description col-md-12 text-left">
+        <h4>Invitation Mail Body</h4>
+        <p style="color:red;">Please do not include salutation like "Dear John Doe" etc. It will be pre-filled with receiver name</p>
+        <p>{{instruction.invite_message|linebreaksbr}}</p>
+    </div>
+</div>
+
+{% endif %}
+{% if protovariable == 'applicantinstruction' %}
+<form method='post'>{% csrf_token %}
+    <div class="form-group col-md-12" autocomplete="off">
+        <span style="color:blue;font-weight: bold;">{{instruction_form.applicant_instruction.label}}</span><br>
+        {{instruction_form.applicant_instruction}}
+        <span style="color:red;" role="alert">{{ instruction_form.applicant_instruction.errors}}</span>
+    </div>
+    <br>
+    <div class="text-center"> 
+        <button type="submit" hx-post="{% url 'onboarding:composed_messages' website.pk %}"
+            hx-target="#composers" 
+            hx-confirm='Are you sure you want to replace the previous content?'
+            class="wt-btn" 
+            style="cursor:pointer; background-color:rgb(8, 76, 71); font-weight: bold;">
+            Saave Changes
+        </button>
+    </div>
+</form>
+{% endif %}
+
+{% if protovariable == 'invitemessage' %}
+<form method='post'>{% csrf_token %}
+    <div class="form-group col-md-12" autocomplete="off">
+        <span style="color:blue;font-weight: bold;">{{invitemessage_form.invite_message.label}}</span><br>
+        {{invitemessage_form.invite_message}}
+        <span style="color:red;" role="alert">{{ invitemessage_form.invite_message.errors}}</span>
+    </div>
+    <br>
+    <div class="text-center"> 
+        <button type="submit" hx-post="{% url 'onboarding:composed_messages' website.pk %}"
+            hx-target="#composers" 
+            hx-confirm='Are you sure you want to replace the previous content?'
+            class="wt-btn" 
+            style="cursor:pointer; background-color:rgb(8, 76, 71); font-weight: bold;">
+            Saave Changes
+        </button>
+    </div>
+</form>
+{% endif %}

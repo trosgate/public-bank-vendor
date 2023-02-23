@@ -1,0 +1,69 @@
+
+<div class="wt-jobdescription wt-tabsinfo"><br>
+    <div class="wt-tabscontenttitle">
+        <h2>Internal Panelists (Team)</h2>
+    </div>	
+    <section class="wt-haslayout wt-dbsectionspace wt-padding-add-top wt-moredetailsholder">
+        <div class="row">
+            {% for member in team_members %}
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+                <div class="wt-insightsitem wt-dashboardbox" style="background-color:rgb(170, 224, 180);">
+                    {% if member.custodian.profile_photo %}
+                    <figure class="wt-userlistingimg">
+                        <img src="{{member.custodian.profile_photo.url}}" alt="image description" class="mCS_img_loaded">
+                    </figure>
+                    {% else %}
+                        <i class="fa fa-user fa-5x" style="color:green;"></i>
+                    {% endif %}
+                    <h4 style="color:green;">{{member.get_full_name|truncatechars:30}}</h4>
+                    <div class="wt-insightdetails">
+                        <div class="wt-title">
+                            <form> {% csrf_token %}
+                                <input type="text" name="modes" value="internal" hidden>
+                                <input type="number" name="panel" value="{{member.pk}}" hidden>
+                                <button type="submit" class="btn btn-info btn-sm"
+                                    hx-post="{% url 'onboarding:add_internal_panelist' application.pk %}"
+                                    hx-target="#panel-list"
+                                    style="background-color:blue; font-weight: bold;">
+                                    <i class="fa fa-plus"> Add Panelist</i>
+                                </button>
+                            </form>
+                        </div>													
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+            {% for panel in int_panelists %}
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 mb-3">
+                <div class="wt-insightsitem wt-dashboardbox" style="background-color:rgb(241, 175, 175)">
+                    {% if panel.panelist.custodian.profile_photo %}
+                    <figure class="wt-userlistingimg">
+                        <img src="{{panel.panelist.custodian.profile_photo.url}}" alt="image description" class="mCS_img_loaded">
+                    </figure>
+                    {% else %}
+                        <i class="fa fa-user fa-5x" style="color:green;"></i>
+                    {% endif %}
+                    <h4 style="color:green;">{{category.name|truncatechars:30}}</h4>
+                    {% if panel.mode == 'internal' %}
+                        <h6>{{panel.panelist.get_full_name}}</h6>
+                    {% else %}
+                        <h6>{{panel.name}}</h6>
+                    {% endif %}
+                    <div class="wt-insightdetails">
+                        <button type="button" class="btn btn-danger btn-sm"
+                            style="background-color:red; font-weight: bold;" disabled>
+                            {% if panel.mode == 'internal' %}
+                            <i class="fa fa-lock"> Login Mode</i>
+                            {% else %}
+                            <i class="fa fa-lock"> Token Mode</i>
+                            {% endif %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %} 
+            </div>						 
+        </div>						 
+    </section>
+</div>						 

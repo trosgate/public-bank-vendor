@@ -1,0 +1,552 @@
+[
+{
+    "model": "general_settings.branch",
+    "pk": 1,
+    "fields": {
+        "name": "Acc New Town Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "acc-new-town-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 2,
+    "fields": {
+        "name": "Achimota  Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "achimota-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 4,
+    "fields": {
+        "name": "Adjringanor Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "adjringanor-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 6,
+    "fields": {
+        "name": "Adum Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "adum-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 7,
+    "fields": {
+        "name": "Ahodwo Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "ahodwo-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 9,
+    "fields": {
+        "name": "Airport Cargo Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "airport-cargo-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 10,
+    "fields": {
+        "name": "Alabar Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "alabar-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 11,
+    "fields": {
+        "name": "Amakom Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "amakom-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 16,
+    "fields": {
+        "name": "Ashaiman Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "ashaiman-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 23,
+    "fields": {
+        "name": "Bolga Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 26,
+    "fields": {
+        "name": "Castle Road  Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 32,
+    "fields": {
+        "name": "East Cantonment Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 33,
+    "fields": {
+        "name": "Enchi  Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 34,
+    "fields": {
+        "name": "Fadama Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 35,
+    "fields": {
+        "name": "Haatso  Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "haatso-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 37,
+    "fields": {
+        "name": "Ho  Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 38,
+    "fields": {
+        "name": "IRIS  Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "iris-branch"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 40,
+    "fields": {
+        "name": "Kaneshie  Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 41,
+    "fields": {
+        "name": "Kantamanto Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 44,
+    "fields": {
+        "name": "Kasoa Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 45,
+    "fields": {
+        "name": "Kdua Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 46,
+    "fields": {
+        "name": "Kejetia Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 47,
+    "fields": {
+        "name": "KNUST Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 51,
+    "fields": {
+        "name": "KPO Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 54,
+    "fields": {
+        "name": "Lapaz Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 56,
+    "fields": {
+        "name": "Lashibi Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 58,
+    "fields": {
+        "name": "Legon Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 60,
+    "fields": {
+        "name": "Madina Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 66,
+    "fields": {
+        "name": "NIA Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 67,
+    "fields": {
+        "name": "Nima Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 70,
+    "fields": {
+        "name": "Octagon Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 71,
+    "fields": {
+        "name": "Odorkor Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 72,
+    "fields": {
+        "name": "Okaishie Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 73,
+    "fields": {
+        "name": "Osu Oxford Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 74,
+    "fields": {
+        "name": "Osu Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 76,
+    "fields": {
+        "name": "RingRoad Central Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 79,
+    "fields": {
+        "name": "Sefwi Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 81,
+    "fields": {
+        "name": "Spintex Branch Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 82,
+    "fields": {
+        "name": "Suame Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 83,
+    "fields": {
+        "name": "Takoradi Market circle Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 85,
+    "fields": {
+        "name": "Tamale Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 88,
+    "fields": {
+        "name": "Tarkwa Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 89,
+    "fields": {
+        "name": "Techiman Branch",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 90,
+    "fields": {
+        "name": "Tema Main Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 91,
+    "fields": {
+        "name": "TemaCom1 Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 93,
+    "fields": {
+        "name": "TIA Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 97,
+    "fields": {
+        "name": "UPSA Branch",
+        "location": "instation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 99,
+    "fields": {
+        "name": "WA ATM",
+        "location": "outstation",
+        "status": true,
+        "inventory": false,
+        "slug": "all-looks-good"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 100,
+    "fields": {
+        "name": "ATM Unit",
+        "location": "instation",
+        "status": true,
+        "inventory": true,
+        "slug": "atm-unit"
+    }
+},
+{
+    "model": "general_settings.branch",
+    "pk": 101,
+    "fields": {
+        "name": "Ghana EBS",
+        "location": "instation",
+        "status": true,
+        "inventory": true,
+        "slug": "atm-unit"
+    }
+}
+]

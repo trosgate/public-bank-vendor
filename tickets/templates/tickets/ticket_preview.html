@@ -1,0 +1,135 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% comment %} {% load trackertag %} {% endcomment %}
+{% block content %}
+
+<div class="wt-haslayout wt-innerbannerholder">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                <div class="wt-innerbannercontent">
+                    <div class="wt-title"><h2>Ticket Detail</h2></div>
+                    {% if request.user.is_authenticated %}
+                    <ol class="wt-breadcrumb">
+                        <li><a href="{% url 'account:dashboard' %}" class="btn btn-info" >Dashboard</a></li>
+                    </ol>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wt-haslayout wt-main-section">
+            <!-- User Listing Start-->
+        <div class="container">
+            <div class="row">
+                <div id="wt-twocolumns" class="wt-twocolumns wt-haslayout">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">
+                        <div class="wt-proposalholder">
+                        
+                            <div class="wt-proposalhead">
+                                <h2>{{ticket.title}}</h2>
+                                
+                                <ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
+                                    <li><span class="wt-clicksavefolder"><i class="fa fa-industry"></i>&nbsp;Category: {{ticket.category.name}}</span></li>
+                                    <li><span><i class="fa fa-tag wt-viewjobtag"></i> Ref: {{ticket.reference}}</span></li>
+                                    <li><span><i class="far fa-clock" style="color:green;"></i>&nbsp; Open Time: {{ticket.created_at|date:"M-d-Y"}}</span></li>															
+                                </ul>
+                            </div>
+
+                            <div id="status-button" class="wt-btnarea" hx-swap-oob="true">
+                                {% include 'tickets/partials/ticket_buttons.html' %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {% include 'tickets/partials/timer.html' %}
+
+                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 float-left">
+                        <div class="wt-projectdetail-holder">
+                            <div class="wt-jobdetails wt-tabsinfo">
+                                <div class="wt-tabscontenttitle">
+                                    <h2 style="font-weight: bold;">Ticket Description</h2>
+                                </div>
+                                <div class="wt-description">
+                                    <p> {{ticket.description|safe}}</p>
+                                </div>
+                                
+                                <div id="assign-ticket" class="container">
+                                    {% include 'tickets/partials/ticket_state.html' %}
+                                </div>
+                                {% if ticket.status == 'closed' %}
+                                <div id="ticket-remark" class="wt-description">
+                                    <br>
+                                    {% include 'tickets/partials/ticket_remarks.html' %}
+                                </div>
+                                {% endif %}
+                                
+                            </div>   
+                        </div>
+                    </div>								
+
+                        <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 float-left">
+                            <aside id="wt-sidebar" class="wt-sidebar">
+                                <div class="wt-dashboardbox">
+                                    <div class="wt-dashboardboxtitle text-center">
+                                        <h2>Task Manager</h2>
+                                    </div>
+                                    <div class="wt-dashboardboxcontent wt-hiredfreelance">
+                                        <div class="wt-companysinfo">
+                                            <figure class="wt-companyad">
+                                                {% if resolution.assignee.vendor.profile_photo %}
+                                                <img src="{{resolution.assignee.vendor.profile_photo.url }}" style="height:100px;" alt="img description">
+                                                {% else %}
+                                                <i class="fa fa-question fa-5x"></i>
+                                                {% endif %}
+                                            </figure>
+                                            <div class="wt-title"> 
+                                                <a href="javascript:void(0);">
+                                                    <i class="fa fa-check-circle"> {% firstof resolution.assignee.get_full_name resolution.team.name ticket.terminal.vendor.name %}</i>
+                                                </a>
+                                            </div>
+                                            <ul class="wt-postarticlemeta">
+                                                <li>
+                                                    <a href="">
+                                                        <span>Profile Page</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                    
+                                <div class="wt-proposalsr"></div>
+                                <div class="wt-widget wt-sharejob">
+                                    <div class="wt-widgettitle">
+                                        <h2>Ticket Attributes</h2>
+                                    </div>
+                                    <div class="wt-widgetcontent">
+                                        <span><i class="far fa-calendar"> Reference: {{ticket.reference}}</i></span><br><br>
+                                        <span><i class="fa fa-group"> Branch: {{ticket.branch|capfirst}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> Terminal: {{ticket.terminal.name}}</i></span><br><br>
+                                        <span><i class="fa fa-group"> Category: {{ticket.category.name|capfirst}}</i></span><br><br>
+                                        <span><i class="fa fa-group"> Terminal Type: {{ticket.terminal.get_category_display}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> GPS Address: {{ticket.terminal.gps_address}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> Description: {{ticket.terminal.description}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> Region: {{ticket.terminal.region}}</i></span><br><br>
+                                        <span><i class="far fa-calendar"> Time Created: {{ticket.created_at}}</i></span><br><br>											
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+                </div>					
+            </div>
+        </div>
+    </div>
+    {% include 'tickets/partials/checklist.html'%}
+
+    
+{% endblock content %}
+
+{% block scripts %}
+<script src={% static 'js/startwork.js' %} ></script>
+{% endblock scripts %}

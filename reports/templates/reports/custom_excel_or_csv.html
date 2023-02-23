@@ -1,0 +1,91 @@
+{% extends "dashboard/main_base.html" %}
+{% block content %}
+
+<div class="wt-haslayout wt-innerbannerholder">
+    {% include 'reports/partials/insight_head.html'%}
+    
+    <div class="row justify-content-md-center">				
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 float-center">
+            <div class="wt-dashboardbox">
+                <div class="wt-dashboardboxcontent">
+                    </div>
+                    <section id="tabs" class="project-tab">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <nav>
+                                        <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-insight-tab" data-toggle="tab" href="#nav-insight" role="tab" aria-controls="nav-insight" aria-selected="true">Custom Report</a>
+                                            <a class="nav-item nav-link btn btn-info btn-sm" href="{% url 'reports:branches_excel_or_csv' %}" role="tab" aria-selected="false">All Branches Report</a>
+                                            <a class="nav-item nav-link btn btn-success btn-sm" href="{% url 'reports:excel_or_csv' %}" role="tab" aria-selected="false">My Branch Report</a>
+                                        </div>
+                                    </nav>
+                                    <br>
+                                    <br>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-insight" role="tabpanel" aria-labelledby="nav-insight-tab">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">
+                                                <div id="myticket" class="table-responsive">
+                                                    <form method="post" action="{% url 'reports:custom_fetch_excel_or_csv' %}">{% csrf_token %}
+                                                       
+                                                        <div class="form-group col-md-6">
+                                                            {{vendorform.branch.label}}
+                                                            {{vendorform.branch}}
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            {{vendorform.vendor.label}}
+                                                            {{vendorform.vendor}}
+                                                        </div>
+                                                        
+                                                        <div class="form-group col-md-6">
+                                                            {{vendorform.start_date.label}}
+                                                            {{vendorform.start_date}}
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            {{vendorform.end_date.label}}
+                                                            {{vendorform.end_date}}
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            {{vendorform.download_type.label}}
+                                                            {{vendorform.download_type}}
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            {{vendorform.size.label}}
+                                                            {{vendorform.size}}
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <button type="submit" class="btn btn-success"> 
+                                                                Fetch Data Now
+                                                            </button>
+                                                        </div>
+                                                    <form> 
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="tab-pane fade" id="vendor-source" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                            <div id="data-source" class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 float-left">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>								
+
+            
+            <div class="wt-proposalholder">
+                <div class="row justify-content-md-center">
+                    <div class="wt-sectionhead wt-textcenter">
+                        <span>Copyright @ {{website.site_name}}</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    {% endblock content %}
+   

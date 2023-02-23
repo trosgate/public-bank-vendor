@@ -1,0 +1,46 @@
+
+{% comment %} transform: rotate(45deg);  {% endcomment %}
+<div  id="ticket-list" class="table-responsive">
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>#</th>
+                <th>Ticket #</th>
+                <th>Terminal</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+
+            {% for ticket in tickets %}
+            <tr>
+                <tr>
+                    <td>{{forloop.counter}}</td> 
+                    <td class="text-left">{{ticket.reference}}</td>
+                    <td class="text-left">{{ticket.terminal.name}}</td>
+                    <td class="text-left">{{ticket.terminal.get_category_display}}</td>
+                    <td class="text-left">{{ticket.get_status_display}}</td>
+                    <td>
+                        <a hx-get="{% url 'tickets:ticket_detail' ticket.pk %}" 
+                            hx-target="#ticket-list"
+                            {% comment %} hx-push-url="/tickets/{{ticket.title}}">  {% endcomment %}
+                            class="btn btn-outline-info btn-sm">
+                            Preview
+                        </a>
+                    </td>
+                </tr>
+            </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    {% if not tickets %}
+    
+    <div class="text-center">
+        <span style="font-weight: bold;"> You donnot have any tickets</span>
+    </div>
+    {% endif %}
+</div>

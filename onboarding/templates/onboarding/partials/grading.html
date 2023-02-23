@@ -1,0 +1,183 @@
+{% if panelist.status == 'graded' %}
+
+<div class="wt-description text-center">
+    <span style="color:green"><i class="fa fa-handshake fa-5x"></i></span><br>
+    <span style="color:green; font-size:28px;">Thank You. Score received</span>
+</div>
+{% endif %}
+
+{% if panelist.status == 'invited' %}
+{% if panelist.access == 'locked' %}
+
+<form method='post'>{% csrf_token %}
+    <div class="wt-description text-center">
+        <h4>Access Verification</h4>
+        <span style="color:red"><i class="fa fa-lock fa-5x"></i></span>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="id_email">Invitee Email</label>
+        <input type="email" class="form-control" name="email" id="id_email" value="" style="border-radius:20px;" autocomplete="off">
+    </div>	
+    <div class="form-group col-md-6">
+        <label for="id_password">Access Token</label>
+        <input type="password" id="id_password" name="password" class="form-control" style="border-radius:20px;" autocomplete="off">
+        
+        <div class="form-group col-md-6">
+            Show Token <input type="checkbox" onclick="myFunction()">
+        </div>	 
+    </div>
+    {% if error_message %}
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <span class="wt-jobalerts">
+                    <div class="alert alert-danger alert-dismissible fade show text-center">
+                        <span> {{ error_message}} </span>
+                    </div>
+                </span>
+            </div>
+        </div>
+    {% endif %}		
+   	
+    <div class="text-center"> 
+        <button type="submit" hx-post="{% url 'onboarding:unlock_panelist' panelist.reference %}"
+            hx-target="#grading-rule"
+            class="btn btn-danger" 
+            style="cursor:pointer; background-color:red;">
+            Unluck Scoresheet
+        </button>
+    </div> 
+    <br>
+    <br>
+</form>
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("id_password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>
+
+{% else %}
+
+<form method="post", class="wt-formtheme"> {% csrf_token %}
+    <div class="table-responsive">
+        <table class="table">
+            <tr style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+                <td>#</td>
+                <td>Criteria</td>
+                <td>Guiding Note**</td>
+                <td>Scores</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td class="text-left">
+                    {% if parameter.criteria1 %}{{parameter.criteria1}}{% else %} Criteria 1 {% endif %}
+                    <input type="text" id="id_criteria1" value="{{parameter.criteria1}}" name='criteria1' hidden>
+                </td>
+                <td class="text-left">
+                    {{parameter.note1|linebreaksbr}}
+                </td>
+                <td class="text-left">{{grading_form.marks1}}</td>
+            </tr>
+
+            <tr>
+                <td>2</td>
+                <td class="text-left">
+                    {% if parameter.criteria2 %}{{parameter.criteria2}}{% else %} Criteria 2 {% endif %}
+                    <input type="text" id="id_criteria2" value="{{parameter.criteria2}}" name='criteria2' hidden>
+                </td>
+                <td class="text-left">
+                    {{parameter.note2|linebreaksbr}}
+                </td>
+                <td class="text-left">{{grading_form.marks2}}</td>
+            </tr>
+            
+            <tr>
+                <td>3</td>
+                <td class="text-left">
+                    {% if parameter.criteria3 %}{{parameter.criteria3}}{% else %} Criteria 3 {% endif %}
+                    <input type="text" id="id_criteria3" value="{{parameter.criteria3}}" name='criteria3' hidden>
+                </td>
+                <td class="text-left">
+                    {{parameter.note3|linebreaksbr}}
+                </td>
+                <td class="text-left">{{grading_form.marks3}}</td>
+            </tr>
+            
+            <tr>
+                <td>4</td>
+                <td class="text-left">
+                    {% if parameter.criteria4 %}{{parameter.criteria4}}{% else %} Criteria 4 {% endif %}
+                    <input type="text" id="id_criteria4" value="{{parameter.criteria4}}" name='criteria4' hidden>
+                </td>
+                <td class="text-left">
+                    {{parameter.note4|linebreaksbr}}
+                </td>
+                <td class="text-left">{{grading_form.marks4}}</td>
+            </tr>
+            
+            <tr>
+                <td>5</td>
+                <td class="text-left">
+                    {% if parameter.criteria5 %}{{parameter.criteria5}}{% else %} Criteria 5 {% endif %}
+                    <input type="text" id="id_criteria5" value="{{parameter.criteria5}}" name='criteria5' hidden>
+                </td>
+                <td class="text-left">
+                    {{parameter.note5|linebreaksbr}}
+                </td>
+                <td class="text-left">{{grading_form.marks5}}</td>
+            </tr>
+            
+            <tr>
+                <td>6</td>
+                <td class="text-left">
+                    {% if parameter.criteria6 %}{{parameter.criteria6}}{% else %} Criteria 6 {% endif %}
+                    <input type="text" id="id_criteria6" value="{{parameter.criteria6}}" name='criteria6' hidden>
+                </td>
+                <td class="text-left">
+                    {{parameter.note6|linebreaksbr}}
+                </td>
+                <td class="text-left">{{grading_form.marks6}}</td>
+            </tr>
+            
+            </table>
+        </div>
+
+        {% if messages %}
+        <div class="row justify-content-md-center" hx-get="{% url 'tickets:remove_message' %}" hx-trigger="load delay:4s">        
+            {% for message in messages %}        
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <span class="wt-jobalerts">
+                    <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center">
+                        <span> {{ message}} </span>
+                    </div>
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="text-center">
+            <button type="submit" class="wt-btn"
+                hx-post="{% url 'onboarding:external_grading' panelist.reference %}"
+                hx-target="#grading-rule"
+                hx-confirm="If you proceed, then graded application will move for approval"
+                style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                Grade Now
+            </button>
+        </div>
+    </form>
+{% endif %}
+
+{% endif %}	
+
+
+
+
+
+
+

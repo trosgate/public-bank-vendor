@@ -1,0 +1,208 @@
+{% extends "dashboard/main_base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+{% include 'dashboard/main_sidebar.html' %}
+
+<!--Main Start-->
+	<main id="ticket-list" class="wt-main wt-haslayout">
+
+		{% comment %} style="transform: rotate(4deg);" {% endcomment %}
+
+		{% if request.user.vendor %}
+		{% include 'account/partials/vendor_dashboard.html' %}
+		{% endif %}
+		{% comment %} transform: rotate(45deg);  {% endcomment %}
+
+		<div class="wt-proposalholder">
+			<div class="container">
+				<div class="row justify-content-md-center">
+					<div class="col-12">
+						<div class="wt-sectionhead wt-textcenter">
+							<div class="wt-sectiontitle">
+								<h3>Support Tickets</h3>
+								<form class="form-group text-center">{% csrf_token %}
+									<input type="text"
+										hx-post="{% url 'tickets:search_ticket' %}"
+										hx-trigger="keyup changed delay:500ms"
+										hx-target="#search-tickets" 
+										class="form-control-sm col-md-6"
+										name="search" 
+										placeholder="start typing something ...."
+										autocomplete="off">
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>				
+
+			<div class="table-responsive">
+				<table class="table table-striped table-sm">
+					<thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+						<tr>
+							<th>#</th>
+							<th>Ticket #</th>
+							<th>Terminal</th>
+							<th>Date</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					
+					<tbody id="search-tickets">
+						{% include 'tickets/partials/dashboard_tables.html' %}
+					</tbody>
+				</table>
+				{% if not tickets %}       
+				<div class="text-center">
+					<span style="font-weight: bold;"> You donnot have any tickets</span>
+				</div>
+				{% endif %}  
+			</div>
+		</div>
+
+		<div class="wt-proposalholder mt-6">
+			<div class="row justify-content-md-center">
+				<div class="wt-sectionhead wt-textcenter">
+					<span>Copyright @ {{website.site_name}}</span>
+				</div>
+			</div>
+		</div>
+	{% comment %} <div id="callable" class="table-responsive"  
+			hx-get="{% url 'tickets:callable_ticket' %}" 
+			hx-trigger="every 1s" 
+			hx-swap="innerhtml"
+			style="display:none"> 
+			callable
+		{% include 'tickets/partials/dashboard_tables.html' %}
+	</div> {% endcomment %}		
+	</main>
+
+	<!-- Add team Popup Start-->
+	<!-- Popup Start-->
+	<div class="modal fade wt-offerpopup" tabindex="-1" role="dialog" id="teammodal">
+		<div class="modal-dialog" role="document">
+			<div class="wt-modalcontent modal-content">
+				<div class="wt-popuptitle">
+					<h2>Create virtual Space (<a href="" style="color:green"><i class="fas fa-sync fa-spin"></i> Refresh</a>)</h2>
+					
+					<a href="javascript%3bvoid(0)%3b.html" class="wt-closebtn close"><i class="fa fa-close" data-dismiss="modal" aria-label="Close" style="color:red;"></i></a><br><br>
+					<div id='registerError'></div>	
+				</div>
+				<div class="modal-body">
+				<form method="POST", action='.', class="wt-formtheme wt-formpopup"> {% csrf_token %}
+					<div class="form-group">
+						{{regform.first_name.label}}
+						{{regform.first_name}}
+						<span style="color:red;" role="alert">{{ regform.first_name.errors}}</span>
+					</div> 
+					<div class="form-group">
+						{{regform.last_name.label}}
+						{{regform.last_name}}
+						<span style="color:red;" role="alert">{{ regform.last_name.errors}}</span>
+					</div>
+					<div class="form-group">
+						{{regform.short_name.label}}
+						{% render_field regform.short_name class+='form-control' hx-post='/verify_username/' hx-swap='outerhtml' hx-trigger='keyup' hx-target='#short_name_status' %} 
+						<span style="color:red;" role="alert">{{ regform.short_name.errors}}</span>
+						<div id="short_name_status" class="input-group col-lg-12"></div>
+					</div>
+					<div class="form-group">
+						{{regform.email.label}}
+						{{regform.email}}
+						<span style="color:red;" role="alert">{{ regform.email.errors}}</span>
+					</div>	
+					<div class="form-group">
+						{{regform.phone.label}}
+						{{regform.phone}}
+						<span style="color:red;" role="alert">{{ regform.phone.errors}}</span>
+					</div>
+					<div class="form-group wt-btnarea">
+						<button id="registerNow" type="button" class="wt-btn"> Invite to team </button>
+					</div>	
+															
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	{% endblock %}
+
+	{% block scripts %}
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<script> 
+		$(document).on('click', '#refreshform', function (e) {
+			e.preventDefault();
+			$("#refreshform").load(window.location.href + " #refreshform" );
+		});
+	</script>
+
+	<script>
+		//Script to add new user            
+		$(document).on('click', '#registerNow', function (e) {
+		e.preventDefault();
+
+		let first_name = $('[name="first_name"]').val();
+		let last_name = $('[name="last_name"]').val();
+		let short_name = $('[name="short_name"]').val();
+		let email = $('[name="email"]').val();
+		let phone = $('[name="phone"]').val();
+
+		let displaySuccess = document.getElementById('registerError')
+
+		$("#registerNow").attr("disabled", true);
+
+        if(first_name == ''||last_name == ''|| short_name ==''||email == ''|| phone ==''){
+            //swal("Alert!", "All fields are required", "error");
+
+			displaySuccess.textContent = '';
+			$('#registerError').removeClass('alert alert-success');
+			displaySuccess.textContent = 'All fields are required'
+			$('#registerError').addClass('alert alert-danger');
+            return false;
+
+        }
+        else{
+			$.ajax({
+				type: 'POST',
+				url: '{% url "account:register" %}',
+				data: {
+					first_name: first_name,
+					last_name: last_name,
+					short_name: short_name,
+					email: email,
+					phone: phone,
+					csrfmiddlewaretoken: "{{csrf_token}}",
+					action: 'register-now'
+				},
+				success: function (json) {
+					if (json.errors != ''){
+						displaySuccess.textContent = '';
+						$('#registerError').removeClass('alert alert-success');
+						displaySuccess.textContent = json.message;
+                		$('#registerError').addClass('alert alert-danger');
+						document.getElementById('registerError').innerHTML = json.errors
+
+					}else{
+						$('[name="first_name"]').val('');
+						$('[name="last_name"]').val('');
+						$('[name="short_name"]').val('');
+						$('[name="email"]').val('');
+						$('[name="phone"]').val('');
+
+						displaySuccess.textContent = '';
+						$('#registerError').removeClass('alert alert-danger');
+						displaySuccess.textContent = json.message;
+                		$('#registerError').addClass('alert alert-success');
+						document.getElementById('registerError').innerHTML = json.message
+					}
+					$("#registerNow").attr("disabled", false);
+				},
+				error: function (xhr, errmsg, err) {}
+			});
+		}
+		})
+	</script>
+	{% endblock scripts %}

@@ -1,0 +1,42 @@
+{% if messages %}
+    <div class="row justify-content-md-center" hx-get="{% url 'tickets:remove_message' %}" hx-trigger="load delay:4s">        
+        {% for message in messages %}        
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <span class="wt-jobalerts">
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center">
+                    <span> {{ message}} </span>
+                </div>
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if replies %}
+{% for reply in replies %}
+<ul class="wt-accordionhold accordion">
+    <li>
+        <div class="wt-accordiontitle collapsed" id="heading{{reply.id}}" data-toggle="collapse" data-target="#{{reply.id}}">
+            <span>{{forloop.counter}}. 
+                {% if reply.action == True %} 
+                {% if reply.support %}<span style="font-weight:bold;">{{reply.support.get_full_name}}</span>{% else %} Support {% endif %} Replied on {{reply.created_at}}
+                {% else %} 
+                Your Reply on {{reply.created_at}} 
+                {% endif %}
+            </span>
+        </div>
+        <div class="wt-accordiondetails collapse" id="{{reply.id}}" aria-labelledby="heading{{reply.id}}">
+            <div class="wt-description">
+                <p>{{reply.content|linebreaks}}</p>
+            </div>
+            <div class="wt-description">
+                <p><span style="font-weight:bold;">Date & Time:</span> {{reply.created_at}}</p>
+                <p><span style="font-weight:bold;">Created Staff:</span> {{reply.helpdesk.created_by.get_full_name}}</p>
+            </div>
+        </div>
+    </li>
+    </ul>
+    {% endfor %}
+    {% else %}
+    <p> No messages yet</p>
+    {% endif %}

@@ -1,0 +1,85 @@
+
+{% if tender_form %}
+
+<div class="wt-haslayout wt-main-section">
+    <div class="container">          
+        <div class="row">
+            <div id="wt-twocolumns" class="wt-twocolumns wt-haslayout">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">    
+                
+                <div class="wt-proposalholder">
+                    <div class="wt-proposalhead">
+                        <h4>{{tender.title}}</h4>
+                    </div>
+                    <form method="post", class="wt-formtheme"> {% csrf_token %}
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <td class="text-left">{{tender_form.title.label}}</td>
+                                    <td class="text-left">
+                                        {{tender_form.title}}
+                                        {{tender_form.title.help_text}}
+                                        <span style="color:red;" role="alert">{{tender_form.title.errors}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">{{tender_form.duration.label}}</td>
+                                    <td class="text-left">
+                                        {{tender_form.duration}}
+                                        <span style="color:red;" role="alert">{{tender_form.duration.errors}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">{{tender_form.number_of_links.label}}</td>
+                                    <td class="text-left">
+                                        {{tender_form.number_of_links}}
+                                        <span style="color:red;" role="alert">{{tender_form.number_of_links.errors}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left">{{tender_form.mode.label}}</td>
+                                    <td class="text-left">{{tender_form.mode}}</td>
+                                </tr>
+                                <tr class="text-left">
+                                    <td class="text-left">{{tender_form.category.label}}</td>
+                                    <td class="text-left">
+                                        {{tender_form.category}}
+                                        <span style="color:red;" role="alert">Only required for category-based Onboarding mode</span>
+                                    </td>
+                                </tr>
+                                
+                            </table>
+                        </div>
+
+                        {% if messages %}
+                        <div class="row justify-content-md-center" hx-get="{% url 'tickets:remove_message' %}" hx-trigger="load delay:4s">        
+                            {% for message in messages %}        
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                                <span class="wt-jobalerts">
+                                    <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center">
+                                        <span> {{ message}} </span>
+                                    </div>
+                                </span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                            
+                        <div class="text-center">
+                            <button type="submit" class="wt-btn"
+                                hx-post="{% url 'onboarding:create_tender' %}"
+                                hx-target="#tender-list"
+                                style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                                Create Invite Group 
+                            </button>
+                        </div>
+                    </form>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+

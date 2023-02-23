@@ -1,0 +1,176 @@
+{% load static %}
+
+  {% comment %} {% include 'dashboard/page_loader.html' %} {% endcomment %}
+  
+  <!-- Wrapper Start -->
+  <div id="wt-wrapper" class="wt-wrapper wt-haslayout">
+  <!-- Content Wrapper Start -->
+  <div class="wt-contentwrapper">
+    <!-- Header Start -->
+    <header id="wt-header" class="wt-header wt-headervtwo wt-haslayout">
+        <div class="wt-navigationarea" style="background-color:{% if not request.user.is_authenticated %} {% firstof website.navbar_color %}; {% else %} white {% endif %}">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                
+                {% if website.site_logo_tag %}
+                <strong class="wt-logo">
+                  <a href="{% url 'account:homepage' %}">
+                    {{website.site_logo_tag}}
+                  </a>
+                </strong>
+                {% endif %}
+                
+                <div class="wt-rightarea">
+                  <nav id="wt-nav" class="wt-nav navbar-expand-lg" style="margin-top:10px;">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color:{% firstof website.button_color home_layout.banner_color purple %}; font-color:white;">
+                      <i class="lnr lnr-menu"></i>
+                    </button>
+                    
+                    <div class="collapse navbar-collapse wt-navigation" id="navbarNav">
+                      <ul class="navbar-nav">
+
+                        {% if request.user.user_type == 'initiator' or request.user.user_type == 'officer' or request.user.user_type == 'head' %}
+                        <li class="nav-item">
+                            <a href="{% url 'onboarding:mylinks' %}" 
+                              {% if website.navbar_color %} 
+                              style="color:green; cursor:pointer;" 
+                              {% endif %}>
+                              My Shared Links 
+                            </a>
+                        </li>
+                        {% if website %}
+                        <li class="nav-item">
+                            <a href="{% url 'onboarding:message_compose' website.pk %}" 
+                              {% if website.navbar_color %} 
+                              style="color:green; cursor:pointer;" 
+                              {% endif %}>
+                              Composers 
+                            </a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a href="{% url 'onboarding:add_contact' %}"
+                              {% if website.navbar_color %} 
+                              style="color:green; cursor:pointer;" 
+                              {% endif %}>
+                              Contact List 
+                            </a>
+                        </li>
+                        {% endif %}
+                        
+                        <li class="nav-item">
+                          <a href="{% url 'account:passwordreset' %}" 
+                            {% if website.navbar_color %} 
+                            style="color:green; cursor:pointer;" 
+                            {% endif %}>
+                            Password Reset
+                          </a>
+                        </li>
+
+                      </ul>
+                    </div>
+                  </nav>
+                  
+									<div class="wt-userlogedin" style="margin-top:10px;">
+                    {% if not request.user.is_authenticated %}
+                      
+                      {% if userloginmodal %}
+                      <a href="javascript:void(0);" class="btn btn-danger" data-toggle="modal" data-target="#userloginmodal" style="background-color:{% firstof website.button_color home_layout.banner_color purple %}; font-color:white;">Login Now</a>
+                      {% else  %}			
+											<a class="btn btn-danger" href="{% url 'account:login' %}" style="background-color:{% firstof website.button_color home_layout.banner_color purple %}; font-color:white;">Login Now</a>
+                      {% endif  %}
+                    
+                    {% endif  %}
+
+                    {% if request.user.is_authenticated %}
+                    <figure class="wt-userimg">
+                      {% if request.user.vendor %}
+                      <img src="{% if request.user.vendor.profile_photo %}{{request.user.vendor.profile_photo.url}}{% endif %}" alt="image description"/>
+                      {% endif  %}
+                      {% if request.user.custodian %}
+                      <img src="{% if request.user.custodian.profile_photo %}{{request.user.custodian.profile_photo.url}}{% endif %}" alt="image description"/>
+                      {% endif  %}
+                    </figure>
+                    <div class="wt-username">
+                      <h3><span {% if request.user.is_authenticated %} style="color:black;" {% endif %}>{{request.user.short_name|capfirst}}</span></h3>
+                      <span {% if request.user.is_authenticated %} style="color:black;" {% endif %}>
+                        {% if active_team %} ({{active_team.title|slice:20}})
+                        {% else %}
+                        ({{request.user.get_user_type_display}})
+                        {% endif %}
+                      </span>
+                    </div>
+                    <nav class="wt-usernav">
+                      <ul>
+                        {% if request.user.vendor %}
+                        
+                        <li>
+                          <a href="{% url 'vendors:my_profile' request.user.short_name %}">
+                            <span>My Profile</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{% url 'tickets:my_ticket_list' %}">
+                            <span>My Assigned Jobs</span>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{% url 'vendors:teamchatroom' %}">
+                            <span>Group Chat</span>
+                          </a>
+                        </li>
+                        
+                        <li>
+                          <a href="{% url 'tickets:recommendations' %}">
+                            <span>My Feedback</span>
+                          </a>
+                        </li>
+                        {% endif %}
+                        
+                        <li>
+                          <a href="{% url 'custodians:my_profile' request.user.short_name %}">
+                            <span>My Profile</span>
+                          </a>
+                        </li>
+                        {% if request.user.custodian and request.user.is_stakeholder == False %}
+                        <li>
+                          <a href="{% url 'tickets:recommendations' %}">
+                            <span>My Feedback</span>
+                          </a>
+                        </li>
+                        <li
+                          class="menu-item-has-children page_item_has_children">
+                          <a href="{% url 'inventory:requisition' %}">
+                            <span> Requisition </span>
+                          </a>
+                        </li>
+                        {% endif %}
+                        {% if request.user.user_type == 'initiator' or request.user.user_type == 'officer' or request.user.user_type == 'head' %}
+                        <li
+                          class="menu-item-has-children page_item_has_children">
+                          <a href="{% url 'onboarding:restore_application' %}">
+                            <span> Restore Application </span>
+                          </a>
+                        </li>
+                        {% endif %}
+                        <li>
+                          <a
+                            href="{% url 'account:logout' %}" data-bs-toggle="modal" data-bs-target="#genericlogoutModal">
+                            <span>Logout</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </nav>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!--Header End-->
+    </div>
+
+

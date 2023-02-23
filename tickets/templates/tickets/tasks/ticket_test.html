@@ -1,0 +1,26 @@
+{% load i18n %}{% autoescape off %}
+
+{% block content %}
+
+Hello {{ticket.created_by.get_full_name}},
+
+....................................................
+{{preview}}
+....................................................
+
+{{message}}
+
+1. {{ticket.reference}}
+2. {{ticket.title}}
+<div style="line-height: 160%; text-align: left; word-wrap: break-word;">
+    <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 22px; line-height: 35.2px;">Dear Team, </span></p>
+    <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;">{{message}}</span></p><br>
+    <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;"><span style="font-weight: bold;">Remarks: </span> A feedback window is open for this ticket from now to the next three days.</span></p><br>
+    <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;"><span style="font-weight: bold;">Recommendation: </span> In addition to remark, you can share recommendations on this ticket as well as your challenges.</span></p><br>
+    <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;">Thank You</span></p><br>
+</div>
+{% blocktranslate %}Thank you, the {{ website_name }} Team {% endblocktranslate %}
+
+{% endblock %}
+
+{% endautoescape %}

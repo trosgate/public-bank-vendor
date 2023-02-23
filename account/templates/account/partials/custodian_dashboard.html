@@ -1,0 +1,25 @@
+{% load static %}
+
+<div class="wt-haslayout wt-innerbannerholder">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                <div class="wt-innerbannercontent">
+                <div class="wt-title"><h2>{{request.user.branch.name|capfirst}}</h2><br></div>
+                
+                <h4 style="color:rgb(29, 118, 90); font-size:3em;">Active Tickets:<span style="color:gold; font-weight: bold;">{{tickets.count}}</span></h4>
+
+                <div class="wt-btnarea"><br>
+                    <a href="javascript:void(0);" class="wt-btn" data-toggle="modal" data-target="#ticketmodal"  style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                        <i class="fa fa-handshake-o" aria-hidden="true"> Create Ticket</i>
+                    </a>
+                    <a href="{% url 'custodians:branch_page' request.user.branch.slug %}" class="wt-btn" target="_blank" style="background-color:rgb(119, 98, 10); font-weight: bold;">
+                        <i class="fa fa-arrow-right" aria-hidden="true"> Help-Desk</i>
+                    </a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,94 @@
+{% extends "dashboard/main_base.html" %}
+
+{% load static %}
+
+{% block content %}
+            <!--Inner Home Banner Start-->
+            <div class="wt-haslayout wt-innerbannerholder">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                            <div class="wt-innerbannercontent">
+                            <div class="wt-title"><h2>Team Chatroom</h2></div>
+								<ol class="wt-breadcrumb">
+									<li><a href="{% url 'account:dashboard' %}">Dashboard</a></li>
+									<li class="wt-active">Team Chat</li>
+								</ol>
+							</div>					
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Categories Start-->
+            <div class="wt-haslayout wt-main-section">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 float-left">
+                            <div class="wt-articlesingle-holder wt-bgwhite">
+                                <div class="wt-articlesingle-content">
+                                <!--form Start-->
+                                    <div class="wt-author">
+                                        <div class="wt-authordetails">
+                                            <figure><img src="{% if active_team.created_by.vendor.profile_photo %}{{ active_team.created_by.vendor.profile_photo.url }}{% endif %}" alt="image description"></figure>
+                                            <div class="wt-authorcontent">
+                                                <div class="wt-authorhead">
+                                                    <div class="wt-boxleft">
+                                                        <h3><a href="javascript:void(0);">{{active_team.title}}</a></h3>
+                                                        <span><i class="lnr lnr-clock"></i> Admin Last Active: {{active_team.created_at}}</span>
+                                                    </div>
+                                                    <div class="wt-boxright">
+                                                        <ul class="wt-socialiconssimple">
+                                                            <li class="wt-facebook"><a href="javascript:void(0);"><i class="fa fa-facebook-f"></i></a></li>
+                                                            <li class="wt-twitter"><a href="javascript:void(0);"><i class="fab fa-twitter"></i></a></li>
+                                                            <li class="wt-linkedin"><a href="javascript:void(0);"><i class="fab fa-linkedin-in"></i></a></li>
+                                                            <li class="wt-googleplus"><a href="javascript:void(0);"><i class="fab fa-google"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="wt-description">
+                                                    <div class="alert alert-info" role="alert">
+                                                        <span style="color: blue; font-weight: bold;"><i class="fa fa-exclamation-triangle"></i> This is the Information desk for the Team where members can pass information to the team<a href="javascript:void(0);"> Read the guide</a></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="display-messages" hx-get="{% url 'vendors:teamchatroom' %}" hx-trigger="every 1s" hx-swap="innerhtml">
+                                        {% include 'vendors/partials/team_message.html' %}
+                                    </div>
+                                    <form>
+                                    <div>
+                                        <div class="wt-replaybox">
+                                            <div class="form-group">
+                                                <textarea id="id_content" type="text" name="content" class="form-control" placeholder="start typing..."></textarea>
+                                            </div>
+                                            <div class="wt-iconbox">
+                                                {% comment %} <i class="ti-announcement"></i> {% endcomment %}
+                                                <span class="float-left text-center" style="color:green;">Discuss field challenges with your team</span>
+                                                <button id="newMessage" hx-post="{% url 'vendors:teamchat' %}" hx-target="#display-messages" type="submit" class="wt-btnsendmsg">Send</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                document.body.addEventListener('htmx:configRequest', (event) =>{
+                    event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+                });
+
+            </script>
+            <script>
+                $(document).on("click", "#newMessage", function(){
+                    $("#id_content").val('')
+                })
+            </script>
+
+{% endblock content %}
+
+

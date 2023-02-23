@@ -1,0 +1,184 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="wt-haslayout wt-innerbannerholder">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                <div class="wt-innerbannercontent">
+                    <div class="wt-title"><h2>Requisition Detail</h2></div>
+                    <ol class="wt-breadcrumb">
+                        <li><a href="{% url 'account:dashboard' %}" class="btn btn-info" >Dashboard</a></li>
+                    </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="wt-haslayout wt-main-section">
+            <!-- User Listing Start-->
+        <div class="container">
+            <div class="row">
+                <div id="wt-twocolumns" class="wt-twocolumns wt-haslayout">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">
+                        <div class="wt-proposalholder">
+                        
+                            <div class="wt-proposalhead">
+                                <h2>{{inventory.line_one}}</h2>
+                                
+                                <ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
+                                    <li><span class="wt-clicksavefolder"><i class="fa fa-industry"></i>&nbsp;{{inventory.category.name}}</span></li>
+                                    <li><span><i class="fa fa-tag wt-viewjobtag"></i> {{inventory.reference}}</span></li>
+                                    {% if inventory.status == 'closed' %}
+                                    <li><span><i class="fa fa-bars"></i> {{inventory.get_condition_display}}</span></li>
+                                    {% endif %}
+                                    <li><span><i class="far fa-clock" style="color:green;"></i>&nbsp; {{inventory.request_at|date:"M-d-Y"}}</span></li>															
+                                </ul>
+                            </div>
+
+                            <div class="wt-btnarea">
+                                {% include 'inventory/partials/inventory_buttons.html' %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12float-left">
+                        <div class="wt-projectdetail-holder">
+                            <div class="wt-projectdetail">                          
+
+                                <div class="wt-jobdetails wt-tabsinfo">
+                                    <div class="wt-tabscontenttitle">
+                                        <h2>Issue Details</h2>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                        <thead>
+                                            <tr style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+                                                <th class="col-md-1">#</th>
+                                                <th class="col-md-5">Request</th>
+                                                <th class="col-md-2">Req Qty</th>
+                                                <th class="col-md-2">Iss Qty</th>
+                                                <th class="col-md-2">Var**</th>
+                                            </tr>
+                                        </thead>
+                                        <body>
+                                            {% if inventory.line_one %} 
+                                            <tr>
+                                                <td>1</td>
+                                                <td class="text-left">{{inventory.line_one}}</td>
+                                                <td>{{inventory.line_one_order}}</td>
+                                                <td>{{inventory.line_one_issue}}</td>
+                                                <td>{{line_one_var}}</td>
+                                            </tr>
+                                            {% endif %}
+
+                                            {% if inventory.line_two %} 
+                                            <tr>
+                                                <td>2</td>
+                                                <td class="text-left">{{inventory.line_two}}</td>
+                                                <td>{{inventory.line_two_order}}</td>
+                                                <td>{{inventory.line_two_issue}}</td>
+                                                <td>{{line_two_var}}</td>
+                                            </tr>
+                                            {% endif %}
+                                            
+                                            {% if inventory.line_three %} 
+                                            <tr>
+                                                <td>3</td>
+                                                <td class="text-left">{{inventory.line_three}}</td>
+                                                <td>{{inventory.line_three_order}}</td>
+                                                <td>{{inventory.line_three_issue}}</td>
+                                                <td>{{line_three_var}}</td>
+                                            </tr>
+                                            {% endif %}
+
+                                            {% if inventory.line_four %} 
+                                            <tr>
+                                                <td>4</td>
+                                                <td class="text-left">{{inventory.line_four}}</td>
+                                                <td>{{inventory.line_four_order}}</td>
+                                                <td>{{inventory.line_four_issue}}</td>
+                                                <td>{{line_four_var}}</td>
+                                            </tr>
+                                            {% endif %}
+                                            
+                                            
+                                        </body>
+                                        
+                                        </table>
+                                        </div> 
+                                    </div>
+                                    <br>
+                                    <br>
+                                    
+                                    <div class="wt-jobdetails wt-tabsinfo" id="down">
+                                        <div class="wt-tabscontenttitle">
+                                            <h2>Comment/Remarks</h2>
+                                        </div>     
+                                        <div class="row">
+                                                {% if inventory.issue_remark %}
+                                                <span>{{inventory.issue_remark}}</span>
+                                                {% else %}
+                                                <span> No remarks or comments provided</span>
+                                                {% endif %}
+                                            </div> 
+                                        </div>
+                                    </div>
+                                
+                                    {% if request.user.branch == inventory.request_branch %}
+                                    {% if inventory.status == 'issued' %}
+                                    <form method="POST">{% csrf_token %}
+                                        <div class="container">
+                                            <div class="row">
+                                                <br>
+                                                <br>
+                                                <div class="form-group col-12 text-center">
+                                                    {{ stockconfirmform.condition}}
+                                                    <span style="color:red;" role="alert">{{ stockconfirmform.condition.errors}}</span>
+                                                </div>
+                                                <div class="form-group col-12 text-center">
+                                                    <button type="submit" class="wt-btn"
+                                                    style="background-color:rgb(118, 29, 90); color:white; font-weight: bold;">
+                                                    Confirm receipt
+                                                </button>
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {% endif %}
+                                    {% else %}
+                                    <div class="form-group col-12 text-center">
+                                        <button type="button" class="btn btn-secondary" disabled>
+                                        Confirm receipt
+                                        </button>
+                                    {% endif %}
+
+                                    <div class="float-right">
+                                        <div class="row">
+                                            <a class="float-right"
+                                                href="{% url 'inventory:requisition' %}" 
+                                                style="color:blue; cursor:pointer; margin: 2px; font-weight:bold;">
+                                                Go back
+                                            </a> |
+                                            <a class="float-right"
+                                                href="#top" 
+                                                style="color:green; cursor:pointer; margin: 2px; font-weight:bold;">
+                                                Move Up
+                                            </a>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>   
+                        
+                    </div>
+                </div>					
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

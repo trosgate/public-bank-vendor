@@ -1,0 +1,132 @@
+[
+{
+    "model": "general_settings.inventory",
+    "pk": 1,
+    "fields": {
+        "name": "Hyosung Rolls Only",
+        "quantity": 320,
+        "ordering": 1,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 2,
+    "fields": {
+        "name": "NCR Rolls Only",
+        "quantity": 170,
+        "ordering": 2,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 3,
+    "fields": {
+        "name": "Wincor Rolls Only",
+        "quantity": 250,
+        "ordering": 3,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 4,
+    "fields": {
+        "name": "Hyosung cassette",
+        "quantity": 200,
+        "ordering": 8,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 5,
+    "fields": {
+        "name": "Ncr cassette",
+        "quantity": 178,
+        "ordering": 9,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 6,
+    "fields": {
+        "name": "Wincor cassette",
+        "quantity": 135,
+        "ordering": 10,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 7,
+    "fields": {
+        "name": "Card Reader Cleaner",
+        "quantity": 200,
+        "ordering": 12,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 8,
+    "fields": {
+        "name": "Hyosung and Wincor Rolls Only",
+        "quantity": 420,
+        "ordering": 4,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 9,
+    "fields": {
+        "name": "Hyosung and Ncr Rolls Only",
+        "quantity": 0,
+        "ordering": 5,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 10,
+    "fields": {
+        "name": "Ncr and Wincor Rolls Only",
+        "quantity": 0,
+        "ordering": 6,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 11,
+    "fields": {
+        "name": "Hyo, Ncr and Win Rolls",
+        "quantity": 0,
+        "ordering": 7,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 12,
+    "fields": {
+        "name": "Cash Reject Bin",
+        "quantity": 0,
+        "ordering": 11,
+        "status": "available"
+    }
+},
+{
+    "model": "general_settings.inventory",
+    "pk": 13,
+    "fields": {
+        "name": "Captured Card bin",
+        "quantity": 0,
+        "ordering": 13,
+        "status": "available"
+    }
+}
+]

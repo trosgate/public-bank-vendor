@@ -1,0 +1,44 @@
+{% load static %}
+
+{% comment %} DATA SLIDE ONE {% endcomment %}
+<div class="wt-categoryslidercontent item">
+    <figure><img src="{% static 'images/thumbnail/group-02.jpg' %}" alt="image description"></figure>
+    <div class="wt-cattitle">
+        <h3><a href="{% url 'reports:ticket_by_vendor' %}">Ticket by Vendor</a></h3>
+        <span>Filter Insight by vendor</span>
+    </div>
+</div>
+{% comment %} DATA SLIDE TWO {% endcomment %}
+<div class="wt-categoryslidercontent item">
+    <figure><img src="{% static 'images/thumbnail/group-02.jpg' %}" alt="image description"></figure>
+    <div class="wt-cattitle">
+        <h3><a href="{% url 'reports:ticket_by_status' %}">Ticket by Status</a></h3>
+        <span>Filter Insight by Status</span>
+    </div>
+</div>
+
+{% comment %} DATA SLIDE FOUR {% endcomment %}
+<div class="wt-categoryslidercontent item">
+    <figure><img src="{% static 'images/thumbnail/group-02.jpg' %}" alt="image description"></figure>
+    <div class="wt-cattitle">
+        <h3><a href="{% url 'reports:ticket_by_hours_worked' %}">Ticket by Hours Worked</a></h3>
+        <span>Filter by hours worked</span>
+    </div>
+</div>
+
+{% comment %} DATA SLIDE FOUR {% endcomment %}
+<div class="wt-categoryslidercontent item">
+    <figure><img src="{% static 'images/thumbnail/group-02.jpg' %}" alt="image description"></figure>
+    <div class="wt-cattitle">
+        <h3><a href="{% url 'reports:ticket_by_response' %}">Ticket by Response</a></h3>
+        <span>Filter by average response</span>
+    </div>
+</div>
+{% comment %} DATA SLIDE THREE {% endcomment %}
+<div class="wt-categoryslidercontent item">
+    <figure><img src="{% static 'images/thumbnail/group-02.jpg' %}" alt="image description"></figure>
+    <div class="wt-cattitle">
+        <h3><a href="{% url 'reports:ticket_by_vendor_comparison' %}">Vendor Comparison</a></h3>
+        <span>Vendor by Comparison</span>
+    </div>
+</div>

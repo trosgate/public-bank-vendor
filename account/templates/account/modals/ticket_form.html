@@ -1,0 +1,41 @@
+	<!-- Popup Start-->
+	<div class="modal fade wt-offerpopup" tabindex="-1" role="dialog" id="ticketmodal">
+		<div class="modal-dialog" role="document">
+			<div class="wt-modalcontent modal-content">
+				<div class="wt-popuptitle">
+					<h2>Create New Ticket</h2>
+					<a href="javascript%3bvoid(0)%3b.html" class="wt-closebtn close"><i class="fa fa-close" data-dismiss="modal" aria-label="Close" style="color:red;"></i></a>						
+				</div>
+				<div class="modal-body">
+				<form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+					<div class="form-group">
+						{{ticketform.title.label}}
+						{{ticketform.title}}
+						<span style="color:red;" role="alert">{{ ticketform.title.errors}}</span>
+					</div> 
+					<div class="form-group">
+						{{ticketform.category.label}}
+						{{ticketform.category}}
+						<span style="color:red;" role="alert">{{ ticketform.category.errors}}</span>
+					</div>
+					<div class="form-group">
+						{{ticketform.terminal.label}}
+						{{ticketform.terminal}}
+						<span style="color:red;" role="alert">{{ ticketform.terminal.errors}}</span>
+					</div>	
+					<div class="form-group">
+						{{ticketform.description.label}}
+						{{ticketform.media}}
+						{{ticketform.description}}
+						<span style="color:red;" role="alert">{{ ticketform.description.errors}}</span>
+					</div>
+
+					{% comment %} <div class="wt-popuptitle"></div> {% endcomment %}
+					<div class="form-group wt-btnarea">
+						<button id="ticketforms" type="button" class="wt-btn"> Create Ticket </button>						
+					</div>	
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>

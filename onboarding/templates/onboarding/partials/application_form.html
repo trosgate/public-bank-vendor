@@ -1,0 +1,194 @@
+{% load widget_tweaks %}
+{% if invitation.status == 'applied' or invitation.status == 'expired' %}
+
+<div class="wt-description text-center">
+    <span style="color:red"><i class="fa fa-handshake fa-5x"></i></span>
+    <h4>Application Received, Thank you</h4>
+</div>
+{% endif %}
+
+{% if invitation.status == 'invited' %}
+{% if invitation.access == 'locked' %}
+
+<form method='post'>{% csrf_token %}
+    <div class="wt-description text-center">
+        <h4>Access Verification</h4>
+        <span style="color:red"><i class="fa fa-lock fa-5x"></i></span>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="id_email">Invitee Email</label>
+        <input type="email" class="form-control" name="email" id="id_email" value="" style="border-radius:20px;" autocomplete="off">
+    </div>	
+    <div class="form-group col-md-6">
+        <label for="id_password">Access Token</label>
+        <input type="password" id="id_password" name="password" class="form-control" style="border-radius:20px;" autocomplete="off">
+        
+        <div class="form-group col-md-6">
+            Show Token <input type="checkbox" onclick="myFunction()">
+        </div>	 
+    </div>
+    {% if error_message %}
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <span class="wt-jobalerts">
+                    <div class="alert alert-danger alert-dismissible fade show text-center">
+                        <span> {{ error_message}} </span>
+                    </div>
+                </span>
+            </div>
+        </div>
+    {% endif %}		
+   	
+    <div class="text-center"> 
+        <button type="submit" hx-post="{% url 'onboarding:unlock_application' invitation.reference %}"
+            hx-target="#new-application" 
+            class="btn btn-danger" 
+            style="cursor:pointer; background-color:red;">
+            Unluck Application Form
+        </button>
+    </div> 
+    <br>
+    <br>
+</form>
+
+<script>
+  function myFunction() {
+    var x = document.getElementById("id_password");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+  }
+</script>
+
+
+{% else %}
+
+<form method="post" hx-encoding="multipart/form-data">{% csrf_token %}
+    <div class="wt-tabscontenttitle">
+        <h2 style="font-weight: bold;">Applicant Background</h2>
+    </div>
+    <div class="form-group col-md-6" autocomplete="off" style="border-raduis: 20px;">
+        {{application_form.applicant.label}}
+        {{application_form.applicant}}
+        <span style="color:red;" role="alert">{{ application_form.applicant.errors}}</span>
+    </div>	 
+    <div class="form-group col-md-6" autocomplete="off">
+        {{application_form.email.label}}
+        {{application_form.email}}
+        <span style="color:red;" role="alert">{{ application_form.email.errors}}</span>
+    </div>	
+    <div class="form-group col-md-6" autocomplete="off">
+        {{application_form.name.label}}
+        {{application_form.name}}
+        <span style="color:red;" role="alert">{{ application_form.name.errors}}</span>
+    </div>	
+    <div class="form-group col-md-6" autocomplete="off">
+        {{application_form.registered_name.label}}
+        {{application_form.registered_name}}
+        <span style="color:red;" role="alert">{{ application_form.registered_name.errors}}</span>
+    </div>	
+    <div class="wt-tabscontenttitle">
+        <h2 style="font-weight: bold;">Product/Service Specification</h2>
+    </div>
+    {% if invitation.tender.mode == 'general' %}
+    <div class="form-group col-md-12" autocomplete="off">
+        <span style="color:black;" role="alert">Q1. Please select your product/service category?</span><br><br>
+        {% render_field application_form.category hx-post='/onboarding/verify_products' hx-swap='outerhtml' hx-trigger='click' hx-target='#product_list' %} 
+        <span style="color:red;" role="alert">{{ application_form.category.errors}}</span>
+
+        <div id="product_list" class="input-group col-lg-12"></div>
+    </div>
+    {% else %}		
+    <div class="form-group col-md-12" autocomplete="off">
+        <span style="color:black;" role="alert">Q1. Please select the products/services you can conveniently support?</span><br><br>
+        {{application_form.support_product}}
+        <span style="color:red;" role="alert">{{ application_form.support_product.errors}}</span>
+    </div>		
+   {% endif %}
+    <div class="wt-tabscontenttitle">
+        <h2 style="font-weight: bold;">Vendor Standard Level Agreement Operations</h2>
+    </div>		
+    <div class="form-group col-md-6" autocomplete="off">
+        <span style="color:black;" role="alert">Q2. If field support is required, Please indicate your response time to fault calls(Between time of call to time of arrival on site) WITHIN Greater Accra region?</span><br><br>
+        {{application_form.instation}}
+        <span style="color:green;" role="alert">{{application_form.instation.help_text}}</span>
+        <span style="color:red;" role="alert">{{ application_form.instation.errors}}</span>
+    </div>		
+    <div class="form-group col-md-6" autocomplete="off">
+        <span style="color:black;" role="alert"> Q3. Should you get offers OUTSIDE Greater Accra region that require field support, Please indicate your response time to fault calls(Between time of call to time of arrival on site)?</span><br><br>
+        {{application_form.outstation}}
+        <span style="color:green;" role="alert">{{application_form.outstation.help_text}}</span>
+        <span style="color:red;" role="alert">{{ application_form.outstation.errors}}</span>
+    </div>		
+    <div class="form-group col-md-6" autocomplete="off">
+        <span style="color:black;" role="alert">Q4. What is your most certain availability to service delivery?</span><br><br>
+        {{application_form.working_hours}}
+        <span style="color:green;" role="alert">{{application_form.working_hours.help_text}}</span>
+        <span style="color:red;" role="alert">{{ application_form.working_hours.errors}}</span>
+    </div>
+    
+    <div class="form-group col-md-6" autocomplete="off">
+        <span style="color:black;" role="alert">Q5. Kindly indicate most certain availability to service delivery accross regions?</span><br><br>
+        {{application_form.regional_availability}}
+        <span style="color:green;" role="alert">{{application_form.regional_availability.help_text}}</span>
+        <span style="color:red;" role="alert">{{ application_form.regional_availability.errors}}</span>
+    </div>
+    <div class="form-group col-md-12" autocomplete="off">
+        <span style="color:black;" role="alert">Q6. What is the current number of team members available for both remote and field work?</span><br><br>
+        {{application_form.max_member_per_team}}
+        <span style="color:red;" role="alert">{{ application_form.max_member_per_team.errors}}</span>
+    </div>
+    <div class="wt-tabscontenttitle">
+        <h2 style="font-weight: bold;">Proposal Attachment(Mandatory)</h2>
+        <span style="color:red;" role="alert">***An application without required files shall not be processed***</span>
+    </div>	
+    <div class="form-group col-md-12" autocomplete="off">
+        {{application_form.proposal_attachment.label}}
+        {{application_form.proposal_attachment}}
+        <span style="color:red;" role="alert">{{ application_form.proposal_attachment.help_text}}</span>
+        <span style="color:red;" role="alert">{{ application_form.proposal_attachment.errors}}</span>
+    </div>
+    <div class="form-group col-md-12" autocomplete="off">
+        {{application_form.company_attachment_1.label}}
+        {{application_form.company_attachment_1}}
+        <span style="color:red;" role="alert">{{ application_form.company_attachment_1.help_text}}</span>
+        <span style="color:red;" role="alert">{{ application_form.company_attachment_1.errors}}</span>
+    </div>
+    <div class="form-group col-md-12" autocomplete="off">
+        {{application_form.company_attachment_2.label}}
+        {{application_form.company_attachment_2}}
+        <span style="color:red;" role="alert">{{ application_form.company_attachment_2.help_text}}</span>
+        <span style="color:red;" role="alert">{{ application_form.company_attachment_2.errors}}</span>
+    </div>
+    <div class="form-group col-md-12" autocomplete="off">
+        {{application_form.company_attachment_3.label}}
+        {{application_form.company_attachment_3}}
+        <span style="color:red;" role="alert">{{ application_form.company_attachment_3.help_text}}</span>
+        <span style="color:red;" role="alert">{{ application_form.company_attachment_3.errors}}</span>
+    </div>
+    <div class="form-group col-md-12 text-center"> 
+        {% if error_message %}
+        <div class="row justify-content-md-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <span class="wt-jobalerts">
+                    <div class="alert alert-danger alert-dismissible fade show text-center">
+                        <span> {{ error_message}} </span>
+                    </div>
+                </span>
+            </div>
+        </div>
+        {% endif %}
+        <button type="submit" hx-post="{% url 'onboarding:submit_application' invitation.reference %}"
+            hx-target="#new-application" 
+            hx-confirm='Your application will not be processed if required files are not attached. You may also not be able to edit in the future'
+            class="btn btn-success" 
+            style="cursor:pointer;">
+            Submit application
+        </button>
+    </div> 
+</form>
+{% endif %}
+
+{% endif %}	

@@ -1,0 +1,56 @@
+<div class="wt-jobdescription wt-tabsinfo">
+    <div class="wt-tabscontenttitle">
+        <h2>List of Hidden applications</h2>
+    </div>	
+    <div class="table-responsive">
+        <table class="table table-striped table-sm">
+            <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Group</th>
+                    <th>Company</th>
+                    <th>Grading Count</th>
+                    <th>Restore</th>
+                </tr>
+            </thead>
+            
+            <tbody>
+    
+                {% for application in applications %}
+                <tr>
+                    <tr>
+                        <td>{{forloop.counter}}</td> 
+                        <td class="text-left">{{application.created_at}}</td>
+                        <td class="text-left">{{application.invitation.tender.reference}}</td>
+                        <td class="text-left">{{application.name}}</td>
+                        <td class="text-center">
+                            <em class="badge badge-primary" style="border-radius:50%; font-size:14px">
+                                {{application.counter}}
+                            </em> 
+                        </td>
+                        <td class="text-center">
+                            <form class="badge badge-pill" style="font-size:medium;"> {% csrf_token %}
+                                <input type="text" name="showapplicant" value="{{application.pk}}" id="hideshowapplicant" hidden>
+                                <button type="submit"
+                                    hx-post="{% url 'onboarding:restore_application' %}"
+                                    data-dismiss="modal"
+                                    hx-target="#restoreapp"
+                                    hx-confirm="Restoring this will make it available again for panel reviews">
+                                    <i class="fa fa-window-restore" style="color:red; font-weight: bold; cursor:pointer"></i>
+                                </button>
+                            </form>
+                        </td>
+                        
+                    </tr>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if not applications %}
+            <div class="text-center">
+                <span style="font-weight: bold;"> You donnot have any applications yet</span>
+            </div>
+        {% endif %}
+    </div>
+</div>

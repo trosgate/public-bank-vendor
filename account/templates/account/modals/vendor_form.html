@@ -1,0 +1,47 @@
+{% load widget_tweaks %}
+<div class="modal fade wt-offerpopup" tabindex="-1" role="dialog" id="teammodal">
+    <div class="modal-dialog" role="document">
+        <div class="wt-modalcontent modal-content">
+            <div class="wt-popuptitle">
+                <h2>Create virtual Space (<a href="" style="color:green"><i class="fas fa-sync fa-spin"></i> Refresh</a>)</h2>
+                <a href="javascript%3bvoid(0)%3b.html" class="wt-closebtn close"><i class="fa fa-close" data-dismiss="modal" aria-label="Close" style="color:red;"></i></a><br><br>
+            </div>
+            <div id='registerError'></div>
+            <div class="modal-body">
+            <form method="POST", action='.', class="wt-formtheme wt-formpopup"> {% csrf_token %}
+                <div class="form-group">
+                    {{regform.first_name.label}}
+                    {{regform.first_name}}
+                    <span style="color:red;" role="alert">{{ regform.first_name.errors}}</span>
+                </div> 
+                <div class="form-group">
+                    {{regform.last_name.label}}
+                    {{regform.last_name}}
+                    <span style="color:red;" role="alert">{{ regform.last_name.errors}}</span>
+                </div>
+                <div class="form-group">
+                    {{regform.short_name.label}}
+                    {% render_field regform.short_name class+='form-control' hx-post='/verify_username/' hx-swap='outerhtml' hx-trigger='keyup' hx-target='#short_name_status' %} 
+                    <span style="color:red;" role="alert">{{ regform.short_name.errors}}</span>
+                    <div id="short_name_status" class="input-group col-lg-12"></div>
+                </div>
+                <div class="form-group">
+                    {{regform.email.label}}
+                    {{regform.email}}
+                    <span style="color:red;" role="alert">{{ regform.email.errors}}</span>
+                </div>	
+                <div class="form-group">
+                    {{regform.phone.label}}
+                    {{regform.phone}}
+                    <span style="color:red;" role="alert">{{ regform.phone.errors}}</span>
+                </div>
+                
+                <div class="form-group wt-btnarea">
+                    <button id="registerNow" type="button" class="wt-btn"> Invite to team </button>
+                </div>	
+                                                        
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

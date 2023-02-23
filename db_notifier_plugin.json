@@ -1,0 +1,22 @@
+[
+{
+    "model": "future.notifier",
+    "pk": 1,
+    "fields": {
+        "preview": "Allow or disable email alerts by notification centers",
+        "mailing_group": true,
+        "open_ticket": false,
+        "assign_ticket": false,
+        "started_ticket": false,
+        "deferred_ticket": false,
+        "reopen_ticket": false,
+        "closed_ticket": false,
+        "remarks": false,
+        "complaint_created": false,
+        "complaint_routing": false,
+        "complaint_reply": false,
+        "requisition_created": false
+
+    }
+}
+]

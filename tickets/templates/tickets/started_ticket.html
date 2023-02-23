@@ -1,0 +1,91 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% block content %}
+{% include 'dashboard/main_sidebar.html' %}
+	<!--Register Form Start-->
+	<section id="ticket-list" class="wt-haslayout wt-dbsectionspace">
+		<div class="row justify-content-md-center">				
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 push-lg-2 float-center">
+				<div class="wt-dashboardbox">
+					<div class="wt-dashboardboxtitle">
+						<h2>Manage My Tickets</h2>
+					</div>
+					<div class="wt-dashboardboxcontent wt-jobdetailsholder">
+						<div class="wt-freelancerholder"> 
+							<div class="wt-tabscontenttitle">
+								<h2>Tickets Started</h2>
+							</div>
+							<div class="wt-managejobcontent">
+								{% for ticket in tickets %}
+								<div class="wt-userlistinghold wt-featured wt-userlistingvtwo">
+									<div class="wt-userlistingcontent">
+										<h4>{{ ticket.title }}</h4>
+										<div class="wt-contenthead">
+											<ul class="wt-saveitem-breadcrumb wt-userlisting-breadcrumb">
+												<li><span class="wt-clicksavefolder"><i class="fa fa-industry"></i>&nbsp;Category: {{ticket.category.name}}</span></li>
+                                                <li><span><i class="fa fa-tag wt-viewjobtag"></i> Ref: {{ticket.reference}}</span></li>
+												<li><span><i class="far fa-clock" style="color:green;"></i>&nbsp; Open Time: {{ticket.created_at|date:"M-d-Y"}}</span></li>															
+                                            </ul>
+										</div>
+										<div class="wt-description">
+											<p>{{ ticket.description|truncatechars:200|safe}} </p>
+										</div>	
+										<div class="wt-tag wt-widgettag">
+											{% for member in ticket.team.members.all %}
+												<a href="javascript:void(0);">{{member.short_name|capfirst}}</a>
+											{% endfor %}	
+										</div>
+										<div class="wt-rightarea"><br> 
+
+											<div class="wt-btnarea">
+												<a href="{% url 'tickets:ticket_preview' ticket.pk ticket.slug %}" class="btn btn-info btn-sm">
+													{% if active_team and ticket.status == 'unassigned' %}
+													Manage
+													{% else %}
+													Monitor
+													{% endif %}
+												</a>
+												
+											</div>
+                                            
+											<div class="wt-hireduserstatus">
+												<h4>{{ticket.team.members.count}}</h4><span>Team Members</span>
+												<ul class="wt-hireduserimgs">
+                                                    {% for profile in ticket.team.members.all %}
+													<li>
+                                                        <figure><img src="{% if profile.vendor.profile_photo %}{{profile.vendor.profile_photo.url}}{% endif %}" alt="img description"></figure>
+                                                    </li>
+                                                    {% endfor %}
+												</ul>									
+											</div>
+											<div class="wt-hireduserstatus">
+												<h4>{{ticket.created_by.get_full_name}}</h4><span>Ticket Creator</span>
+												<ul class="wt-hireduserimgs">
+													<li><figure><img src="{% if ticket.created_by.custodian.profile_photo %}{{ticket.created_by.custodian.profile_photo.url}}{% endif %}" alt="img description"></figure></li>
+												</ul>									
+											</div>											
+										</div>
+									</div>	
+								</div>
+								{% endfor %}
+								{% if not tickets %}
+								<div class="wt-description">
+									<span><i class="wt-btn float-center"></i>Hello {{request.user.short_name}}, you don't have any ongoing tickets at the moment</span>
+								</div>												
+							{% endif %}	
+						</div>												
+					</div>
+				</div>
+				{% include 'tickets/partials/ticket_paginator.html' %}								
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+				{% include 'tickets/partials/statistics.html' %}
+			</div>
+		</div>
+	</section>
+	<!--Register Form End-->
+
+
+{% endblock content %}
+

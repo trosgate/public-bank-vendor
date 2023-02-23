@@ -1,0 +1,131 @@
+{% extends "dashboard/main_base.html" %}
+{% comment %} {% load static %} {% endcomment %}
+
+{% block content %}
+
+<div class="wt-haslayout wt-innerbannerholder">
+    {% include 'reports/partials/insight_head.html'%}
+    
+    <div class="row justify-content-md-center">				
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 float-center">
+            <div class="wt-dashboardbox">
+                <div class="wt-dashboardboxcontent">
+                    <div class="wt-categoriesslider-holder wt-haslayout">
+                        <div class="wt-title">
+                            <h2>Other Insights:</h2>
+                        </div>
+                        <div id="wt-categoriesslider" class="wt-categoriesslider owl-carousel">
+                            {% include 'reports/partials/report_links.html' %}
+                        </div>
+                    </div>
+                    </div>
+                    <section id="tabs" class="project-tab">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <nav>
+                                        <div class="nav nav-pills nav-justified" id="nav-tab" role="tablist">
+                                            <a class="nav-item nav-link active" id="nav-insight-tab" data-toggle="tab" href="#nav-insight" role="tab" aria-controls="nav-insight" aria-selected="true">Insight</a>
+                                            <a class="nav-item nav-link" id="vendor-source-tab" data-toggle="tab" href="#vendor-source" role="tab" aria-controls="vendor-source" aria-selected="false">Data Source</a>
+                                        </div>
+                                    </nav>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        
+                                        <div class="tab-pane fade show active" id="nav-insight" role="tabpanel" aria-labelledby="nav-insight-tab">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 float-left">
+                                                    <span style="color:red; font-weight: bold;"> Open till Assigned Analysis</span>
+                                                    <form>{% csrf_token %}
+                                                        <div class="form-group">
+                                                            {{vendorform.name.label}}
+                                                            {{vendorform.name}}
+                                                        </div>
+                                                        <div class="form-group">
+                                                            {{vendorform.start_date.label}}
+                                                            {{vendorform.start_date}}
+                                                        </div>
+                                                        <div class="form-group">
+                                                            {{vendorform.end_date.label}}
+                                                            {{vendorform.end_date}}
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <span style="color:red;">Seconds ignored for gaps</span><br>
+                                                            <button type="submit" class="btn btn-success"
+                                                                hx-post="{% url 'reports:ticket_by_response' %}"
+                                                                hx-target="#vendor-search"> 
+                                                                Fetch Data Now
+                                                            </button>
+                                                        </div>
+                                                    <form><br>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 float-left">
+                                                    
+                                                    <div id="vendor-search" class="table-responsive">
+                                                        {% include 'reports/partials/insight_by_response.html' %} 
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="tab-pane fade" id="vendor-source" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                            <div id="data-source" class="row">
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center mb-2">
+                                                    <form>{% csrf_token %}
+                                                        <input id="xls" name="xls" value="xls" hidden>
+                                                        <button type="submit" class="wt-btn"
+                                                            hx-get="{% url 'reports:ticket_by_response' %}"
+                                                            hx-target="#data-source">
+                                                            Fetch as xls
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 text-center">
+                                                    <form>{% csrf_token %}
+                                                        <input id="csv" name="csv" value="csv" hidden>
+                                                        <button type="submit" class="wt-btn"
+                                                            style="background-color:green;"
+                                                            hx-get="{% url 'reports:ticket_by_response' %}"
+                                                            hx-target="#data-source">
+                                                            Fetch as csv
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                            <br>  
+                                        </div>
+                                    </div>                                            
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>								
+
+            
+            <div class="wt-proposalholder">
+                <div class="row justify-content-md-center">
+                    <div class="wt-sectionhead wt-textcenter">
+                        <span>Copyright @ {{website.site_name}}</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    {% endblock content %}
+   

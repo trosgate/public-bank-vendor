@@ -1,0 +1,36 @@
+{% if complaints %}
+    {% for complaint in complaints %}
+    <div class="wt-userlistinghold wt-featured wt-userlistingholdvtwo">
+        <div class="wt-userlistingcontent">
+            <div class="wt-contenthead">
+                <div class="wt-title">
+                    <a href="usersingle.html"><i class="fa fa-check-circle"></i> Created by - {{complaint.created_by.get_full_name}}</a>
+                    <h2>{{complaint.title}}</h2>
+                </div>
+            </div>
+            <div class="wt-description">
+                <div class="col-md-8 text-left">
+                <span>{{complaint.content|truncatechars:200}}</span><br><br>
+            </div>
+            <div class="col-md-8">
+                <div class="alert alert-info alert-dismissible fade show text-center">
+                    <span>Branch:{{complaint.request_branch}} &nbsp;&nbsp;&nbsp; Submitted by: {{complaint.created_by.get_full_name}} </span>
+                </div>
+            </div>
+            </div>
+            
+            <div class="wt-viewjobholder">
+                <ul>
+                    <li><span class="wt-dashboraddoller"><i class="fa fa-graduation-cap"></i>Status: {{complaint.get_status_display}}</span></li>
+                    <li><span class="wt-clicksavefolder"><i class="fa fa-industry"></i>Condition: {{complaint.get_condition_display}}</span></li>
+                    <li><span class="wt-dashboradclock"><i class="far fa-clock"></i> Date: {{complaint.created_at|date:"M-d-Y"}}</span></li>
+                    <li><span class="wt-clicksavefolder"><i class="fa fa-industry"></i> Ref: {{complaint.reference}}</span></li>
+                    <li class="wt-btnarea"><a href="{% url 'custodians:complaint_detail' complaint.pk complaint.slug %}" class="wt-btn" style="background-color:rgb(29, 118, 90); font-weight: bold;">Manage</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>										
+    {% endfor %}
+{% else %}
+    <p>There are no active complaints to show yet...</p>
+{% endif %}

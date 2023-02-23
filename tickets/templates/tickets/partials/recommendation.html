@@ -1,0 +1,17 @@
+
+{% if tickets %}
+{% for ticket in tickets %}
+<tr>
+    <tr>
+        <td>{{forloop.counter}}</td> 
+        <td class="text-left">{{ticket.reference}}</td>
+        <td class="text-left">{{ticket.terminal.name}}</td>
+        <td class="text-left">{{ticket.remarks_date|date:'d-m-Y'}}</td>
+        <td class="text-left">
+            {{ticket.remarks|linebreaksbr}}<br>
+            <span style="font-weight:bold; color:green;">Engr: {{ticket.recommender}} </span>
+        </td>
+    </tr>
+</tr>
+{% endfor %}
+{% endif %}

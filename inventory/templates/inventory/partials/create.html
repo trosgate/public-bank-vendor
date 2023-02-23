@@ -1,0 +1,101 @@
+
+<!-- Popup Start-->
+<div class="modal fade wt-offerpopup" tabindex="-1" role="dialog" id="reqisitionmodal">
+    <div class="modal-dialog" role="document">
+        <div class="wt-modalcontent modal-content">
+            <div class="wt-popuptitle">
+                <h2>Create Requisition</h2>
+                <a href="javascript%3bvoid(0)%3b.html" class="wt-closebtn close"><i class="fa fa-close" data-dismiss="modal" aria-label="Close" style="color:red;"></i></a>						
+            </div>
+            <div class="modal-body">
+            <form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+                <div class="wt-jobdetails wt-tabsinfo">
+                    <div class="wt-tabscontenttitle">
+                        <h2>Item and Category</h2>
+                    </div>                                          
+                    <div class="form-group">
+                        {{stockform.category.label}} <span style="color:red; font-weight:bold;">*</span>
+                        {{stockform.category}}
+                        <span style="color:red;" role="alert">{{ stockform.category.errors}}</span>
+                    </div>
+                    <div class="form-row" id="line_one">
+                        <div class="form-group col-md-8">
+                            {{ stockform.line_one.label}} <span style="color:red; font-weight:bold;">*</span>
+                            {{ stockform.line_one}}
+                            <span style="color:red;" role="alert">{{ stockform.line_one.errors}}</span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ stockform.line_one_order.label}} <span style="color:red; font-weight:bold;">*</span>
+                            {{ stockform.line_one_order}}
+                            <span style="color:red;" role="alert">{{ stockform.line_one_order.errors}}</span>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="form-row" id="line_two">
+                        <div class="form-group col-md-8">
+                            {{ stockform.line_two.label}}
+                            {{ stockform.line_two}}
+                            <span style="color:red;" role="alert">{{ stockform.line_two.errors}}</span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ stockform.line_two_order.label}}
+                            {{ stockform.line_two_order}}
+                            <span style="color:red;" role="alert">{{ stockform.line_two_order.errors}}</span>
+                        </div>
+                        
+                    </div>
+        
+                    <div class="form-row" id="line_three">
+                        <div class="form-group col-md-8">
+                            {{ stockform.line_three.label}}
+                            {{ stockform.line_three}}
+                            <span style="color:red;" role="alert">{{ stockform.line_three.errors}}</span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ stockform.line_three_order.label}}
+                            {{ stockform.line_three_order}}
+                            <span style="color:red;" role="alert">{{ stockform.line_three_order.errors}}</span>
+                        </div>
+        
+                    </div>
+        
+                    <div class="form-row" id="line_four">
+                        <div class="form-group col-md-8">
+                            {{ stockform.line_four.label}}
+                            {{ stockform.line_four}}
+                            <span style="color:red;" role="alert">{{ stockform.line_four.errors}}</span>
+                        </div>
+                        <div class="form-group col-md-4">
+                            {{ stockform.line_four_order.label}}
+                            {{ stockform.line_four_order}}
+                            <span style="color:red;" role="alert">{{ stockform.line_four_quantity.errors}}</span>
+                        </div>
+                    </div>
+                    <button type="button" id="inventory-extras" class="badge badge-info badge-sm mb-6"> add/hide More item </button><br><br>                            
+        
+                    <div class="wt-jobdetails wt-tabsinfo">
+                    <div class="wt-tabscontenttitle">
+                        <h2>Purpose(Optional)</h2>
+                    </div>     
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            {{ stockform.request_message.label }}
+                            {{ stockform.request_message }}
+                            <span style="color:red;" role="alert">{{ stockform.request_message.errors}}</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="new-requisition" type="submit" class="wt-btnarea"
+                    data-dismiss="modal"
+                    hx-post="{% url 'inventory:create_requisition' %}"
+                    hx-target="#requisition-list"
+                    hx-confirm="You may not be able to cancel. Are you sure you want to proceed?"
+                    style="background-color:rgb(118, 29, 90); color:white; font-weight: bold;">
+                    Make Request
+                </button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

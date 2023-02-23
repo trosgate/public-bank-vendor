@@ -1,0 +1,166 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% block content%}
+
+			<!--Inner Home Banner Start-->
+			<div class="wt-haslayout wt-innerbannerholder">
+				<div class="container">
+					<div class="row justify-content-md-center">
+						<div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+							<div class="wt-innerbannercontent">
+                                <div class="wt-title"><h2>Branch HelpDesk</h2></div>
+                                    <ol class="wt-breadcrumb">
+                                        <li><a href="{% url 'account:dashboard' %}">Dashboard</a></li>
+                                        <li class="wt-active">{{request.user.branch.name}}</li>
+                                    </ol>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--Inner Home End-->
+			<!--Main Start-->
+			<main class="wt-haslayout wt-innerbgcolor">
+				<div class="wt-haslayout wt-main-section">
+					<!-- User Listing Start-->
+					<div class="wt-haslayout">
+						<div class="container">
+							<div class="row">
+								<div id="wt-twocolumns" class="wt-twocolumns wt-haslayout">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">
+										<div class="wt-comsingleimg">
+											{% comment %} {% if client.profile_photo %}
+											<figure><img src="{{client.banner_photo.url}}" alt="img description" height="300px" width="1110px"></figure>
+											{% else %} {% endcomment %}
+											<figure><img src="{% static 'images/bannerimg/banner.jpg' %}" alt="img description"></figure>
+											{% comment %} {% endif %} {% endcomment %}
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-xl-4 float-left">
+										<aside id="wt-sidebar" class="wt-sidebar">
+											<div class="wt-proposalsr wt-proposalsrvtwo">
+												<div class="wt-widgetcontent wt-companysinfo">
+													{% if request.user.custodian.profile_photo %}
+													<figure><img src="{{request.user.custodian.profile_photo.url}}" alt="img description"></figure>
+													{% endif %}
+													<div class="wt-title">
+														{% comment %} <a href="javascript:void(0);"><i class="fa fa-check-circle"></i> Verified Company</a> {% endcomment %}
+														<h2><i class="fa fa-check-circle"></i> {% firstof request.user.get_full_name request.user.short_name %}</h2>
+													</div>													
+												</div>		
+											</div>
+											
+											<div class="wt-widget">
+												<div class="wt-widgettitle">
+													<h2>Colleague Staffs</h2>
+												</div>
+												<div class="wt-widgetcontent wt-comfollowers wt-verticalscrollbar">
+													<ul>
+														{% for custodian in colleagues %}
+														<li>
+															<a href= "">
+																<span><img src="{% if custodian.custodian.profile_photo %}{{custodian.custodian.profile_photo.url}}{% endif %}" alt="img description"></span>
+																<span>{{custodian.get_full_name}}</span>
+															</a>
+														</li>
+														{% endfor %}
+													</ul>
+												</div>
+											</div>																
+											
+											<div class="wt-widget wt-sharejob">
+												<div class="wt-widgettitle">
+													<h2>Let us link up on</h2>
+												</div>
+												<div class="wt-widgetcontent">
+													<ul class="wt-socialiconssimple">
+														{% if website.facebook_url %}
+														<li class="wt-facebook"><a href="{{website.facebook_url}}"><i class="fab fa-facebook-f"></i>Our Facebook Page</a></li>
+														{% endif  %}
+														{% if website.twitter_url %}
+														<li class="wt-twitter"><a href="{{website.twitter_url}}"><i class="fab fa-twitter"></i>Our Twitter Page</a></li>
+														{% endif  %}
+														{% if website.instagram_url %}
+														<li class="wt-instagram"><a href="{{website.instagram_url}}"><i class="fab fa-instagram"></i>Our Instagram Page</a></li>
+														{% endif  %}
+														{% if website.youtube_url %}
+														<li class="wt-youtube"><a href="{{website.youtube_url}}"><i class="fab fa-youtube"></i>Our Youtube Page</a></li>
+														{% endif  %}
+													</ul>
+												</div>
+											</div>
+											
+										</aside>
+									</div>											
+									<div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-xl-8 float-left">
+										<div class="wt-userlistingholder wt-haslayout">
+											<div class="wt-comcontent">
+												<div class="wt-title">
+													<h4>Requests &amp; Complaints</h4>
+												</div>
+												<form hx-encoding="multipart/form-data">{% csrf_token %}
+													<div class="form-group">
+														{{helpform.title}}
+														<span style="color:red;" role="alert">{{ helpform.title.errors}}</span>
+													</div>
+													<div class="form-group">
+														{{helpform.category}}
+														<span style="color:red;" role="alert">{{ helpform.category.errors}}</span>
+													</div>
+													<div class="form-group">
+														{{helpform.content}}
+														<span style="color:blue;" role="alert">If this request is connected to an existing ticket, please add the ticket number for easy reference</span>
+													</div>
+													<div class="form-group">
+														{{helpform.condition}}
+														<span style="color:red;" role="alert">{{ helpform.condition.errors}}</span>
+													</div>
+													<div class="form-group">
+														{{helpform.file}}
+														<span style="color:red;" role="alert">{{ helpform.file.errors}}</span>
+													</div>
+													<button id="my-request" type="submit" class="btn btn-success"
+														hx-post="{% url 'custodians:branch_page' branch.slug %}"
+														hx-target="#complaints-list"
+														hx-confirm="Are you sure you want to proceed? Action is irreversible!"
+														style="background-color:rgb(29, 118, 90); font-weight: bold;"> 
+														Submit Request
+													</button>
+												</form>
+											</div>
+											{% comment %} ............inserted starts.................. {% endcomment %}
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">
+										<div class="wt-userlistingholder wt-haslayout">
+											<div class="wt-comcontent">
+											{% comment %} ............inserted ends..................											 {% endcomment %}
+											<div class="wt-proposalholder">
+												<div class="wt-proposalhead">
+													<h4>Requests by {{branch.name}}</h4>
+												</div>
+											</div>										
+											<div id='complaints-list'>										
+												{% include 'custodians/partials/complaints.html' %}
+											</div>										
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- User Listing End-->
+				</div>
+			</main>
+           
+	<script>
+		$(document).on("click", "#my-request", function(){
+			$("#id_title").val('')
+			$("#id_category").val('')
+			$("#id_content").val('')
+			$("#id_file").val('')
+		})
+	</script>
+{% endblock %}
+

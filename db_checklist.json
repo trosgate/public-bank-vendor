@@ -1,0 +1,50 @@
+[
+{
+    "model": "general_settings.checklist",
+    "pk": 1,
+    "fields": {
+        "item": "Atm can print Receipt",
+        "ordering": 6
+    }
+},
+{
+    "model": "general_settings.checklist",
+    "pk": 2,
+    "fields": {
+        "item": "ATM can abort transactions when camera is blocked",
+        "ordering": 1
+    }
+},
+{
+    "model": "general_settings.checklist",
+    "pk": 3,
+    "fields": {
+        "item": "Cash retract is currently disabled",
+        "ordering": 5
+    }
+},
+{
+    "model": "general_settings.checklist",
+    "pk": 4,
+    "fields": {
+        "item": "I confirmed that anti-skimming device is working",
+        "ordering": 4
+    }
+},
+{
+    "model": "general_settings.checklist",
+    "pk": 5,
+    "fields": {
+        "item": "Carbon black is installed and running",
+        "ordering": 3
+    }
+},
+{
+    "model": "general_settings.checklist",
+    "pk": 6,
+    "fields": {
+        "item": "ATM receipt printer is ok",
+        "ordering": 2
+    }
+}
+]

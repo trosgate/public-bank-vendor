@@ -1,0 +1,61 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% block content %}
+{% include 'dashboard/main_sidebar.html' %}
+
+
+<main class="wt-main wt-haslayout">
+    <div class="wt-haslayout wt-innerbannerholder">
+        {% include 'tickets/partials/ticket_head.html'%}
+    </div>
+
+    <section class="wt-haslayout wt-dbsectionspace">
+        <div class="row justify-content-md-center">				
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 float-center">
+                <div class="wt-dashboardbox">
+                    <div class="wt-dashboardboxcontent wt-rcvproposala">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 float-left">
+                            <h4>Remarks & Recommendations</h4>
+                            <div class="wt-freelancerholder wt-rcvproposalholder">
+                                <form class="form-group text-center">{% csrf_token %}
+                                    <input type="text"
+                                        hx-post="{% url 'tickets:search_recommendation' %}"
+                                        hx-trigger="keyup changed delay:500ms"
+                                        hx-target="#search-tickets" 
+                                        class="form-control-sm col-md-6"
+                                        name="search" 
+                                        placeholder="start typing your keywords ...."
+                                        autocomplete="off">
+                                </form>												
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-sm">
+                                        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Ticket #</th>
+                                                <th>Terminal</th>
+                                                <th>Date</th>
+                                                <th>Remarks</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody id="search-tickets">
+                                            {% include 'tickets/partials/recommendation.html' %}
+                                        </tbody>
+                                    </table>
+                                    {% if not tickets %}       
+                                    <div class="text-center">
+                                        <span style="font-weight: bold;"> Great news, {{request.user.short_name}}! You donnot have any tickets</span>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% include 'tickets/partials/ticket_paginator.html' %}								
+                        </div>
+                    </div>
+                </div>               
+            </div>
+        </div>
+    </section>
+
+    {% endblock content %}

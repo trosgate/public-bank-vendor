@@ -1,0 +1,34 @@
+
+    {% if tickets.has_other_pages %}
+    <nav class="wt-pagination">
+        <ul>
+            {% if tickets.has_previous %}
+                <li class="wt-prevpage"><a href="?page={{ tickets.previous_page_number }}"><i class="lnr lnr-chevron-left"></i></a></li>
+            {% else %}
+                <li class="wt-prevpage"><i class="lnr lnr-chevron-left"></i></li>
+            {% endif %}
+
+            {% if tickets.number|add:'-1' > 1 %}
+                <li class="page-item disabled"><a class="page-link">&hellip;</a></li>
+            {% endif %}
+
+            {% for pg in tickets.paginator.page_range %}
+                {% if tickets.number == pg %}
+                <li><a style="color: red;" href="#">{{ pg }}</a></li>
+                {% elif pg > tickets.number|add:'-2' and pg < tickets.number|add:'2' %}
+                <li><a href="?page={{pg}}">{{ pg }}</a></li>
+                {% endif %}
+            {% endfor %}
+                
+            {% if tickets.paginator.num_pages > tickets.number|add:'1' %}
+                <li><a href="#">&hellip;</a></li>
+            {% endif %}
+
+            {% if tickets.has_next %}
+            <li class="wt-nextpage"><a href="?page={{ tickets.next_page_number }}"><i class="lnr lnr-chevron-right"></i></a></li>
+            {% else %}
+            <li class="wt-nextpage"><i class="lnr lnr-chevron-right"></i></li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endif %}

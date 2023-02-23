@@ -1,0 +1,180 @@
+
+<div  class="wt-projectdetail">
+        <form> {% csrf_token %}
+            <div class="wt-jobdetails wt-tabsinfo">
+                <div class="wt-tabscontenttitle">
+                    <h2>Issue Details</h2>
+                </div>
+                {% if inventory.line_one %}                                          
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <span style="color:black; font-weight:bold;">Req. Detail</span><br><br>                                          
+                        1. {{inventory.line_one}}
+                    </div> 
+                    <div class="form-group col-md-{% if inventory.status == 'issued' %}2{% else %}3{% endif %}">                                          
+                        <span style="color:black; font-weight:bold;">Req. Qty</span><br><br>
+                        {{inventory.line_one_order}}
+                    </div>
+                     
+                    <div class="form-group col-md-{% if inventory.status == 'issued' %}2{% else %}3{% endif %}">
+                        <span style="color:black; font-weight:bold;">{{stockform.line_one_issue.label}}</span><br>                                          
+                        {% if inventory.status == 'review'%}
+                        {{stockform.line_one_issue}}
+                        <span style="color:red;" role="alert">{{stockform.line_one_issue.errors}}</span>
+                        {% else %}
+                        <br>
+                        {{inventory.line_one_issue}}
+                        {% endif %}
+                    </div>
+                    {% if inventory.status == 'issued' %}
+                    <div class="form-group col-md-2">                                          
+                        <span style="color:black; font-weight:bold;">Var**</span><br><br>
+                        {{line_one_var}}
+                    </div>
+                    {% endif %}
+                    
+                </div>
+                {% endif %}
+
+                {% if inventory.line_two %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        2. {{inventory.line_two}}
+                    </div> 
+                    <div class="form-group col-md-{% if inventory.status == 'issued' %}2{% else %}3{% endif %}">                                          
+                        {{inventory.line_two_order}}
+                    </div> 
+                    <div class="form-group col-md-{% if inventory.status == 'issued' %}2{% else %}3{% endif %}">
+                        {% if inventory.status == 'review'%}
+                        {{stockform.line_two_issue}}
+                        <span style="color:red;" role="alert">{{stockform.line_two_issue.errors}}</span>
+                        {% else %}
+                        {{inventory.line_two_issue}}
+                        {% endif %}
+                    </div>
+                    {% if inventory.status == 'issued' %}
+                    <div class="form-group col-md-2"style="color:{% if line_one_var|length > 0 %} red {% else %}black{% endif %};">                                          
+                        {{line_two_var}}
+                    </div>
+                    {% endif %}  
+                </div>
+                {% endif %}
+                {% if inventory.line_three %}
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        3. {{inventory.line_three}}
+                    </div> 
+                    <div class="form-group col-md-{% if inventory.status == 'issued' %}2{% else %}3{% endif %}">                                          
+                        {{inventory.line_three_order}}
+                    </div> 
+                    <div class="form-group col-md-{% if inventory.status == 'issued' %}2{% else %}3{% endif %}">
+                        {% if inventory.status == 'review'%}
+                        {{stockform.line_three_issue}}
+                        <span style="color:red;" role="alert">{{stockform.line_three_issue.errors}}</span>
+                        {% else %}
+                        {{inventory.line_three_issue}}
+                        {% endif %}
+                    </div>
+                    {% if inventory.status == 'issued' %}
+                    <div class="form-group col-md-2">                                          
+                        {% if line_three_var|length > 0 %} <strike>{{line_three_var}}</strike> {% else %}{{line_three_var}}{% endif %}
+                    </div>
+                    {% endif %} 
+                </div>
+                {% endif %}
+                {% if inventory.line_four %}
+
+                <div class="form-row"> 
+                    <div class="col-md-6">
+                        4. {{inventory.line_four}}
+                    </div> 
+                    <div class="col-md-{% if inventory.status == 'issued' %}2{% else %}3{% endif %}">                                          
+                        {{inventory.line_four_order}}
+                    </div> 
+                    <div class="form-group col-md-{% if inventory.status == 'issued' %}2{% else %}3{% endif %}">
+                        {% if inventory.status == 'review' %}
+                        {{stockform.line_four_issue}}
+                        <span style="color:red;" role="alert">{{stockform.line_four_issue.errors}}</span>
+                        {% else %}
+                        {{inventory.line_four_issue}}
+                        {% endif %}
+                    </div>
+                    {% if inventory.status == 'issued' %}
+                    <div class="col-md-2">                                          
+                        {% if line_four_var|length > 0 %} <strike>{{line_four_var}}</strike> {% else %}{{line_four_var}}{% endif %}
+                    </div>
+                    {% endif %} 
+                </div>
+                {% endif %}
+                <br>
+                {% if inventory.status == 'review' %}
+                {% if inventory.request_message %}
+                <span><strong>**Comment:</strong><br> {{inventory.request_message}}</span>
+                {% endif %}
+                {% endif %}
+                <br>
+                <br>
+                
+                <div class="wt-jobdetails wt-tabsinfo" id="down">
+                    <div class="wt-tabscontenttitle">
+                        <h2>Comment/Remarks</h2>
+                    </div>     
+                    <div class="form-row">
+                        <div class="form-group">
+                            {% if inventory.status == 'review' %}
+                            {{stockform.issue_remark.label}}
+                            {{stockform.issue_remark}}
+                            <span style="color:red;" role="alert">{{stockform.issue_remark.errors}}</span>
+                            {% endif %}
+                            {% if inventory.issue_remark %}
+                            <span>{{inventory.issue_remark}}</span>
+                            {% else %}
+                            <span> No remarks or comments provided</span>
+                            {% endif %}
+                        </div> 
+                    </div>
+                </div>
+                {% if messages %}
+                <div class="row justify-content-md-center" hx-get="{% url 'tickets:remove_message' %}" hx-trigger="load delay:4s">        
+                    {% for message in messages %}        
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                        <span class="wt-jobalerts">
+                            <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center">
+                                <span> {{ message}} </span>
+                            </div>
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+
+                {% if inventory.status == 'review' %}
+                <div class="text-center">
+                    <button class="wt-btn text-center"
+                        hx-post="{% url 'inventory:issue_inventory' inventory.pk %}"
+                        hx-target="#myrequisition"
+                        hx-confirm="This action is irreversible. Are you sure you want to proceed?"
+                        style="background-color:rgb(29, 118, 90); font-weight: bold;"
+                        type="submit">
+                        Issue now
+                    </button>
+                </div>
+                {% endif %}
+                <div class="float-right">
+                    <div class="row">
+                        <a class="float-right"
+                            href="{% url 'inventory:requisition' %}" 
+                            style="color:blue; cursor:pointer; margin: 2px; font-weight:bold;">
+                            Go back
+                        </a> |
+                        <a class="float-right"
+                            href="#top" 
+                            style="color:green; cursor:pointer; margin: 2px; font-weight:bold;">
+                            Move Up
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+

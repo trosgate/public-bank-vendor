@@ -1,0 +1,79 @@
+{% if messages %}
+    <div class="row justify-content-md-center" hx-get="{% url 'tickets:remove_message' %}" hx-trigger="load delay:4s">        
+        {% for message in messages %}        
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <span class="wt-jobalerts">
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center">
+                    <span> {{ message}} </span>
+                </div>
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if request.user.branch.inventory == True %}
+
+<div class="wt-dashboardboxcontent wt-querycontent">
+    {% if helpdesk.status == 'active' %}
+    <div class="wt-tabscontenttitle">
+        <h2>Re-Route Request</h2>
+    </div>
+    {% if helpdesk.is_routed == False %}
+    <a href="javascript:void(0);" class="wt-btnarea text-center" data-toggle="modal" data-target="#routingmodal" style="background-color:rgb(118, 29, 90); color:white; font-weight: bold;">
+        Select and Re-Route
+    </a>
+    <span><em style="color:black;">Click <em style="color:red; font-weight: bold;">'Select and Re-Route'</em><em style="color:black;"> button and have option to select your routing unit</em></span>
+    {% else %}
+    
+    {% csrf_token %}
+    <input type="text" name="support_branch" value="no_support_branch" hidden>
+    
+    <button type="button" class="wt-btnarea"
+        hx-post="{% url 'custodians:reroute' helpdesk.pk %}"
+        hx-target="#routing"
+        hx-confirm="In the next step you must click 'Select and Re-Route' button to route"
+        style="background-color:rgb(118, 29, 90); color:white; font-weight: bold;">
+        Re-Route to Branch
+    </button>
+    
+    <span><em style="color:black;">Last routed to: <em style="color:red; font-weight: bold;">{{helpdesk.support_branch.name}}</em><em style="color:black;"> Re-routing to same branch will be treated as a reminder</em></span>
+        {% endif %}	
+    </div>
+<div class="text-center">
+    <span style="color:red; font-weight: bold; font-size:22px;" role="alert">----------OR---------</span>
+</div>
+
+{% endif %}
+{% endif %}
+
+<div class="wt-dashboardboxcontent wt-querycontent">
+    <div class="wt-tabscontenttitle">
+        <h2>Send Reply or Followup</h2>
+    </div>
+    
+    {% if helpdesk.status == 'active' %}
+    <form>
+        {% csrf_token %}
+        <input type="text" name="assign_to_branch" value="reply_to_branch" hidden>
+        <div class="form-group">
+            {{statusform.status}}
+            <span style="color:red;" role="alert">{{statusform.status.errors}}</span>
+        </div>
+        <div class="form-group">
+            {{helpform.content}}
+            <span style="color:red;" role="alert">{{helpform.content.errors}}</span>
+        </div>
+        
+        <button id="my-reply" type="submit" class="wt-btnarea"
+            hx-post="{% url 'custodians:helpdesk_reply' helpdesk.pk %}"
+            hx-target="#reply-list"
+            hx-confirm="This reply shall be accompanied by email. Are you sure you want to proceed"
+            style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;"> 
+            Send Reply
+        </button>
+    </form>
+    {% else %}
+    <p class='text-center'><strong style="color:red;" role="alert">This ticket is closed and cannot be replied</strong></p>
+    {% endif %}	
+</div>

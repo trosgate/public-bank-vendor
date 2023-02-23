@@ -1,0 +1,11 @@
+[
+{
+    "model": "future.authenticator",
+    "pk": 1,
+    "fields": {
+        "preview": "Control access with token and vendor permission",
+        "token_authenticator": false,
+        "vendor_role": true
+    }
+}
+]

@@ -1,0 +1,527 @@
+{% load trackertag %}
+{% if messages %}
+    <div class="row justify-content-md-center" hx-get="{% url 'tickets:remove_message' %}" hx-trigger="load delay:4s">        
+        {% for message in messages %}        
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <span class="wt-jobalerts">
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center">
+                    <span> {{ message}} </span>
+                </div>
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{% if ticket.status == 'unassigned' %}
+{% if request.user.vendor %}
+    <div class="row justify-content-md-center">
+
+        <form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+            <h3 class="text-center" style="color: green;"> User Access Verification</h3><br>
+            <div class="form-group">
+                {{assignform.assignee.label}}
+                {{assignform.assignee}}
+                <span style="color:red;" role="alert">{{ assignform.assignee.errors}}</span>
+            </div> 
+            <div class="form-group">
+                <span style="color: green;"> Option 1: Assign user has his/her profile image with assigned name</span><br>
+                <span style="color: red; font-weight: bold;"> OR </span><br>
+                <span style="color: green;"> Option 2: Assign user must present staff ID on site for verification</span><br>
+            </div> 
+            <div class="text-center">
+                <button type="submit" class="wt-btn"
+                    hx-post="{% url 'tickets:assign_ticket' ticket.pk %}"
+                    hx-target="#assign-ticket"
+                    hx-confirm="Are you sure this staff is available for the job?"
+                    style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                    Assign Ticket Now
+                </button>
+            </div>
+        </form>
+        
+    </div>
+        
+    {% elif request.user.custodian %}
+    <div class="row justify-content-md-center">
+        <div class="col-xs-12">
+            <div class="alert alert-info" role="alert">
+            <span style="color: green; font-weight: bold;"> As soon as vendor team member is assigned, you will be able to take action here</span>
+        </div>
+    </div>
+{% endif %}
+{% endif %}
+
+
+{% if ticket.status == 'assigned' %}
+    {% if request.user.vendor %}
+    <span style="color: blue; font-weight: bold; font-size: 22px;"> Arrival Estimation </span><br><br>
+    <div class="text-left">
+        <div class="alert alert-info col-md-5.5 text-center" role="alert">
+            {% if request.user == resolution.assignee %}
+            <span style="color: green;"> Hello <span style="color: blue; font-weight: bold;">{{resolution.assignee.get_full_name|capfirst}}</span>, your company expects your arrival within the timelines below</span>
+            {% else %}
+            <span style="color: green;"> Hello {{request.user.short_name|capfirst}}, Please prompt <span style="color: blue; font-weight: bold;"> {{resolution.assignee.get_full_name|capfirst}}</span> to take action on below</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <section class="wt-haslayout wt-dbsectionspace wt-padding-add-top wt-moredetailsholder">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="wt-insightsitem wt-dashboardbox wt-box-shadow text-center">
+                    
+                    <div class="wt-insightdetails">
+                        <i class="fa fa-car fa-4x" style="color:rgb(45, 65, 17); font-weight: bold;"></i>
+                        <div class="wt-title"><br>
+                            
+                            <h3 style="color:green">{{ duration_start_time}}</h3><br>
+                            <span style="color:rgb(45, 65, 17); font-weight: bold;">Journey Start</span>
+                            
+                        </div>													
+                    </div>	
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="wt-insightsitem wt-dashboardbox wt-box-shadow">
+                    <div class="wt-insightdetails">
+                        <i class="fa fa-clock fa-4x" style="color:rgb(20, 29, 98); font-weight: bold;"></i>
+                        <div class="wt-title"><br>
+                            <h3 style="color:green">{{ duration_end_time}}</h3><br>
+                            <span style="color:rgb(20, 29, 98); font-weight: bold;">Est. Arrival</span>
+                        </div>													
+                    </div>	
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="row justify-content-md-center"><br>
+        <div class="text-center">
+            <button type="button" class="btn btn-outline-success text-white" disabled
+                style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                <i class="fas fa-spinner fa-spin"></i> Awaiting Vendor
+            </button>
+        </div>
+    </div>
+    
+    {% elif request.user.custodian %}
+    <span style="color: blue; font-weight: bold; font-size: 22px;"> User Verification </span><br><br>
+    <div class="text-left">
+        <div class="alert alert-info col-md-5.5 text-center" role="alert">
+            <span style="color: green;"> Hello <span style="color: blue; font-weight: bold;">{{request.user.get_full_name|capfirst}}</span>, the responsible engineer set off. Please watch out for the timelines below </span>
+        </div>
+    </div>
+    <div class="wt-companysinfo">
+        <figure>
+            <img src="{% if resolution.assignee.vendor.profile_photo %}{{resolution.assignee.vendor.profile_photo.url}}{% endif %}" alt="img description">
+        </figure>
+        <ul class="wt-postarticlemeta">
+            <span style="font-weight: bold; color:blue;">Name on File: <span style="color:grey;">{{resolution.assignee.get_full_name}}</span></span><br><br>
+            <span style="font-weight: bold; color:blue;">Company: <span style="color:grey;">{{ticket.terminal.vendor}}</span></span><br><br>
+        </ul><br><br>
+    </div>
+    <section class="wt-haslayout wt-dbsectionspace wt-padding-add-top wt-moredetailsholder">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="wt-insightsitem wt-dashboardbox wt-box-shadow text-center">
+                    
+                    <div class="wt-insightdetails">
+                        <i class="fa fa-car fa-4x" style="color:rgb(45, 65, 17); font-weight: bold;"></i>
+                        <div class="wt-title"><br>
+                            
+                            <h3 style="color:green">{{ duration_start_time}}</h3><br>
+                            <span style="color:rgb(45, 65, 17); font-weight: bold;">Started Journey</span>
+                            
+                        </div>													
+                    </div>	
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                <div class="wt-insightsitem wt-dashboardbox wt-box-shadow">
+                    <div class="wt-insightdetails">
+                        <i class="fa fa-clock fa-4x" style="color:rgb(20, 29, 98); font-weight: bold;"></i>
+                        <div class="wt-title"><br>
+                            <h3 style="color:green">{{ duration_end_time}}</h3><br>
+                            <span style="color:rgb(20, 29, 98); font-weight: bold;">Expected arrival</span>
+                        </div>													
+                    </div>	
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="text-left">
+            <div class="alert alert-warning col-md-5.5 text-center" role="alert">
+                <span style="color: red; font-weight: bold;">Please make sure the profile image matches the attendant, Otherwise, verify the staff ID</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="row justify-content-md-center">
+
+        <div class="text-center">
+        <form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+            <input type="text" name="arrivalconfirmed" value="arrivalconfirmed" id="arrivalconfirmed" hidden><br>
+            <button type="submit" class="wt-btn"
+                hx-post="{% url 'tickets:confirm_arrival' ticket.pk %}"
+                hx-target="#assign-ticket"
+                hx-confirm="Are you sure you are satisfied with the verification?"
+                style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                <i class="fa fa-check"> Verified User</i>
+            </button>
+        </form>
+        </div>
+    </div>
+{% endif %}
+{% endif %}
+
+
+{% if ticket.status == 'confirm' %}
+    {% if request.user.vendor %}  
+    <div class="row justify-content-md-center">
+        <div class="text-left">
+            <div class="alert alert-warning" role="alert">
+                <span style="color: blue; font-weight: bold;"> As soon as work is complete, cordially ask the custodian to close your ticket. This way, your company can be rest-assured that you finished within time</span>
+            </div><br>
+            <div class="text-center">
+                <button type="button" class="btn btn-outline-success text-white" disabled
+                    style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                    <i class="fas fa-spinner fa-spin"> Work in progress ...</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    {% elif request.user.custodian %} 
+    
+    <div class="row justify-content-md-center">
+        <div class="text-center">
+        <form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+            <input type="text" name="arrivalconfirmed" value="arrivalconfirmed" id="arrivalconfirmed" hidden><br>
+            <button type="submit" class="wt-btn"
+                hx-post="{% url 'tickets:confirm_arrival' ticket.pk %}"
+                hx-target="#assign-ticket"
+                hx-confirm="Are you sure you are satisfied with the verification?"
+                style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                <i class="fa fa-check"> Verified User</i>
+            </button>
+        </form>
+    </div>
+</div>
+{% endif %}
+{% endif %}
+
+
+{% if ticket.status == 'started' %}
+    {% if request.user.vendor %}  
+    <div class="row justify-content-md-center">
+        <div class="text-left">
+            <div class="alert alert-warning" role="alert">
+                <span style="color: blue; font-weight: bold;"> As soon as work is complete, cordially ask the custodian to close your ticket.This way, your company can be rest-assured that you finished within time</span>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-outline-success text-white" disabled
+                    style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                    <i class="fa fa-check"> Work in progress ...</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% elif request.user.custodian %} 
+    <div class="row justify-content-md-center">
+        <div class="text-left">
+            
+            <section class="wt-haslayout wt-dbsectionspace wt-padding-add-top wt-moredetailsholder">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="wt-insightsitem wt-dashboardbox wt-box-shadow text-center">
+                            
+                            <div class="wt-insightdetails">
+                                <i class="fa fa-close fa-4x" style="color:red; font-weight: bold;"></i>
+                                <div class="wt-title"><br><br>
+                                    
+                                    <span style="color: red; font-weight: bold;"> Confirm and Close.</span>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <button class="wt-btn" data-toggle="modal" data-target="#checklistmodal">
+                                        Close Ticket
+                                   </button>
+                                </div>													
+                            </div>	
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="wt-insightsitem wt-dashboardbox wt-box-shadow">
+                            <div class="wt-insightdetails">
+                                <i class="fa fa-pause fa-4x" style="color:rgb(20, 29, 98); font-weight: bold;"></i>
+                                <div class="wt-title"><br>
+                                    <form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+                                        
+                                        {% include 'tickets/partials/exception_form.html' %}
+                                        
+                                        <input type="text" name="defferedtask" value="defferedtask" id="defferedtask" hidden>
+                                        <button type="submit" class="wt-btn"
+                                            hx-post="{% url 'tickets:deffer_ticket' ticket.pk %}"
+                                            hx-target="#assign-ticket"
+                                            hx-confirm="By proceeding, you agree that issue is resolved and case can be closed"
+                                            style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                                            <i class="fa fa-check"> Pause/Deffer Task</i>
+                                        </button>
+                                    </form>
+                                </div>													
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endif %}  
+{% endif %}
+
+
+{% if ticket.status == 'deffered' %}
+    {% if request.user.vendor %}  
+    <div class="row justify-content-md-center">
+        <div class="text-left">
+            <div class="alert alert-success" role="alert">
+                <span style="color: blue; font-weight: bold;"> This ticket is paused because work could not be resolved. Please reschedule with custodian</span>
+            </div><br>
+            <div class="text-center">
+                <button type="button" class="btn btn-outline-success text-white" disabled
+                    style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                    <i class="fa fa-pause"> Job temporarily Paused</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% elif request.user.custodian %} 
+    <div class="row justify-content-md-center">
+        <div class="text-left">
+
+            <section class="wt-haslayout wt-dbsectionspace wt-padding-add-top wt-moredetailsholder">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="wt-insightsitem wt-dashboardbox wt-box-shadow text-center">
+                            
+                            <div class="wt-insightdetails">
+                                <i class="fa fa-folder-open fa-4x" aria-hidden="true" style="color:rgb(29, 118, 90); font-weight: bold;"></i>
+                                <div class="wt-title"><br><br>
+
+                                    <span style="color: green; font-weight: bold;"> About to continue.</span>
+                        
+                                    <form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+                                        <input type="text" name="reopentask" value="reopentask" id="reopentask" hidden><br>
+                                        
+                                        <button type="submit" class="wt-btn"
+                                            hx-post="{% url 'tickets:reopen_ticket' ticket.pk %}"
+                                            hx-target="#assign-ticket"
+                                            hx-confirm="By proceeding, you agree to have verified the vendor"
+                                            style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                                            Reopen ticket
+                                        </button>
+                                    </form>
+                                    
+                                </div>													
+                            </div>	
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="wt-insightsitem wt-dashboardbox wt-box-shadow text-center">
+                            
+                            <div class="wt-insightdetails">
+                                <i class="fa fa-close fa-4x" style="color:red; font-weight: bold;"></i>
+                                <div class="wt-title"><br><br>
+                                    
+                                    <span style="color: red;"> Confirm and Close.</span>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <button class="wt-btn" data-toggle="modal" data-target="#checklistmodal">
+                                         Close Ticket
+                                    </button>
+                                    
+                                </div>													
+                            </div>	
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+{% endif %}  
+{% endif %}
+
+
+{% if ticket.status == 'reopen' %}
+    {% if request.user.vendor %}  
+    <div class="row justify-content-md-center">
+        <div class="text-left">
+            <div class="alert alert-warning" role="alert">
+                <span style="color: blue; font-weight: bold;"> As soon as work is complete, cordially ask the custodian to close your ticket. This way, your company can be rest-assured that you finished within time</span>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-outline-success text-white" disabled
+                    style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                    <i class="fa fa-check"> Work in progress ...</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    {% elif request.user.custodian %} 
+    <div class="row justify-content-md-center">
+        <div class="text-left">
+                       
+            <section class="wt-haslayout wt-dbsectionspace wt-padding-add-top wt-moredetailsholder">
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="wt-insightsitem wt-dashboardbox wt-box-shadow text-center">
+                            
+                            <div class="wt-insightdetails">
+                                <i class="fa fa-close fa-4x" style="color:red; font-weight: bold;"></i>
+                                <div class="wt-title"><br><br>
+                                    
+                                    <span style="color: red;"> Confirm and Close.</span>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    
+                                    <button class="wt-btn" data-toggle="modal" data-target="#checklistmodal">
+                                        Close Ticket
+                                   </button>
+                                </div>													
+                            </div>	
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                        <div class="wt-insightsitem wt-dashboardbox wt-box-shadow">
+                            <div class="wt-insightdetails">
+                                <i class="fa fa-pause fa-4x" style="color:rgb(20, 29, 98); font-weight: bold;"></i>
+                                <div class="wt-title"><br>
+                                    <form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+
+                                        {% include 'tickets/partials/exception_form.html' %}
+
+                                        <input type="text" name="defferedtask" value="defferedtask" id="defferedtask" hidden>
+                                        <button type="submit" class="wt-btn"
+                                            hx-post="{% url 'tickets:deffer_ticket' ticket.pk %}"
+                                            hx-target="#assign-ticket"
+                                            hx-confirm="By proceeding, you confirmed that user was verified"
+                                            style="background-color:rgb(29, 118, 90); font-weight: bold;">
+                                            <i class="fa fa-check"> Pause/Deffer Task</i>
+                                        </button>
+                                    </form>
+                                </div>													
+                            </div>	
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{% endif %}  
+{% endif %}
+
+
+{% if ticket.status == 'closed' %}
+
+<div class="row">																					 
+    <div class="wt-tabscontenttitle">
+        <h2 style="font-weight: bold;">Incidence Report</h2>
+    </div> 
+    <div class="table-responsive">
+        <table class="table">
+        <thead>
+            <tr style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+                <th>Assign</th>
+                <th>Open Time</th>
+                <th>Assign Time</th>
+                <th>Variance</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <body>
+            <tr>
+                <td>Response</td>
+                <td>{{created_time}}</td>
+                <td>{{assign_time}}</td>
+                <td>{{assign_variance|time_converter}}</td>
+                <td>{{assign_time_greater}}</td>
+            </tr>
+            {% comment %} |date:"M-d-Y" {% endcomment %}
+            <tr style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+                <th>Arrival</th>
+                <th>Expected</th>
+                <th>Actual</th>
+                <th>Variance</th>
+                <th>Remarks</th>
+            </tr>
+        </body>
+        <body>
+            <tr>
+                <td>SLA Checker</td>
+                <td>{{arrival_time}}</td>
+                <td>{{arrival_confirm}}</td>
+                <td>{{arrival_variance|time_converter}}</td>
+                <td>{{arrival_time_greater}}</td>
+            </tr>
+            
+            <tr style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+                <th>Resolution</th>
+                <th>Vendor</th>
+                <th>Hours Worked</th>
+                <th>Deffered</th>
+                <th>Reason</th>
+            </tr>
+        </body>
+        
+        <body>
+            <tr>
+                <td>Time clocked</td>
+                <td>{{team_member}}</td>
+                <td>{{total_minutes|time_converter}}</td>
+                <td>{{deffered_count}}</td>
+                <td class="text-left"> 
+                    {% for exceptionss in ticket.sla_exception.all %}
+                    ({{forloop.counter}}) {{exceptionss.name}}<br>
+                    {% endfor %}
+                </td>
+                </tr>             
+            </body>	
+        </table>
+        </div> 
+    </div>
+
+    <div class="float-left">
+        <p><strong>Incidence Notes</strong></p>
+        <div class="wt-freelancerholder wt-rcvproposalholder">
+            <span><i class="ti-check" style='color:green'> Response Benchmark:</i> Respose within 10 Min (Swift), response within 10 & 20 Min (Good), response within 20 & 30Min (Average), Response Above 30 Min (Poor)</span><br>
+            <span><i class="ti-check" style='color:green'> SLA Benchmark:</i> Arrival time with stipulated SLA is (Within SLA). The opposite is True</span><br>
+            <span><i class="ti-check" style='color:green'> Deffered:</i> Tickets resolved on more than single visit is classified as 'differed'. Tickets are usually deffered accompanied by reasons.</span><br>
+        </div>
+    </div>
+     
+{% endif %}
+
+
+<div id="status-button" class="wt-btnarea" hx-swap-oob="true" style="display: none;">
+    <button class="wt-btn" disabled style="border-radius:25px;{% if ticket.status != 'unassigned' %}background-color:rgb(45, 65, 17);{% endif %}"> 
+        {% if ticket.status == 'unassigned' %}
+        Unassigned
+        {% elif ticket.status == 'assigned' %}
+        Job Assigned
+        {% elif ticket.status == 'started' %}
+        Job Started
+        {% elif ticket.status == 'deffered' %}
+        Job Paused
+        {% elif ticket.status == 'reopen' %}
+        Job Reopened
+        {% elif ticket.status == 'closed' %}
+        Job Closed
+        {% endif %}
+    </button>
+</div>
+

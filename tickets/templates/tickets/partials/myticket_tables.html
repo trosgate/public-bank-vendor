@@ -1,0 +1,21 @@
+
+{% if tickets %}
+{% for ticket in tickets %}
+<tr>
+    <tr>
+        <td>{{forloop.counter}}</td> 
+        <td class="text-left">{{ticket.ticket.reference}}</td>
+        <td class="text-left">{{ticket.ticket.terminal.name}}</td>
+        <td class="text-left">{{ticket.ticket.title}}</td>
+        <td class="text-left">{{ticket.ticket.created_at}}</td>
+        <td class="text-left">{{ticket.ticket.get_status_display}}</td>
+        <td>
+            <a href="{% url 'tickets:ticket_preview' ticket.ticket.pk ticket.ticket.slug %}" 
+                class="btn btn-danger btn-sm">
+                Preview
+            </a>
+        </td>
+    </tr>
+</tr>
+{% endfor %}
+{% endif %}

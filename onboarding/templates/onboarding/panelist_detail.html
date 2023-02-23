@@ -1,0 +1,94 @@
+{% extends "dashboard/main_base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="wt-haslayout wt-innerbannerholder">
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                <div class="wt-innerbannercontent">
+                    <div class="wt-title"><h2>Panelist Invitation</h2></div>
+                        <ol class="wt-breadcrumb">
+                            <li><a href="{% url 'account:dashboard' %}">Dashboard</a></li>
+                            <li class="wt-active">Panelist</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wt-haslayout wt-main-section">
+        <div class="container">          
+            <div class="row">
+                <div id="wt-twocolumns" class="wt-twocolumns wt-haslayout">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 float-left">    
+                    <div class="wt-proposalholder">
+                        <div class="wt-proposalhead">
+                            <h2>{{application.invitation.tender.title}}</h2>
+                            <ul class="wt-userlisting-breadcrumb wt-userlisting-breadcrumbvtwo">
+                                <li><span><i class="fa fa-user" style="color:blue;"></i> {{application.name}}</span></li>
+                                <li><span><i class="fa fa-building" style="color:green;"></i> {{application.invitation.tender.category.name}}</span></li>
+                                <li><span><i class="fa fa-tag wt-viewjobtag" style="color:red;"></i> {{application.invitation.tender.reference}}</span></li>
+                                <li><span><i class="far fa-clock" style="color:blue;"></i> {{application.invitation.tender.created_at|date:"M-d-Y"}}</span></li>
+                            </ul>
+                        </div>
+
+                    <div class="wt-jobdescription wt-tabsinfo"><br><br>
+                        <div class="wt-tabscontenttitle">
+                            <h2>External Link Share</h2>
+                        </div>	
+                        <div class="wt-description mt-4">
+                            <form method='POST'>{% csrf_token %}
+                                <input type="text" name="modes" value="external" hidden>
+                                <div class="form-group col-md-6" autocomplete="off">
+                                    {{panel_form.name.label}}
+                                    {{panel_form.name}}
+                                    <span style="color:red;" role="alert">Name is required for logging purposes</span>
+                                    <span style="color:red;" role="alert">{{ panel_form.name.errors}}</span>
+                                </div>
+                                <div class="form-group col-md-6" autocomplete="off">
+                                    {{panel_form.email.label}}
+                                    {{panel_form.email}}
+                                    <span style="color:red;" role="alert">Only valid email shall be passed, like: 'example@gmail.com'</span>
+                                    <span style="color:red;" role="alert">{{ panel_form.email.errors}}</span>
+                                </div><br>
+                                
+                                <div class="text-center">
+                                    <button id="newInvitee" type="submit" hx-post="{% url 'onboarding:add_internal_panelist' application.pk %}"
+                                        hx-target="#extpanel-list"
+                                        class="btn btn-success" 
+                                        style="cursor:pointer; background-color:rgb(8, 76, 71); font-weight: bold;">
+                                        Create External Panelist
+                                    </button>
+                                </div> 
+                                
+                            </form>
+                        </div>
+                        </div>
+                        <div class="wt-description mt-4">
+                            <div id="extpanel-list">
+                            
+                            {% include 'onboarding/partials/ext_panel_list.html' %}
+
+                            </div>
+                        </div>
+                        <div class="wt-description">
+                            <div id="panel-list">
+
+                            {% include 'onboarding/partials/panel_list.html' %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).on("click", "#newInvitee", function(){
+            $("#id_name").val('')
+            $("#id_email").val('')
+        })
+    </script>    
+    {% endblock content %}

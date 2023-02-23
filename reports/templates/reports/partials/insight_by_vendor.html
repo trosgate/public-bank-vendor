@@ -1,0 +1,42 @@
+
+    {% comment %} <div class="text-center"> {% endcomment %}
+        <span class="float-center" style="font-weight:bold; color:green;">There are {{tickets.count}} results found for current search</span>
+    {% comment %} <div> {% endcomment %}
+    <table class="table table-striped table-sm">
+        <thead style="background-color:rgb(29, 118, 90); color:white; font-weight: bold;">
+            <tr>
+                <th>#</th>
+                <th>Ticket #</th>
+                <th>Terminal</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Manage</th>
+            </tr>
+        </thead>
+        {% if tickets %}
+        <tbody>
+            {% for ticket in tickets %}
+                <tr>
+                
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td class="text-left">{{ticket.reference}}</td>
+                        <td class="text-left">{{ticket.terminal.name}}</td>
+                        <td class="text-left">{{ticket.terminal.get_category_display}}</td>
+                        <td class="text-left">{{ticket.get_status_display}}</td>
+                        <td>It happened</td>
+                    </tr>
+                </tr>
+                {% endfor %}
+            </tbody>
+        {% endif %}
+        
+    </table> 
+    {% if not tickets %}
+    <br>
+    <br>
+    <br>
+    <div class="text-center">
+        <span style="color:red;">There are no search results at the moment</span>
+    <div>
+    {% endif %}

@@ -1,0 +1,27 @@
+[
+{
+    "model": "account.customer",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$390000$3fbA21pVGq1sEE7blLIZnO$glwYOUSma+HGy0SHo3N3royjaX3yu4P3wsMPrsp0rfA=",
+        "email": "isaacagbedam@gmail.com",
+        "short_name": "Admin",
+        "first_name": "Isaac",
+        "last_name": "Kateygh",
+        "phone": null,
+        "is_active": true,
+        "is_staff": true,
+        "is_superuser": true,
+        "is_assistant": false,
+        "is_vendor": false,
+        "user_type": "admin",
+        "date_joined": "2022-09-10T14:18:00Z",
+        "last_login": "2023-01-10T09:11:01.926Z",
+        "vendor_company": null,
+        "branch": 100,
+        "groups": [],
+        "user_permissions": []
+    }
+}
+
+]

@@ -1,0 +1,128 @@
+[
+{
+    "model": "general_settings.vendorcompany",
+    "pk": 1,
+    "fields": {
+        "category": 1,
+        "name": "Inlaks Limited",
+        "registered_name": "Inlaks Limited",
+        "purpose": "",
+        "ordering": 0,
+        "status": true,
+        "ticket_response": 15,
+        "instation_arrival": 3,
+        "outstation_arrival": 8,
+        "working_hours": true,
+        "track_working_time": true,
+        "created_at": "2023-01-20T14:18:25.608Z"
+    }
+},
+{
+    "model": "general_settings.vendorcompany",
+    "pk": 2,
+    "fields": {
+        "category": 1,
+        "name": "Addtech Engineering",
+        "registered_name": "Addtech Engineering",
+        "purpose": "",
+        "ordering": 1,
+        "status": true,
+        "ticket_response": 15,
+        "instation_arrival": 2,
+        "outstation_arrival": 2,
+        "working_hours": true,
+        "track_working_time": true,
+        "created_at": "2023-01-20T14:18:25.608Z"
+    }
+},
+{
+    "model": "general_settings.vendorcompany",
+    "pk": 3,
+    "fields": {
+        "category": 1,
+        "name": "Ncr Technology",
+        "registered_name": "Ncr Technology",
+        "purpose": "",
+        "ordering": 2,
+        "status": true,
+        "ticket_response": 15,
+        "instation_arrival": 2,
+        "outstation_arrival": 2,
+        "working_hours": true,
+        "track_working_time": true,
+        "created_at": "2023-01-20T14:18:25.608Z"
+    }
+},
+{
+    "model": "general_settings.vendorcompany",
+    "pk": 4,
+    "fields": {
+        "category": 3,
+        "name": "Holy Explosives",
+        "registered_name": "Holy Explosives",
+        "purpose": "",
+        "ordering": 3,
+        "status": true,
+        "ticket_response": 15,
+        "instation_arrival": 2,
+        "outstation_arrival": 2,
+        "working_hours": true,
+        "track_working_time": true,
+        "created_at": "2023-01-20T14:18:25.608Z"
+    }
+},
+{
+    "model": "general_settings.vendorcompany",
+    "pk": 5,
+    "fields": {
+        "category": 5,
+        "name": "Hammond Engineering",
+        "registered_name": "Hammond Eng",
+        "purpose": "",
+        "ordering": 4,
+        "status": true,
+        "ticket_response": 15,
+        "instation_arrival": 2,
+        "outstation_arrival": 2,
+        "working_hours": true,
+        "track_working_time": true,
+        "created_at": "2023-01-20T14:18:25.608Z"
+    }
+},
+{
+    "model": "general_settings.vendorcompany",
+    "pk": 6,
+    "fields": {
+        "category": 4,
+        "name": "Sadique Engineering",
+        "registered_name": "Sadique Engineering",
+        "purpose": "",
+        "ordering": 5,
+        "status": false,
+        "ticket_response": 15,
+        "instation_arrival": 2,
+        "outstation_arrival": 6,
+        "working_hours": true,
+        "track_working_time": true,
+        "created_at": "2023-01-20T14:18:25.608Z"
+    }
+},
+{
+    "model": "general_settings.vendorcompany",
+    "pk": 7,
+    "fields": {
+        "category": 2,
+        "name": "Cleangent Services",
+        "registered_name": "Cleangent Services",
+        "purpose": "",
+        "ordering": 6,
+        "status": true,
+        "ticket_response": 15,
+        "instation_arrival": 2,
+        "outstation_arrival": 6,
+        "working_hours": true,
+        "track_working_time": true,
+        "created_at": "2023-01-20T14:18:25.608Z"
+    }
+}
+]

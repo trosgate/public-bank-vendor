@@ -1,0 +1,112 @@
+[
+{
+    "model": "general_settings.category",
+    "pk": 1,
+    "fields": {
+        "name": "ATM Support Vendors",
+        "ordering": 0,
+        "status": true,
+        "meta": true,
+        "min_score": 70,
+        "max_member_per_team": 5,
+        "regional_availability": true,
+        "instation": 2,
+        "outstation": 6,
+        "working_hours": false,
+        "other_contractual_services": true,
+        "work_experience": 3,
+        "value_added_services": true,
+        "parts_availability": true,
+        "emergency_plans": true,
+        "concurrent_offers": true
+    }
+},
+{
+    "model": "general_settings.category",
+    "pk": 2,
+    "fields": {
+        "name": "Cleaning Support Vendors",
+        "ordering": 4,
+        "status": true,
+        "meta": false,
+        "min_score": 70,
+        "max_member_per_team": 5,
+        "regional_availability": true,
+        "instation": 2,
+        "outstation": 6,
+        "working_hours": true,
+        "other_contractual_services": true,
+        "work_experience": 1,
+        "value_added_services": true,
+        "parts_availability": true,
+        "emergency_plans": true,
+        "concurrent_offers": true
+    }
+},
+{
+    "model": "general_settings.category",
+    "pk": 3,
+    "fields": {
+        "name": "Air Condition Vendors",
+        "ordering": 3,
+        "status": true,
+        "meta": false,
+        "min_score": 70,
+        "max_member_per_team": 5,
+        "regional_availability": true,
+        "instation": 2,
+        "outstation": 6,
+        "working_hours": true,
+        "other_contractual_services": true,
+        "work_experience": 1,
+        "value_added_services": true,
+        "parts_availability": true,
+        "emergency_plans": true,
+        "concurrent_offers": true
+    }
+},
+{
+    "model": "general_settings.category",
+    "pk": 4,
+    "fields": {
+        "name": "Power Support Vendors",
+        "ordering": 1,
+        "status": true,
+        "meta": false,
+        "min_score": 70,
+        "max_member_per_team": 5,
+        "regional_availability": true,
+        "instation": 2,
+        "outstation": 6,
+        "working_hours": false,
+        "other_contractual_services": true,
+        "work_experience": 2,
+        "value_added_services": true,
+        "parts_availability": true,
+        "emergency_plans": true,
+        "concurrent_offers": true
+    }
+},
+{
+    "model": "general_settings.category",
+    "pk": 5,
+    "fields": {
+        "name": "CCTV and Storage Vendors",
+        "ordering": 2,
+        "status": true,
+        "meta": false,
+        "min_score": 70,
+        "max_member_per_team": 5,
+        "regional_availability": true,
+        "instation": 2,
+        "outstation": 6,
+        "working_hours": true,
+        "other_contractual_services": true,
+        "work_experience": 1,
+        "value_added_services": true,
+        "parts_availability": true,
+        "emergency_plans": true,
+        "concurrent_offers": true
+    }
+}
+]

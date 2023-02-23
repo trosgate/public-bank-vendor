@@ -1,0 +1,15 @@
+{% load i18n %}{% autoescape off %}
+
+{% block content %}
+
+Hello User,
+
+You are receiving this mail because you wanted to test your email settings"
+
+Everything looks fine now so all the best
+
+{% blocktranslate %}Thank you, the {{ website_name }} team {% endblocktranslate %}
+
+{% endblock %}
+
+{% endautoescape %}

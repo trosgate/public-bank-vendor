@@ -1,0 +1,180 @@
+{% extends "dashboard/main_base.html" %}
+
+{% load static %}
+
+{% block content %}
+{% include 'dashboard/main_sidebar.html' %}
+            
+<main id="wt-main" class="wt-main wt-haslayout wt-innerbgcolor">
+    <div class="wt-haslayout wt-innerbannerholder">
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col-xs-12 col-sm-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                    <div class="wt-innerbannercontent">
+                    <div class="wt-title"><h2>Manage Request</h2></div>
+                    <ol class="wt-breadcrumb">
+                        <li><a href="{% url 'account:dashboard' %}">Dashboard</a></li>
+                        <li class="wt-active">Manage Request</li>
+                    </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <section class="wt-haslayout wt-dbsectionspace">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-6 float-left">
+                <div class="wt-dashboardbox">
+                    <div class="wt-dashboardboxtitle wt-titlewithsearch">
+                        <h2>Manage Request</h2>
+                        (<a href="{% url 'custodians:branch_page' request.user.branch.slug %}"><span style="color:blue;">Go Back</span></a>)
+                    </div>
+                    <div class="wt-dashboardboxcontent wt-helpsupporthead">
+                        <div class="wt-tabscontenttitle">
+                            <h2>{{helpdesk.title}}</h2>
+                        </div>
+                        <div class="wt-helpsupportcontent">
+                            <div class="wt-description">
+                                <h6>Reference: {{helpdesk.reference}}</h6>
+                                <p>{{helpdesk.content|linebreaks}}</p>
+                            </div>
+                            {% if helpdesk.file %}
+                            <div class="wt-description">
+                                <h6>Attachment</h6>
+                                <a href="{{helpdesk.file.url}}">Open File Attachment</a>
+                            </div>
+                            {% endif %}
+                            <div id="reply-list">
+                                {% include 'custodians/partials/helpdesk_reply.html' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-6 float-left">
+                <div class="wt-dashboardbox wt-holdersolution">
+                    <div class="wt-dashboardboxtitle">
+                        <h2>Manage Request</h2>
+                    </div>
+                    <div id="routing">
+                    {% include 'custodians/partials/routing_or_reply.html' %}
+                    </div>   
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="wt-proposalholder">
+        <div class="row justify-content-md-center">
+            <div class="wt-sectionhead wt-textcenter">
+                <span>Copyright @ {{website.site_name}}</span>
+            </div>
+        </div>
+    </div>
+</main>
+<!--Main End-->	
+
+<!-- Popup Start-->
+<div class="modal fade wt-offerpopup" tabindex="-1" role="dialog" id="routingmodal">
+    <div class="modal-dialog" role="document">
+        <div class="wt-modalcontent modal-content">
+            <div class="wt-popuptitle">
+                <h2>Route to Branch</h2>
+                <a href="javascript%3bvoid(0)%3b.html" class="wt-closebtn close"><i class="fa fa-close" data-dismiss="modal" aria-label="Close" style="color:red;"></i></a>						
+            </div>
+            <div class="modal-body">
+            <form method="POST", class="wt-formtheme wt-formpopup"> {% csrf_token %}
+                <div class="form-group">
+                    {{routingform.support_branch}}
+                </div>
+                <button id="make-route" type="button" class="wt-btnarea"
+                    data-dismiss="modal"
+                    hx-post="{% url 'custodians:reroute' helpdesk.pk %}"
+                    hx-target="#routing"
+                    hx-confirm="By proceeding, you agree to route or re-route this request"
+                    style="background-color:rgb(118, 29, 90); color:white; font-weight: bold;">
+                    Re-Route Now
+                </button>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).on("click", "#my-reply", function(){
+        $('#id_content').val('')
+    })
+</script>
+
+{% endblock content %}
+<script>
+    $('#makeroute').on('click', function(){
+        $('#routingmodal').modal('hide');
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

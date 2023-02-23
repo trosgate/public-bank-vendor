@@ -1,0 +1,29 @@
+[
+{
+    "model": "general_settings.websitesetting",
+    "pk": 1,
+    "fields": {
+        "site_name": "Ivendor Helpdesk",
+        "site_Logo": "site/Ivendor Helpdesk/logo_2_2_VyyUJz2.jpg",
+        "protocol": "http://",
+        "site_domain": "127.0.0.1:8000",
+        "button_color": "#6a1b9a",
+        "navbar_color": "#009688",
+        "twitter_url": "https://twitter.com",
+        "instagram_url": "https://instagram.com",
+        "youtube_url": "https://youtube.com",
+        "facebook_url": "https://facebook.com",
+        "site_description": "Ivendor Management System for ATM Vendors",
+        "home_title": "Welcome to Ivendor Helpdesk",
+        "home_preview": "Select your option to onboard",
+        "login_preview": "Login securely and work with your colleagues",
+        "reset_preview": "Having challenge loging in? We got you. Simply reset your password",
+        "profile_description": "Default this is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked\r\n\r\nThis is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked\r\n\r\nThis is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked This is the section for the tickets to be checked",
+        "team_banner_title": "Your Workspace",
+        "team_banner_preview": "Working remotely with your team shouldn't be nightmare. Create teams, add your perfect staffs online and supervise them. It's that simple.",
+        "warning_time_schedule": 2,
+        "created_at": "2023-01-20T14:18:25.608Z",
+        "modified": "2023-01-20T14:18:25.608Z"
+    }
+}
+]
