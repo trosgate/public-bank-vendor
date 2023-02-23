@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
 from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-# ALLOWED_HOSTS = ['ivendor.trosgate.com', '161.35.173.215']
+ALLOWED_HOSTS = ['ivendor.trosgate.com', 'trosgate.com', '159.65.115.95']
 
 AUTH_USER_MODEL = 'account.Customer'
 
@@ -98,28 +99,28 @@ WSGI_APPLICATION = 'trosgate.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 #SERVER SIDE
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'trosgate',
-#         'USER': 'katey',
-#         'PASSWORD': 'Prof2ike.y2ky2k',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
-# }
-
-#LOCAL DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'banking',
+        'NAME': 'trosgate',
         'USER': 'katey',
         'PASSWORD': 'Prof2ike.y2ky2k',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
+
+#LOCAL DATABASE
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'banking',
+#         'USER': 'katey',
+#         'PASSWORD': 'Prof2ike.y2ky2k',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 
 
 # Twilio SendGrid
@@ -215,7 +216,7 @@ EMAIL_USE_LOCALTIME = True
 TIMEZONE = 'Africa/Accra'
 
 
-if DEBUG == False:
+if not DEBUG:
     SESSION_EXPIRE_AT_BROWSER_CLOSE = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SESSION_COOKIE_AGE = 1209600 #two weeks in seconds
@@ -226,7 +227,7 @@ if DEBUG == False:
     SECURE_HSTS_PRELOAD = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     CSRF_COOKIE_SECURE = True
-    EMAIL_SUBJECT_PREFIX = '[Ivendor] '
+    EMAIL_SUBJECT_PREFIX = '[Ivendor]'
 
 
 # EMAIL PASS LATEST: yqwvhebpxtgqmjph
@@ -247,6 +248,3 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 MAXIMUM_INVITE_SIZE = 10
 # PASSWORD_RESET_TIMEOUT_DAYS =
-
-# CUSTOM SESSION
-# GRADING_SESSION_ID = "grading_box_id"
