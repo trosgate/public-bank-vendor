@@ -1,7 +1,20 @@
+{% if messages %}
+    <div class="row justify-content-md-center" hx-get="{% url 'tickets:remove_message' %}" hx-trigger="load delay:4s">        
+        {% for message in messages %}        
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <span class="wt-jobalerts">
+                <div class="alert alert-{{message.tags}} alert-dismissible fade show text-center">
+                    <span> {{ message}} </span>
+                </div>
+            </span>
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
 
 <div class="wt-jobdescription wt-tabsinfo"><br>
     <div class="wt-tabscontenttitle">
-        <h2>Internal Panelists (Team)</h2>
+        <h2>Option Two: Internal Panelists</h2>
     </div>	
     <section class="wt-haslayout wt-dbsectionspace wt-padding-add-top wt-moredetailsholder">
         <div class="row">
@@ -51,13 +64,18 @@
                         <h6>{{panel.name}}</h6>
                     {% endif %}
                     <div class="wt-insightdetails">
+                        <form class="badge badge-pill">{% csrf_token %}
+                            <input type="number" name="panel" value="{{panel.pk}}" hidden>
+                            <button type="button" class="btn btn-success btn-sm"
+                                style="background-color:green; font-weight: bold;"
+                                hx-post="{% url 'onboarding:panel_reminder' application.pk %}"
+                                hx-target="#panel-list">
+                                <i class="fa fa-bell"> Reminder [{{panel.reminder_count}}]</i>
+                            </button>
+                        </form> |
                         <button type="button" class="btn btn-danger btn-sm"
                             style="background-color:red; font-weight: bold;" disabled>
-                            {% if panel.mode == 'internal' %}
-                            <i class="fa fa-lock"> Login Mode</i>
-                            {% else %}
-                            <i class="fa fa-lock"> Token Mode</i>
-                            {% endif %}
+                            <i class="fa fa-lock"> Login Access</i>
                         </button>
                     </div>
                 </div>

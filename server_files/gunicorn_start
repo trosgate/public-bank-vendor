@@ -1,7 +1,7 @@
 #!/bin/sh
 
 NAME='trosgate'
-DJANGODIR=/webapps/trosgate/trosgate_env/vendor-manager
+DJANGODIR=/webapps/trosgate/trosgate_env/Trosgate-Saas-new
 SOCKFILE=/webapps/trosgate/trosgate_env/run/gunicorn.sock
 USER=katey
 GROUP=webapps

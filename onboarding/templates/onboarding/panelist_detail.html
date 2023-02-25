@@ -32,10 +32,21 @@
                                 <li><span><i class="far fa-clock" style="color:blue;"></i> {{application.invitation.tender.created_at|date:"M-d-Y"}}</span></li>
                             </ul>
                         </div>
-
+                        
                     <div class="wt-jobdescription wt-tabsinfo"><br><br>
                         <div class="wt-tabscontenttitle">
-                            <h2>External Link Share</h2>
+                            <h2>
+                                Step One: Attach Meeting Link (Optional)
+                            </h2>
+                        </div>
+                        <div id="add-link" class="wt-description mt-4">
+                            {% include 'onboarding/partials/meeting_link.html' %}
+                        </div>
+                    
+                    </div>
+                    <div class="wt-jobdescription wt-tabsinfo"><br><br>
+                        <div class="wt-tabscontenttitle">
+                            <h2>Option One: External Panelist</h2>
                         </div>	
                         <div class="wt-description mt-4">
                             <form method='POST'>{% csrf_token %}
@@ -61,22 +72,17 @@
                                         Create External Panelist
                                     </button>
                                 </div> 
-                                
                             </form>
                         </div>
                         </div>
                         <div class="wt-description mt-4">
                             <div id="extpanel-list">
-                            
                             {% include 'onboarding/partials/ext_panel_list.html' %}
-
                             </div>
                         </div>
                         <div class="wt-description">
                             <div id="panel-list">
-
                             {% include 'onboarding/partials/panel_list.html' %}
-
                             </div>
                         </div>
                     </div>
@@ -90,5 +96,11 @@
             $("#id_name").val('')
             $("#id_email").val('')
         })
-    </script>    
+
+        $('#linkclicked').on('click', function(){
+            $('#meetinglinkmodal').modal('hide');
+        });
+    </script> 
+    
+    {% include 'onboarding/partials/meeting_link_modal.html' %}
     {% endblock content %}

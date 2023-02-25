@@ -15,7 +15,8 @@ from .forms import (
     CategorizedApplicationForm, 
     GradingForm, 
     ApprovalForm,
-    PanelistForm
+    PanelistForm,
+    MeetingLinkForm
 )
 from django.db import transaction as db_transaction
 from django.http import HttpResponse
@@ -102,18 +103,6 @@ def composed_messages(request, website_pk):
         'instruction': instruction,  
     }
     return render(request, 'onboarding/partials/composer.html', context)
-
-
-# @login_required
-# @user_is_officer
-# def vendor_category(request):
-#     categories = Category.objects.filter(status=True)
-#     context = {
-#         'protovariable': 'stageone', 
-#         'categories': categories,  
-  
-#     }
-#     return render(request, 'onboarding/partials/tender_states.html', context)
 
 
 @login_required
@@ -562,7 +551,6 @@ def submit_application(request, invite_reference):
 @user_is_officer
 def pool_review(request, reference, vendor_name):
     application = get_object_or_404(Application, pk=reference, name=vendor_name)
-
     context = {
         'application': application,
     }
@@ -618,6 +606,7 @@ def panelist_view(request, applicant_name):
         "team_members": team_members,
         "int_panelists": int_panelists,
         "ext_panelists": ext_panelists,
+        'linkform': MeetingLinkForm(),
     }
     return render(request, 'onboarding/panelist_detail.html', context)
 
@@ -667,6 +656,52 @@ def panelist(request, application_pk):
             "ext_panelists": ext_panelists,
         }
         return render(request, 'onboarding/partials/ext_panel_list.html', context) 
+
+
+@login_required
+@user_is_officer
+def meeting_link(request, application_pk):
+    application = get_object_or_404(Application, pk=application_pk)
+    linkform = MeetingLinkForm(request.POST or None, instance=application)
+    if linkform.is_valid():
+        linkform.save()
+        messages.info(request, f'Link saved successfully')
+
+    else:
+        messages.error(request, f'Error occured! please try again')
+
+    context = {
+        'application':application,
+        'linkform': MeetingLinkForm(),
+    }
+    return render(request, 'onboarding/partials/meeting_link.html', context)
+
+
+@login_required
+@user_is_officer
+def panel_reminder(request, application_pk):
+    application = get_object_or_404(Application, pk=application_pk)
+    panel = int(request.POST.get('panel'))
+    panelist = get_object_or_404(Panelist, pk=panel)
+    panelist.reminder_count += 1
+    panelist.save()
+
+    int_panelists = Panelist.objects.filter(application=application, panelist__isnull=False, mode='internal')
+    invited_list = [panel.panelist.pk for panel in int_panelists]
+    
+    team_members = Customer.objects.filter(
+        is_stakeholder = True,
+        is_active=True
+    ).exclude(pk__in=invited_list)
+
+    messages.info(request, f'Link sent successfully')
+
+    context = {
+        "application": application,
+        "int_panelists": int_panelists,
+        "team_members": team_members,
+    }
+    return render(request, 'onboarding/partials/panel_list.html', context)
 
 
 @require_http_methods(['POST', 'GET'])

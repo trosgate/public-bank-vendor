@@ -102,6 +102,7 @@ class ApplicationAdmin(admin.ModelAdmin):
         ('New Application', {'fields': ('reference', 'counter', 'invitation', 'applicant','name', 'registered_name', 'status',)}),
         ('Vendor Size Determinants', {'fields': ('max_member_per_team', 'regional_availability',)}),
         ('SLA Operations', {'fields': ('instation', 'outstation', 'working_hours', 'category', 'support_product')}),
+        ('Meeting Link', {'fields': ('meeting_link',)}),
         ('Application Files', {'fields': (
             'proposal_attachment','company_attachment_1', 'company_attachment_2', 'company_attachment_3',
         )}),

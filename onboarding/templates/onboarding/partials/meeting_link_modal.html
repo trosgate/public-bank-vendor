@@ -1,0 +1,29 @@
+<div class="modal fade wt-offerpopup" tabindex="-1" role="dialog" id="meetinglinkmodal">
+    <div class="modal-dialog" role="document">
+        <div class="wt-modalcontent modal-content">
+            <div class="wt-popuptitle">
+                <h2>Please Paste your Link in the bucket</h2>
+                <a href="javascript%3bvoid(0)%3b.html" class="wt-linkbtn close"><i class="fa fa-close" data-dismiss="modal" aria-label="Close" style="color:red;"></i></a><br><br>
+            </div>
+            <div class="modal-body">
+            <form method="POST", action='.', class="wt-formtheme wt-formpopup"> {% csrf_token %}
+                <input type="number" name="application" value="{{application.pk}}" hidden/>
+                <div class="form-group" autocomplete="off">
+                    {{linkform.meeting_link}}
+                    <span style="color:red;" role="alert">{{ linkform.meeting_link.errors}}</span>
+                </div>
+                <div class="text-center"><br>
+                    <button id="linkclicked" type="submit" class="btn btn-info btn-sm"
+                        data-toggle="modal" 
+                        data-target="#meetinglinkmodal"
+                        hx-post="{% url 'onboarding:meeting_link' application.pk %}"
+                        hx-target="#add-link"
+                        style="font-weight: bold;">
+                        <i class="fa fa-plus"> Add Meeting Link</i>
+                    </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -361,7 +361,8 @@ class Application(models.Model):
     invitation = models.ForeignKey(Invitation, related_name='tenderapplication', on_delete=models.PROTECT)
     category = models.ForeignKey('general_settings.Category', verbose_name='Support Category', on_delete=models.PROTECT)
     support_product = models.ManyToManyField('general_settings.SupportProduct', verbose_name='Support Products')
-       
+    meeting_link = models.URLField(_("Meeting Link"),  max_length=2048, blank=True, null=True)     
+          
     def __str__(self):
         return str(self.name)
 
@@ -394,7 +395,7 @@ class Application(models.Model):
         invitation = self.invitation
         invitation.status = 'expired'
         invitation.save()
-  
+
     @property
     def applicant_final_result(self):
         applicant_score = Grading.objects.filter(application=self.pk)    
@@ -455,10 +456,10 @@ class Panelist(models.Model):
     reference = models.UUIDField(unique=True, editable=False, default=uuid4)
     application = models.ForeignKey(
         Application, 
-        related_name='applicapanelists', 
+        related_name='applicapanelists',
         on_delete=models.PROTECT
     )
-    mode = models.CharField(_("Access Type"),  max_length=20, choices=MODE_CHOICES, default=INTERNAL)     
+    mode = models.CharField(_("Access Type"), max_length=20, choices=MODE_CHOICES, default=INTERNAL)     
     panelist = models.ForeignKey(
         settings.AUTH_USER_MODEL, 
         verbose_name=_("Panelist A"), 
@@ -473,6 +474,7 @@ class Panelist(models.Model):
     email = models.EmailField(_("External Panelist Email"),  max_length=100, blank=True, null=True)     
     token = models.CharField(_("Access Token"), max_length=100)
     created_at = models.DateTimeField(_("Date Created"), auto_now_add=True)
+    reminder_count = models.PositiveIntegerField(_("Reminder Count"), default=0)
 
     def __str__(self):
         return str(self.application.applicant)
@@ -492,6 +494,11 @@ class Panelist(models.Model):
     
     def ext_panel_absolute_url(self):
         return reverse('onboarding:internal_scoresheet', kwargs={'reference': self.reference, 'vendor_name':self.application.name})
+
+    @property
+    def fetch_application(self):
+        return self.application
+
 
 
 class Grading(models.Model):

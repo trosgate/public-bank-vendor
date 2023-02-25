@@ -4,21 +4,21 @@ upstream trosgate_app_server {
 
 server {
     listen 80;
-    server_name ivendor.trosgate.com;
-    return 301 https://ivendor.trosgate.com$request_uri;
+    server_name trosgate.com;
+    return 301 https://trosgate.com$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name ivendor.trosgate.com;
+    server_name trosgate.com;
 
     client_max_body_size 4G;
 
     access_log /webapps/trosgate/trosgate_env/logs/nginx-access.log;
     error_log /webapps/trosgate/trosgate_env/logs/nginx-error.log;
 
-    ssl_certificate /etc/letsencrypt/live/ivendor.trosgate.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/ivendor.trosgate.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/trosgate.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/trosgate.com/privkey.pem;
 
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_prefer_server_ciphers on;
@@ -26,12 +26,12 @@ server {
 
     location /static/ {
         autoindex on;
-        alias /webapps/trosgate/trosgate_env/vendor-manager/staticfiles/;
+        alias /webapps/trosgate/trosgate_env/Trosgate-Saas-new/staticfiles/;
     }
 
     location /media/ {
         autoindex on;
-        alias /webapps/trosgate/trosgate_env/vendor-manager/media/;
+        alias /webapps/trosgate/trosgate_env/Trosgate-Saas-new/media/;
     }
 
     location / {

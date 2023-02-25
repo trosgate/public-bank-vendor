@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import Textarea
+
 from .models import Composer, Tender, Contacts, Parameters, Invitation, Application, Panelist, Grading
 from general_settings.models import Category, SupportProduct
 from django.utils.translation import gettext_lazy as _
@@ -212,6 +214,21 @@ class CategorizedApplicationForm(forms.ModelForm):
         self.fields['company_attachment_3'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': ''})
             
+
+class MeetingLinkForm(forms.ModelForm):
+    class Meta:
+        model = Application
+        fields = ['meeting_link']
+        widgets={
+            'meeting_link':Textarea(attrs={'cols':150, 'rows':10})
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(MeetingLinkForm, self).__init__(*args, **kwargs)
+
+        self.fields['meeting_link'].widget.attrs.update(
+            {'class': 'form-control col-md-12', 'placeholder': ''})
+    
 
 class PanelistForm(forms.ModelForm):
     class Meta:

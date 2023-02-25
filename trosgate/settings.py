@@ -23,11 +23,11 @@ load_dotenv(os.path.join(BASE_DIR, ".env"))
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 SECRET_KEY = os.getenv('SECRET_KEY')
-# DEBUG = False
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
-ALLOWED_HOSTS = ['ivendor.trosgate.com', 'trosgate.com', '159.65.115.95']
+ALLOWED_HOSTS = ['trosgate.com', '159.65.115.95']
 
 AUTH_USER_MODEL = 'account.Customer'
 

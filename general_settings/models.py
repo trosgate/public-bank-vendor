@@ -7,7 +7,6 @@ from django_cryptography.fields import encrypt
 from django.core.exceptions import ValidationError
 from django.core.validators import FileExtensionValidator
 from django.template.defaultfilters import slugify
-from mptt.models import MPTTModel, TreeForeignKey
 from django.conf import settings
 
 
