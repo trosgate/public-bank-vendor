@@ -1,9 +1,8 @@
 **I'vendor Software Overview:**
 
-*Introduction:*
 I'vendor is a robust vendor and time tracking software meticulously crafted for the banking industry. Tailored to streamline vendor management and ticket resolution, it provides a centralized platform to enhance efficiency and operational processes for banks of all sizes.
 
-**Questions Answered**
+**How issues were Addressed - Questions Answered**
 
 In the realm of efficient vendor management and ticket resolution within your bank, I'vendor stands ready to provide comprehensive solutions. Here are key questions answered by the software to enhance your operations:
 
