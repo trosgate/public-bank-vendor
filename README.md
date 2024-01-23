@@ -3,6 +3,28 @@
 *Introduction:*
 I'vendor is a robust vendor and time tracking software meticulously crafted for the banking industry. Tailored to streamline vendor management and ticket resolution, it provides a centralized platform to enhance efficiency and operational processes for banks of all sizes.
 
+**Questions Answered**
+
+In the realm of efficient vendor management and ticket resolution within your bank, I'vendor stands ready to provide comprehensive solutions. Here are key questions answered by the software to enhance your operations:
+
+1. How often does my vendor respond to our fault calls/mails?
+
+2. How do i verify the vendor identity upon arrival to work?
+
+3. How do i tell the time spent between open call and arrival?
+
+4. Are there incident reports available after vendor work?
+
+5. Can we send automated reminders and focus on other core duties?
+
+6. can i have time spent on resolving issues
+
+7. Can we track jobs that were paused and be able to know the reasonse?
+
+8. What if a job spans beyond 24hrs, can we still track the time efficiently and report
+
+9. Admin users should be able to generate multiple reports and download to xcel and pdf
+
 *Features:*
 1. **Ticket Tracking:** Easily monitor ticket progress, status, assign vendors, and evaluate performance.
 2. **Vendor Management:** Centralized platform for contract tracking, performance monitoring, and assessments.
